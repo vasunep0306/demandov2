@@ -1,7 +1,25 @@
 import React, { Component } from "react";
 
-export default class componentName extends Component {
+class Navbar extends Component {
   render() {
-    return <div />;
+    return (
+      <div className="Navbar">
+        <ul>
+          <li>
+            <a className="active" href="#home">
+              Demando
+            </a>
+          </li>
+          <li>
+            <a href="#contact">Log In</a>
+          </li>
+          <li>
+            <a href="#about">Sign Up</a>
+          </li>
+        </ul>
+      </div>
+    );
   }
 }
+
+export default Navbar;
