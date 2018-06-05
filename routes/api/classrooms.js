@@ -5,7 +5,7 @@ const passport = require("passport");
 
 const validateClassroomInput = require("../../validation/classroom");
 const validateCourseRegisterationInput = require("../../validation/registerForCourse");
-const validateNewQuestion = require("../../validation/question");
+const validateNewQuestion = require("../../validation/questions");
 const validateAnswer = require("../../validation/answer");
 
 // Load User model
@@ -101,6 +101,7 @@ router.post(
 
     //Get fields
     const classData = {};
+    classData.instructor = req.user._id;
     classData.crn = req.body.crn;
     classData.classcode = req.body.classcode;
     classData.classtitle = req.body.classtitle;
@@ -112,9 +113,7 @@ router.post(
         res.status(400).json(errors);
       }
       // Save classroom
-      new Classroom(classroomFields)
-        .save()
-        .then(classroom => res.json(classroom));
+      new Classroom(classData).save().then(classroom => res.json(classroom));
     });
   }
 );
@@ -128,6 +127,7 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const { errors, isValid } = validateCourseRegisterationInput(req.body);
+    console.log(req.body);
     // Check Validation
     if (!isValid) {
       // Return any errors with 400 status
@@ -148,10 +148,12 @@ router.post(
               errors.noclass = "there is no classroom under that crn";
               return res.status(400).json(errors);
             }
-            classroom.students.shift(req.user);
+            classroom.students.unshift(user._id);
             classroom.save();
-            req.user.classrooms.shift(classroom);
-            req.user.save();
+            console.log(classroom);
+            user.classrooms.ushift(classroom._id);
+            user.save();
+            console.log(user);
             res.status(200).json(classroom);
           })
           .catch(err => res.status(500).json(err));
@@ -169,8 +171,8 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const errors = {};
-    Classroom.findById(req.params.id)
-      .populate(questions)
+    Classroom.findById(req.params.classroomid)
+      .populate("questions")
       .then(classroom => {
         if (!classroom || req.user.userType === "student") {
           errors.noclass = "No classroom available";
@@ -220,7 +222,11 @@ router.post(
             newquestion.answerchoices = req.body.answerchoices;
           }
           // save new question
-          new Question(newquestion).save().then(question => res.json(question));
+          new Question(newquestion).save().then(question => {
+            classroom.questions.unshift(question);
+            classroom.save();
+            res.json(classroom);
+          });
         }
       );
     });

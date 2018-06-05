@@ -141,7 +141,7 @@ router.get(
           errors.invalidUser = "You are not allowed to do this";
           return res.status(400).json(errors);
         } else {
-          Classroom.find({ instructorid: user._id }).then(classrooms => {
+          Classroom.find({ instructor: user._id }).then(classrooms => {
             if (classrooms.length === 0) {
               return res.json({
                 noclasses:
