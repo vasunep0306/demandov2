@@ -27,12 +27,20 @@ const QuestionSchema = new Schema({
   responses: [
     {
       student: {
-        type: Schema.Types.ObjectId,
-        ref: "users"
+        name: {
+          type: String
+        },
+        email: {
+          type: String
+        }
       },
       responsebody: {
         type: String,
         required: true
+      },
+      correctness: {
+        type: Boolean,
+        default: false
       }
     }
   ]

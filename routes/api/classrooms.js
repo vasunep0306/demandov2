@@ -246,14 +246,20 @@ router.post(
       // Return any errors with 400 status
       return res.status(400).json(errors);
     }
-    Question.findById(req.params.id).then(question => {
+    Question.findById(req.params.questionid).then(question => {
       if (!question) {
         return res.json({ noQuestion: "There is no question" });
       }
       const responsedata = {
-        student: student,
-        responsebody: req.body.answer
+        student: {
+          email: req.user.email,
+          name: req.user.name
+        },
+        responsebody: req.body.answer,
+        correctness: req.body.answer === question.correctanswer
       };
+
+      responsedata.correctness = req.body.answer === question.correctanswer;
       question.responses.unshift(responsedata);
       question
         .save()
