@@ -6,6 +6,7 @@ const passport = require("passport");
 const validateClassroomInput = require("../../validation/classroom");
 const validateCourseRegisterationInput = require("../../validation/registerForCourse");
 const validateNewQuestion = require("../../validation/question");
+const validateAnswer = require("../../validation/answer");
 
 // Load User model
 const User = require("../../models/User");
@@ -88,7 +89,7 @@ router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    const { errors, isValid } = validateCourseRegisterationInputs(req.body);
+    const { errors, isValid } = validateClassroomInput(req.body);
     // Check Validation
     if (!isValid) {
       // Return any errors with 400 status
@@ -126,7 +127,7 @@ router.post(
   "/register",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    const { errors, isValid } = validateClassroomInput(req.body);
+    const { errors, isValid } = validateCourseRegisterationInput(req.body);
     // Check Validation
     if (!isValid) {
       // Return any errors with 400 status
@@ -191,9 +192,68 @@ router.get(
 // @access  Private: only teachers can use it.
 
 router.post(
-  ":classroomid/newquestion",
+  "/:classroomid/newquestion",
   passport.authenticate("jwt", { session: false }),
-  (req, res) => {}
+  (req, res) => {
+    const { errors, isValid } = validateNewQuestion(req.body);
+    // Check Validation
+    if (!isValid) {
+      // Return any errors with 400 status
+      return res.status(400).json(errors);
+    }
+
+    // Create a new question
+    Classroom.findById(req.params.classroomid).then(classroom => {
+      Question.findOne({ questionbody: req.body.questionbody }).then(
+        question => {
+          if (question) {
+            return res.status(500).json({
+              alreadyCreatedQuestion: "You have already created that question"
+            });
+          }
+          const newquestion = {
+            questionbody: req.body.questionbody,
+            questiontype: req.body.questiontype,
+            correctanswer: req.body.correctanswer
+          };
+          if (req.body.answerchoices) {
+            newquestion.answerchoices = req.body.answerchoices;
+          }
+          // save new question
+          new Question(newquestion).save().then(question => res.json(question));
+        }
+      );
+    });
+  }
 );
 
+// @route   POST api/classrooms/:questionid/answerquestion
+// @desc    Post a new question given a classroom
+// @access  Private: students will use this to answer questions.
+router.post(
+  "/:questionid/answerquestion",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validateAnswer(req.body);
+    // Check Validation
+    if (!isValid) {
+      // Return any errors with 400 status
+      return res.status(400).json(errors);
+    }
+    Question.findById(req.params.id).then(question => {
+      if (!question) {
+        return res.json({ noQuestion: "There is no question" });
+      }
+      const responsedata = {
+        student: student,
+        responsebody: req.body.answer
+      };
+      question.responses.unshift(responsedata);
+      question
+        .save()
+        .then(question => res.json(question))
+        .catch(err => res.json(err));
+    });
+  }
+);
 module.exports = router;

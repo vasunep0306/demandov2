@@ -6,23 +6,7 @@ const QuestionSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "classrooms"
   },
-  questiontype: {
-    type: String,
-    required: true
-  },
-  questionbody: {
-    type: String,
-    required: true
-  },
-  // a comma separated value string
-  answerchoices: {
-    type: String,
-    required: isMultipleChoice
-  },
-  correctanswer: {
-    type: String,
-    required: true
-  },
+
   // responses coming from student
   responses: [
     {
