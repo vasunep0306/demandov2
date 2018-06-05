@@ -2,11 +2,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
-
-const users = require("./routes/users");
-const classrooms = require("./routes/classrooms");
-const questions = require("./routes/questions");
-
+const users = require("./routes/api/users");
+const classrooms = require("./routes/api/classrooms");
+const questions = require("./routes/api/questions");
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
