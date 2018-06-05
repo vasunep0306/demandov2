@@ -5,6 +5,7 @@ const passport = require("passport");
 
 const validateClassroomInput = require("../../validation/classroom");
 const validateCourseRegisterationInput = require("../../validation/registerForCourse");
+const validateNewQuestion = require("../../validation/question");
 
 // Load User model
 const User = require("../../models/User");
@@ -183,6 +184,16 @@ router.get(
       })
       .catch(err => res.status(500).json(err));
   }
+);
+
+// @route   POST api/classrooms/:classroomid/newquestion
+// @desc    Post a new question given a classroom
+// @access  Private: only teachers can use it.
+
+router.post(
+  ":classroomid/newquestion",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {}
 );
 
 module.exports = router;
