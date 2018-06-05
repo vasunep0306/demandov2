@@ -6,22 +6,19 @@ class App extends Component {
     return (
       <div className="App">
         <div className="Navbar">
-          <nav className="navigation-bar">
-            <ul>
-              <li className="nav-item">
-                <a href="#">Home</a>
-              </li>
-              <li className="nav-item">
-                <a href="#">News</a>
-              </li>
-              <li className="nav-item">
-                <a href="#">Contact</a>
-              </li>
-              <li className="nav-item">
-                <a href="#">About</a>
-              </li>
-            </ul>
-          </nav>
+          <ul>
+            <li>
+              <a className="active" href="#home">
+                Demando
+              </a>
+            </li>
+            <li>
+              <a href="#contact">Log In</a>
+            </li>
+            <li>
+              <a href="#about">Sign Up</a>
+            </li>
+          </ul>
         </div>
         <div className="landing">
           <h1>Landing goes here </h1>
