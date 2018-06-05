@@ -4,7 +4,6 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const users = require("./routes/api/users");
 const classrooms = require("./routes/api/classrooms");
-const questions = require("./routes/api/questions");
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -26,7 +25,6 @@ require("./config/passport.js")(passport);
 //Use Routes
 app.use("/api/users", users);
 app.use("/api/classrooms", classrooms);
-app.use("/api/questions", questions);
 
 const port = process.env.PORT || 8000;
 
