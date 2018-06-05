@@ -4,11 +4,14 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 
 const validateClassroomInput = require("../../validation/classroom");
+const validateCourseRegisterationInput = require("../../validation/registerForCourse");
 
 // Load User model
 const User = require("../../models/User");
 // Load Classroom model
 const Classroom = require("../../models/Classroom");
+// Load Question model
+const Question = require("../../models/Question");
 
 // @route   GET api/classrooms/test
 // @desc    Tests users route
@@ -26,7 +29,7 @@ router.get(
     Classroom.find()
       .populate("user", ["name", "email"])
       .then(classrooms => {
-        if (!classrooms || req.user.userType === "student") {
+        if (!classrooms) {
           errors.noClassrooms = "There are no classrooms";
           return res.status(404).json(errors);
         }
@@ -84,7 +87,7 @@ router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    const { errors, isValid } = validateClassroomInput(req.body);
+    const { errors, isValid } = validateCourseRegisterationInputs(req.body);
     // Check Validation
     if (!isValid) {
       // Return any errors with 400 status
@@ -106,7 +109,7 @@ router.post(
         errors.crn = "That crn already exists";
         res.status(400).json(errors);
       }
-      // Save Profile
+      // Save classroom
       new Classroom(classroomFields)
         .save()
         .then(classroom => res.json(classroom));
@@ -115,7 +118,71 @@ router.post(
 );
 
 // @route   Post api/classrooms/register
-// @desc    Create a classroom
+// @desc    Get students to register for class
 // @access  Private
+
+router.post(
+  "/register",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validateClassroomInput(req.body);
+    // Check Validation
+    if (!isValid) {
+      // Return any errors with 400 status
+      return res.status(400).json(errors);
+    }
+
+    // Register student for classroom
+    User.findById(req.user._id)
+      .then(user => {
+        if (!user) {
+          errors.nouser = "there is no user";
+          return res.status(400).json(errors);
+        }
+        Classroom.findOne({ crn: req.body.crn })
+          .then(classroom => {
+            // Find classroom
+            if (!classroom) {
+              errors.noclass = "there is no classroom under that crn";
+              return res.status(400).json(errors);
+            }
+            classroom.students.shift(req.user);
+            classroom.save();
+            req.user.classrooms.shift(classroom);
+            req.user.save();
+            res.status(200).json(classroom);
+          })
+          .catch(err => res.status(500).json(err));
+      })
+      .catch(err => res.status(500).json(err));
+  }
+);
+
+// @route   GET api/classrooms/:classroomid/questions
+// @desc    Get all the questions for that specific classroom
+// @access  Private: only teachers can use it.
+
+router.get(
+  "/:classroomid/questions",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const errors = {};
+    Classroom.findById(req.params.id)
+      .populate(questions)
+      .then(classroom => {
+        if (!classroom || req.user.userType === "student") {
+          errors.noclass = "No classroom available";
+          return res.status(404).json(errors);
+        }
+        if (classroom.questions.length === 0) {
+          errors.noquestions = "No questions available";
+          return res.status(404).json(errors);
+        }
+        const questions = classroom.questions;
+        res.status(200).json(questions);
+      })
+      .catch(err => res.status(500).json(err));
+  }
+);
 
 module.exports = router;
