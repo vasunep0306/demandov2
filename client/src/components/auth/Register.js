@@ -61,13 +61,15 @@ class Register extends Component {
                 </h3>
               </div>
               <div className="panel-body">
-                <form role="form">
+                <form noValidate onSubmit={this.onSubmit}>
                   <div className="row">
                     <div className="form-group">
                       <input
                         type="text"
-                        name="fullname"
-                        id="fullame"
+                        name="name"
+                        value={this.state.name}
+                        onChange={this.onChange}
+                        id="fullname"
                         className="form-control input-sm"
                         placeholder="Full Name"
                       />
@@ -78,6 +80,8 @@ class Register extends Component {
                       <input
                         type="email"
                         name="email"
+                        value={this.state.email}
+                        onChange={this.onChange}
                         id="email"
                         className="form-control input-sm"
                         placeholder="Email Address"
@@ -89,6 +93,8 @@ class Register extends Component {
                       <input
                         type="password"
                         name="password"
+                        value={this.state.password}
+                        onChange={this.onChange}
                         id="password"
                         className="form-control input-sm"
                         placeholder="Password"
@@ -98,14 +104,20 @@ class Register extends Component {
                     <div class="form-group">
                       <input
                         type="password"
-                        name="password_confirmation"
-                        id="password_confirmation"
+                        name="password2"
+                        id="password2"
+                        value={this.state.password2}
+                        onChange={this.onChange}
                         className="form-control input-sm"
                         placeholder="Confirm Password"
                       />
                     </div>
                     <div class="form-group">
-                      <select>
+                      <select
+                        name="userType"
+                        value={this.state.userType}
+                        onChange={this.onChange}
+                      >
                         <option>*Please select user type</option>
                         <option value="student">Student</option>
                         <option value="teacher">Teacher</option>
