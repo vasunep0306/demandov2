@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { createClassroom } from "../../actions/classroomActions";
 import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
 class CreateClass extends Component {
   constructor() {
@@ -19,6 +21,19 @@ class CreateClass extends Component {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
+  }
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+  onSubmit(e) {
+    e.preventDefault();
+    // console.log(this.state);
+    const newClass = {
+      classcode: this.state.classcode,
+      crn: this.state.crn,
+      classtitle: this.state.classtitle
+    };
+    this.props.createClassroom(newClass, this.props.history);
   }
   render() {
     return (
@@ -60,6 +75,7 @@ class CreateClass extends Component {
 }
 
 CreateClass.propTypes = {
+  createClassroom: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -69,4 +85,7 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default CreateClass;
+export default connect(
+  mapStateToProps,
+  { createClassroom }
+)(withRouter(CreateClass));
