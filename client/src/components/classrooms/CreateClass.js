@@ -6,7 +6,13 @@ export default class CreateClass extends Component {
       <div>
         <h1> Use this form to create a class </h1>
         <form>
-          <label htmlFor="classcode">Classcode: </label>
+          <label htmlFor="classcode">Class code: </label>
+          <input type="text" name="classcode" placeholder="classcode" />
+          <br />
+          <label htmlFor="crn">Crn: </label>
+          <input type="text" name="crn" placeholder="crn" />
+          <br />
+          <label htmlFor="classcode">Class Title: </label>
           <input type="text" name="classcode" placeholder="classcode" />
         </form>
       </div>
