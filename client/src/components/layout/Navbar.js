@@ -33,6 +33,9 @@ class Navbar extends Component {
           <Link to="/">Demando</Link>
         </li>
         <li>
+          <Link to="/dashboard">My Page </Link>
+        </li>
+        <li>
           <a href="" onClick={this.onLogoutClick.bind(this)}>
             Logout
           </a>

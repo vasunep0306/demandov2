@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import TeacherDashboard from "./TeacherComponents/TeacherDashboard";
 
 class Dashboard extends Component {
   render() {
@@ -7,13 +11,16 @@ class Dashboard extends Component {
     const student = user.userType === "student";
     let dashboardContent;
     if (teacher) {
+      dashboardContent = <TeacherDashboard user={user} />;
+    }
+    if (student) {
       dashboardContent = (
         <div>
-          <h1>Welcome Professor</h1>
+          <h1>Welcome {user.name}</h1>
         </div>
       );
     }
-    return <div />;
+    return dashboardContent;
   }
 }
 
