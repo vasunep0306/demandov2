@@ -11,6 +11,8 @@ class CreateClass extends Component {
       classtitle: "",
       errors: {}
     };
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -22,13 +24,14 @@ class CreateClass extends Component {
     return (
       <div>
         <h1> Use this form to create a class </h1>
-        <form>
+        <form onSubmit={this.onSubmit}>
           <label htmlFor="classcode">Class code: </label>
           <input
             type="text"
             name="classcode"
             placeholder="classcode"
             value={this.state.classcode}
+            onChange={this.onChange}
           />
           <br />
           <label htmlFor="crn">Crn: </label>
@@ -37,6 +40,7 @@ class CreateClass extends Component {
             name="crn"
             placeholder="crn"
             value={this.state.crn}
+            onChange={this.onChange}
           />
           <br />
           <label htmlFor="classtitle">Class Title: </label>
@@ -45,6 +49,7 @@ class CreateClass extends Component {
             name="classtitle"
             placeholder="classtitle"
             value={this.state.classtitle}
+            onChange={this.onChange}
           />
           <br />
           <input type="submit" />
