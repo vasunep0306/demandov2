@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import TeacherDashboard from "./TeacherComponents/TeacherDashboard";
+import StudentDashboard from "./StudentComponents/StudentDashboard";
 
 class Dashboard extends Component {
   render() {
@@ -14,11 +15,7 @@ class Dashboard extends Component {
       dashboardContent = <TeacherDashboard user={user} />;
     }
     if (student) {
-      dashboardContent = (
-        <div>
-          <h1>Welcome {user.name}</h1>
-        </div>
-      );
+      dashboardContent = <StudentDashboard user={user} />;
     }
     return dashboardContent;
   }

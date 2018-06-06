@@ -110,7 +110,7 @@ router.post(
       if (classroom) {
         // Check if crn exists
         errors.crn = "That crn already exists";
-        res.status(400).json(errors);
+        return res.status(400).json(errors);
       }
       // Save classroom
       new Classroom(classData).save().then(classroom => res.json(classroom));
