@@ -5,7 +5,17 @@ import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 
 class Register extends Component {
-  constructor() {}
+  constructor() {
+    super();
+    this.state = {
+      name: "",
+      email: "",
+      password: "",
+      password2: "",
+      userType: "",
+      errors: {}
+    };
+  }
   render() {
     return (
       <div className="container">
