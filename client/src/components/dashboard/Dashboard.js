@@ -2,12 +2,27 @@ import React, { Component } from "react";
 
 class Dashboard extends Component {
   render() {
-    return (
-      <div>
-        <h1> Welcome who ever you are </h1>
-      </div>
-    );
+    const { user } = this.props.auth;
+    const teacher = user.userType === "teacher";
+    const student = user.userType === "student";
+    let dashboardContent;
+    if (teacher) {
+      dashboardContent = (
+        <div>
+          <h1>Welcome Professor</h1>
+        </div>
+      );
+    }
+    return <div />;
   }
 }
 
-export default Dashboard;
+Dashboard.propTypes = {
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps)(Dashboard);
