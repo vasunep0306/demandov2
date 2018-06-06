@@ -20,16 +20,16 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-      <Router>
-        <div className="App">
-          <Navbar />
-          <Route exact path="/" component={Landing} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Register} />
-          <Footer />
-        </div>
-      </Router>
-      </Provider
+        <Router>
+          <div className="App">
+            <Navbar />
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
+            <Footer />
+          </div>
+        </Router>
+      </Provider>
     );
   }
 }
