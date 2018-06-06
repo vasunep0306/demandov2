@@ -5,6 +5,9 @@ import "./App.css";
 // Routers
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+// Private route
+import PrivateRoute from "./components/common/PrivateRoute";
+
 // Redux Modules
 import { Provider } from "react-redux";
 import store from "./store";
