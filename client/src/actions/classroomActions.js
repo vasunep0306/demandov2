@@ -1,7 +1,6 @@
 import {
   GET_CLASSROOM,
   GET_CLASSROOMS,
-  CREATE_CLASSROOM,
   CLASSROOM_NOT_FOUND,
   GET_ERRORS
 } from "./types";
