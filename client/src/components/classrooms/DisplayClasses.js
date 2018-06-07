@@ -6,6 +6,7 @@ import { showClassrooms } from "../../actions/classroomActions";
 
 class DisplayClasses extends Component {
   render() {
+    const { user } = this.props.auth;
     return <div />;
   }
 }

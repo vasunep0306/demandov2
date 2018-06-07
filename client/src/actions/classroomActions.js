@@ -17,3 +17,20 @@ export const createClassroom = (classroomData, history) => dispatch => {
       })
     );
 };
+
+export const showClassrooms = id => dispatch => {
+  axios
+    .get(`/api/users/${id}/classrooms`)
+    .then(res =>
+      dispatch({
+        type: GET_CLASSROOMS,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_CLASSROOMS,
+        payload: null
+      })
+    );
+};
