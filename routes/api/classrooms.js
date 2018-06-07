@@ -82,26 +82,6 @@ router.get(
   }
 );
 
-// @route   Get api/classrooms/:instructorid
-// @desc    Get all classrooms taughtby specific teacher
-// @access  Private but universal to both teachers and students
-router.get(
-  "/:instructorid",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    const errors = {};
-    Classroom.find({ instructorid: req.params.instructorid }).then(
-      classrooms => {
-        if (!classrooms) {
-          errors.noclass = "there are no classrooms for you";
-          return res.status(400).json(errors);
-        }
-        res.json(classrooms);
-      }
-    );
-  }
-);
-
 // @route   Post api/classrooms/
 // @desc    Create a classroom
 // @access  Private

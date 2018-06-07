@@ -2,7 +2,8 @@ import {
   GET_CLASSROOM,
   GET_CLASSROOMS,
   CLASSROOM_NOT_FOUND,
-  GET_ERRORS
+  GET_ERRORS,
+  LOADING
 } from "./types";
 import axios from "axios";
 
@@ -19,6 +20,7 @@ export const createClassroom = (classroomData, history) => dispatch => {
 };
 
 export const showClassrooms = id => dispatch => {
+  dispatch(setClassLoading());
   axios
     .get(`/api/users/${id}/classrooms`)
     .then(res =>
@@ -33,4 +35,11 @@ export const showClassrooms = id => dispatch => {
         payload: null
       })
     );
+};
+
+// Set loading state
+export const setClassLoading = () => {
+  return {
+    type: LOADING
+  };
 };

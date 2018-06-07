@@ -5,21 +5,44 @@ import { connect } from "react-redux";
 import { showClassrooms } from "../../actions/classroomActions";
 
 class DisplayClasses extends Component {
+  componentDidMount() {
+    this.props.showClassrooms(this.props.auth.user.id);
+  }
+
   render() {
-    const { user } = this.props.auth;
-    return <div />;
+    const { classrooms, loading } = this.props.classrooms;
+    let classroomArea;
+    if (classrooms === null || loading) {
+      classroomArea = <h1>Loading</h1>;
+    } else {
+      classroomArea = (
+        <div>
+          <h1>Here are your classes </h1>
+          <table>
+            {classrooms.map(classroom => (
+              <tr key={classroom._id}>
+                <td>{classroom.classcode}</td>
+                <td>{classroom.crn}</td>
+                <td>{classroom.classtitle}</td>
+              </tr>
+            ))}
+          </table>
+        </div>
+      );
+    }
+    return <div>{classroomArea}</div>;
   }
 }
 
 DisplayClasses.propTypes = {
-  auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
-  showClassrooms: PropTypes.func.isRequired
+  classrooms: PropTypes.object.isRequired,
+  showClassrooms: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  errors: state.errors
+  classrooms: state.classrooms
 });
 
 export default connect(
