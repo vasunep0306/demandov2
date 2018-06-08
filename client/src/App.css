@@ -5,6 +5,19 @@ ul {
   overflow: hidden;
   background-color: #333;
 }
+.landing {
+  position: relative;
+  background: url("./img/canisius-college-frame.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  margin-top: 0px;
+  margin-bottom: -50px;
+}
+
+.landing-inner {
+  padding-top: 80px;
+}
 
 li {
   float: left;
