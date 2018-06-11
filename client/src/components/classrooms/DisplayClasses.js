@@ -29,6 +29,7 @@ class DisplayClasses extends Component {
             <p className="card-text">Class Code {classroom.classcode}</p>
             <button onClick={toggleQuestionForm}>Add Questions</button>
             <div id="questionForm">
+              <br />
               <CreateQuestion classid={classroom._id} />
             </div>
           </div>

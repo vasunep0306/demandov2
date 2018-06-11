@@ -4,15 +4,47 @@ import { connect } from "react-redux";
 import { addQuestion } from "../../actions/questionActions";
 
 class CreateQuestion extends Component {
+  /**
+   * questiontype: {
+    type: String,
+    required: true
+  },
+  questionbody: {
+    type: String,
+    required: true
+  },
+  correctanswer: {
+    type: String,
+    required: true
+  },
+  answerchoices: {
+    type: String,
+    required: this.isMultipleChoice
+  },
+   */
+  constructor() {
+    super();
+    this.state = {
+      questiontype: "",
+      questionbody: "",
+      correctanswer: "",
+      answerchoices: "",
+      errors: {}
+    };
+  }
   render() {
-    return <h1> This is the create question form </h1>;
+    return (
+      <form>
+        <input type="submit" />
+      </form>
+    );
   }
 }
 
 CreateQuestion.propTypes = {
   addQuestion: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  classroomId: PropTypes.string.isRequired,
+  classroomid: PropTypes.string.isRequired,
   errors: PropTypes.object.isRequired
 };
 
