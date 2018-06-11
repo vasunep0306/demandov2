@@ -28,6 +28,21 @@ class Register extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
+      if (nextProps.errors.name) {
+        alert(nextProps.errors.name);
+      }
+      if (nextProps.errors.email) {
+        alert(nextProps.errors.email);
+      }
+      if (nextProps.errors.password) {
+        alert(nextProps.errors.password);
+      }
+      if (nextProps.errors.password2) {
+        alert(nextProps.errors.password2);
+      }
+      if (nextProps.errors.userType) {
+        alert(nextProps.errors.userType);
+      }
     }
   }
 
