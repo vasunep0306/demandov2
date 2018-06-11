@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { showClassrooms } from "../../actions/classroomActions";
+import CreateQuestion from "../questions/CreateQuestion";
 
 class DisplayClasses extends Component {
   componentDidMount() {
@@ -26,12 +27,10 @@ class DisplayClasses extends Component {
               crn:{classroom.crn}
             </h6>
             <p className="card-text">Class Code {classroom.classcode}</p>
-            <a href="#" className="card-link">
-              Add Questions
-            </a>
-            <a href="#" className="card-link">
-              Edit Class
-            </a>
+            <button onClick={toggleQuestionForm}>Add Questions</button>
+            <div id="questionForm">
+              <CreateQuestion classid={classroom._id} />
+            </div>
           </div>
         </div>
       ));
@@ -39,6 +38,15 @@ class DisplayClasses extends Component {
     return <div>{classroomArea}</div>;
   }
 }
+
+const toggleQuestionForm = () => {
+  const form = document.getElementById("questionForm");
+  if (form.style.display === "none") {
+    form.style.display = "block";
+  } else {
+    form.style.display = "none";
+  }
+};
 
 DisplayClasses.propTypes = {
   classrooms: PropTypes.object.isRequired,
