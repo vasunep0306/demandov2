@@ -31,11 +31,60 @@ class CreateQuestion extends Component {
       answerchoices: "",
       errors: {}
     };
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
   }
   render() {
+    const answerChoices = (
+      <input
+        type="text"
+        name="answerchoices"
+        value={this.state.questionbody}
+        onChange={this.onChange}
+      />
+    );
     return (
       <form>
-        <input type="submit" />
+        <label for="questiontype">Question Type: </label>
+        <select
+          name="questiontype"
+          value={this.state.questiontype}
+          onChange={this.onChange}
+        >
+          <option>*Please select question type</option>
+          <option value="multiple choice"> Multiple Choice </option>
+          <option value="extended response"> Extended Response </option>
+        </select>
+        <br />
+        <label for="questionbody">Question Body: </label>
+        <input
+          type="text"
+          name="questionbody"
+          value={this.state.questionbody}
+          onChange={this.onChange}
+        />
+        <br />
+        <label for="correctanswer">Expected Answer: </label>
+        <input
+          type="text"
+          name="correctanswer"
+          value={this.state.correctanswer}
+          onChange={this.onChange}
+        />
+        <br />
+        <label for="answerchoices">Answer Choices: </label>
+        <input
+          type="text"
+          name="answerchoices"
+          placeholder="Leave blank if extended-response"
+          value={this.state.answerchoices}
+          onChange={this.onChange}
+        />
+        <br />
+        <input type="submit" value="Create Question" />
       </form>
     );
   }
