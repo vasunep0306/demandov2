@@ -19,7 +19,7 @@ const QuestionSchema = new Schema({
     required: true
   },
   answerchoices: {
-    type: String,
+    type: Array,
     required: this.isMultipleChoice
   },
 

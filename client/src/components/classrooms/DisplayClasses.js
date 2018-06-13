@@ -28,8 +28,6 @@ class DisplayClasses extends Component {
     };
     if (classrooms === null || loading) {
       classroomArea = <h1>Loading</h1>;
-    } else if (classrooms === null && !loading) {
-      classroomArea = <h1>No classrooms to show</h1>;
     } else {
       classroomArea = classrooms.map(classroom => (
         <div className="card" style={{ cardStyle }}>
@@ -42,9 +40,9 @@ class DisplayClasses extends Component {
             <button onClick={this.handleClick.bind(this, classroom._id)}>
               Add Questions
             </button>
-            <div id={`questionForm${classroom._id}`}>
+            <div key={classroom._id} id={`questionForm${classroom._id}`}>
               <br />
-              <CreateQuestion classid={classroom._id} />
+              <CreateQuestion key={classroom._id} classroomid={classroom._id} />
             </div>
           </div>
         </div>

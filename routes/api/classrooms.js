@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const passport = require("passport");
+const detect = require("detect-csv");
 
 const validateClassroomInput = require("../../validation/classroom");
 const validateCourseRegisterationInput = require("../../validation/registerForCourse");
@@ -216,10 +217,11 @@ router.post(
           const newquestion = {
             questionbody: req.body.questionbody,
             questiontype: req.body.questiontype,
-            correctanswer: req.body.correctanswer
+            correctanswer: req.body.correctanswer,
+            classroom: classroom._id
           };
           if (req.body.answerchoices) {
-            newquestion.answerchoices = req.body.answerchoices;
+            newquestion.answerchoices = req.body.answerchoices.split(",");
           }
           // save new question
           new Question(newquestion).save().then(question => {

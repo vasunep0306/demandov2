@@ -32,10 +32,36 @@ class CreateQuestion extends Component {
       errors: {}
     };
     this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+      for (let key in nextProps.errors) {
+        alert(key + " -> " + nextProps.errors[key]);
+      }
+    }
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+    const classroomid = this.props.classroomid;
+    const newQuestion = {
+      questiontype: this.state.questiontype,
+      questionbody: this.state.questionbody,
+      correctanswer: this.state.correctanswer
+    };
+    if (this.state.questiontype === "extended response") {
+      newQuestion.answerchoices = "Not Applicable";
+    } else {
+      newQuestion.answerchoices = this.state.answerchoices;
+    }
+    this.props.addQuestion(classroomid, newQuestion);
   }
   render() {
     const answerChoices = (
