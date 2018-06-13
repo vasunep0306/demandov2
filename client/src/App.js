@@ -24,6 +24,7 @@ import Register from "./components/auth/Register";
 import Dashboard from "./components/dashboard/Dashboard";
 import CreateClass from "./components/classrooms/CreateClass";
 import DisplayClasses from "./components/classrooms/DisplayClasses";
+import DisplayQuestions from "./components/questions/DisplayQuestions";
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -59,6 +60,13 @@ class App extends Component {
             </Switch>
             <Switch>
               <PrivateRoute exact path="/createClass" component={CreateClass} />
+            </Switch>
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/:classroomid/questions"
+                component={DisplayQuestions}
+              />
             </Switch>
             <Switch>
               <PrivateRoute

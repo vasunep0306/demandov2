@@ -40,6 +40,7 @@ class DisplayClasses extends Component {
             <button onClick={this.handleClick.bind(this, classroom._id)}>
               Add Questions
             </button>
+            <Link to={`/${classroom._id}/questions`}> Manage Questions </Link>
             <div key={classroom._id} id={`questionForm${classroom._id}`}>
               <br />
               <CreateQuestion key={classroom._id} classroomid={classroom._id} />
