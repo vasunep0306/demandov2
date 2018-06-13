@@ -47,7 +47,7 @@ class CreateQuestion extends Component {
       />
     );
     return (
-      <form>
+      <form onSubmit={this.onSubmit}>
         <label for="questiontype">Question Type: </label>
         <select
           name="questiontype"

@@ -10,6 +10,16 @@ class DisplayClasses extends Component {
     this.props.showClassrooms(this.props.auth.user.id);
   }
 
+  handleClick(id) {
+    const form = document.getElementById(`questionForm${id}`);
+    console.log(form);
+    if (form.style.display === "none") {
+      form.style.display = "block";
+    } else {
+      form.style.display = "none";
+    }
+  }
+
   render() {
     const { classrooms, loading } = this.props.classrooms;
     let classroomArea;
@@ -18,6 +28,8 @@ class DisplayClasses extends Component {
     };
     if (classrooms === null || loading) {
       classroomArea = <h1>Loading</h1>;
+    } else if (classrooms === null && !loading) {
+      classroomArea = <h1>No classrooms to show</h1>;
     } else {
       classroomArea = classrooms.map(classroom => (
         <div className="card" style={{ cardStyle }}>
@@ -27,8 +39,10 @@ class DisplayClasses extends Component {
               crn:{classroom.crn}
             </h6>
             <p className="card-text">Class Code {classroom.classcode}</p>
-            <button onClick={toggleQuestionForm}>Add Questions</button>
-            <div id="questionForm">
+            <button onClick={this.handleClick.bind(this, classroom._id)}>
+              Add Questions
+            </button>
+            <div id={`questionForm${classroom._id}`}>
               <br />
               <CreateQuestion classid={classroom._id} />
             </div>
@@ -39,15 +53,6 @@ class DisplayClasses extends Component {
     return <div>{classroomArea}</div>;
   }
 }
-
-const toggleQuestionForm = () => {
-  const form = document.getElementById("questionForm");
-  if (form.style.display === "none") {
-    form.style.display = "block";
-  } else {
-    form.style.display = "none";
-  }
-};
 
 DisplayClasses.propTypes = {
   classrooms: PropTypes.object.isRequired,
