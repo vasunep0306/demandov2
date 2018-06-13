@@ -37,6 +37,24 @@ export const showClassrooms = id => dispatch => {
     );
 };
 
+export const getClass = id => dispatch => {
+  dispatch(setClassLoading());
+  axios
+    .get(`/api/classrooms/${id}`)
+    .then(res =>
+      dispatch({
+        type: GET_CLASSROOM,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_CLASSROOM,
+        payload: null
+      })
+    );
+};
+
 // Set loading state
 export const setClassLoading = () => {
   return {
