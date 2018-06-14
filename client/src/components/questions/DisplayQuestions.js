@@ -14,10 +14,9 @@ class DisplayQuestions extends Component {
 
   render() {
     const { classroom } = this.props;
-    console.log(this.props);
     return (
       <div>
-        <h1>Questions for: </h1>
+        <h1>Questions for: {classroom.classtitle} </h1>
       </div>
     );
   }
