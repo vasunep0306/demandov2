@@ -28,6 +28,9 @@ class DisplayClasses extends Component {
     };
     if (classrooms === null || loading) {
       classroomArea = <h1>Loading</h1>;
+    } else if (classrooms === null && !loading) {
+      console.log(classrooms);
+      classroomArea = <h1>No classes to show</h1>;
     } else {
       classroomArea = classrooms.map(classroom => (
         <div className="card" style={{ cardStyle }}>

@@ -218,7 +218,8 @@ router.post(
             questionbody: req.body.questionbody,
             questiontype: req.body.questiontype,
             correctanswer: req.body.correctanswer,
-            classroom: classroom._id
+            classroom: classroom._id,
+            classtitle: classroom.classtitle
           };
           if (req.body.answerchoices) {
             newquestion.answerchoices = req.body.answerchoices.split(",");

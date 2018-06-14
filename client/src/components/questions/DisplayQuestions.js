@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getQuestions } from "../../actions/classroomActions";
+import { getQuestions } from "../../actions/questionActions";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -13,12 +13,45 @@ class DisplayQuestions extends Component {
   }
 
   render() {
-    const { questions } = this.props;
-    return (
-      <div>
-        <h1>Questions for: {classroom.classtitle} </h1>
-      </div>
-    );
+    const { questions, loading } = this.props.questions;
+    const cardStyle = {
+      width: "18rem"
+    };
+    console.log(questions);
+    let questionsField;
+    if (loading || questions === null) {
+      questionsField = <h1> Loading </h1>;
+    } else if (!loading && questions === null) {
+      questionsField = <h1> Nothing found </h1>;
+    } else {
+      questionsField = questions.map(question => (
+        <div key={question._id} className="card" style={{ cardStyle }}>
+          <h4>Questions for: {question.classtitle}</h4>
+          <p>{question.questionbody}</p>
+          {(() => {
+            let field;
+            switch (question.questiontype) {
+              case "multiple choice":
+                field = question.answerchoices.map((choice, index) => (
+                  <ul key={index}>
+                    <li> {choice} </li>
+                  </ul>
+                ));
+                return <div>{field}</div>;
+              case "green":
+                return "#00FF00";
+              case "blue":
+                return "#0000FF";
+              default:
+                return "#FFFFFF";
+            }
+          })()}
+        </div>
+      ));
+    }
+
+    console.log(questions);
+    return <div>{questionsField}</div>;
   }
 }
 
