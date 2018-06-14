@@ -7,12 +7,19 @@ ul {
 }
 .landing {
   position: relative;
-  background: url("./img/canisius-college-frame.jpg") no-repeat;
+  background: url("./img/canisius-college-frame-exposed.jpg") no-repeat;
   background-size: cover;
   background-position: center;
+  /* filter: brightness(1.1); */
   height: 100vh;
   margin-top: 0px;
   margin-bottom: -50px;
+}
+
+.lead {
+  color: black;
+  font-weight: bold;
+  font-size: 18pt;
 }
 
 .landing-inner {
@@ -21,6 +28,11 @@ ul {
 
 li {
   float: left;
+}
+
+.title {
+  color: blue;
+  font-size: 120px;
 }
 
 li a {
