@@ -1,4 +1,4 @@
-import { ADD_QUESTION, GET_ERRORS } from "./types";
+import { GET_ERRORS, GET_QUESTIONS, LOADING } from "./types";
 import axios from "axios";
 
 export const addQuestion = (classroomid, newQuestion) => dispatch => {
@@ -11,4 +11,19 @@ export const addQuestion = (classroomid, newQuestion) => dispatch => {
         payload: err.response.data
       })
     );
+};
+
+export const getQuestions = classroomid => dispatch => {
+  dispatch(setQuestionLoading());
+  axios
+    .get(`/api/classrooms/${classroomid}/questions`)
+    .then(res => dispatch({ type: GET_QUESTIONS, payload: res.data }))
+    .catch(res => dispatch({ type: GET_QUESTIONS, payload: null }));
+};
+
+// Set loading state
+export const setQuestionLoading = () => {
+  return {
+    type: LOADING
+  };
 };
