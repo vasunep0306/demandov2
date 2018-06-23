@@ -26,7 +26,6 @@ class DisplayQuestions extends Component {
     } else {
       questionsField = questions.map(question => (
         <div key={question._id} className="card" style={{ cardStyle }}>
-          <h4>Questions for: {question.classtitle}</h4>
           <p>{question.questionbody}</p>
           {(() => {
             let field;
@@ -38,14 +37,11 @@ class DisplayQuestions extends Component {
                   </ul>
                 ));
                 return <div>{field}</div>;
-              case "green":
-                return "#00FF00";
-              case "blue":
-                return "#0000FF";
               default:
                 return "#FFFFFF";
             }
           })()}
+          <button>Publish Question</button>
         </div>
       ));
     }
