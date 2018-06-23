@@ -1,7 +1,7 @@
 {
   "name": "demandov2",
   "version": "1.0.0",
-  "description": "Social network for developers",
+  "description": "An aid to pedagology",
   "main": "server.js",
   "scripts": {
     "client-install": "npm install --prefix client",
@@ -10,7 +10,7 @@
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "author": "Brad Traversy",
+  "author": "Vasu Neppalli",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
