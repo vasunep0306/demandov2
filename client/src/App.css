@@ -15,6 +15,10 @@ ul {
   margin-bottom: -50px;
 }
 
+.Navbar {
+  background-color: #111;
+}
+
 .lead {
   color: black;
   font-weight: bold;

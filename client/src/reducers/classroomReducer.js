@@ -1,8 +1,8 @@
 import isEmpty from "../validation/is-empty";
 import { GET_CLASSROOMS, LOADING, GET_CLASSROOM } from "../actions/types";
 const initialState = {
-  classroom: {},
-  classrooms: [],
+  classroom: null,
+  classrooms: null,
   loading: false
 };
 export default function(state = initialState, action) {
