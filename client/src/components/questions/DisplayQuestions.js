@@ -11,6 +11,9 @@ class DisplayQuestions extends Component {
   componentDidMount() {
     this.props.getQuestions(this.props.match.params.classroomid);
   }
+  handleClick(question) {
+    localStorage.question = question;
+  }
 
   render() {
     const { questions, loading } = this.props.questions;
