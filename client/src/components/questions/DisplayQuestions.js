@@ -38,10 +38,12 @@ class DisplayQuestions extends Component {
                 ));
                 return <div>{field}</div>;
               default:
-                return "#FFFFFF";
+                return;
             }
           })()}
-          <button>Publish Question</button>
+          <button onClick={this.handleClick.bind(this, question)}>
+            Publish Question
+          </button>
         </div>
       ));
     }

@@ -27,7 +27,7 @@ module.exports = function validateNewQuestion(data) {
   data.questionbody = !isEmpty(data.questionbody) ? data.questionbody : "";
   data.correctanswer = !isEmpty(data.correctanswer) ? data.correctanswer : "";
   // check answerchoices
-  if (!isEmpty(data.questiontype) || data.questiontype === "multiple choice") {
+  if (!isEmpty(data.questiontype) && data.questiontype === "multiple choice") {
     data.answerchoices = !isEmpty(data.answerchoices) ? data.answerchoices : "";
     isMultipleChoice = true;
   }
@@ -41,6 +41,7 @@ module.exports = function validateNewQuestion(data) {
   if (Validator.isEmpty(data.correctanswer)) {
     errors.correctanswer = "You need to have a correct answer";
   }
+
   if (isMultipleChoice) {
     if (Validator.isEmpty(data.answerchoices)) {
       errors.answerchoices = "You need to have answer choices";
