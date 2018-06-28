@@ -12,8 +12,13 @@ class DisplayQuestions extends Component {
     this.props.getQuestions(this.props.match.params.classroomid);
   }
   setQuestion(question) {
+    if (!!localStorage.question) {
+      this.unsetQuestion();
+    }
     localStorage.question = JSON.stringify(question);
-    console.log(localStorage.question);
+  }
+  unsetQuestion() {
+    localStorage.question = null;
   }
 
   render() {
@@ -46,6 +51,8 @@ class DisplayQuestions extends Component {
             }
           })()}
           <button onClick={this.setQuestion(question)}>Publish Question</button>
+          <br />
+          <button onClick={this.unsetQuestion()}>Hide Question</button>
         </div>
       ));
     }
