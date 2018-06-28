@@ -11,7 +11,7 @@ class DisplayQuestions extends Component {
   componentDidMount() {
     this.props.getQuestions(this.props.match.params.classroomid);
   }
-  handleClick(question) {
+  setQuestion(question) {
     localStorage.question = JSON.stringify(question);
     console.log(localStorage.question);
   }
@@ -45,9 +45,7 @@ class DisplayQuestions extends Component {
                 return;
             }
           })()}
-          <button onClick={this.handleClick.bind(this, question)}>
-            Publish Question
-          </button>
+          <button onClick={this.setQuestion(question)}>Publish Question</button>
         </div>
       ));
     }
