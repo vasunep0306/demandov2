@@ -7,19 +7,25 @@ import { connect } from "react-redux";
 class DisplayQuestions extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      currentQuestion: null
+    };
   }
   componentDidMount() {
     this.props.getQuestions(this.props.match.params.classroomid);
   }
   setQuestion(question) {
-    if (!!localStorage.question) {
+    if (!!this.state.currentQuestion) {
       this.unsetQuestion();
     }
-    localStorage.question = JSON.stringify(question);
-    alert("successfully set question");
+    this.setState({
+      currentQuestion: question
+    });
   }
   unsetQuestion() {
-    localStorage.question = null;
+    this.setState({
+      currentQuestion: null
+    });
   }
 
   render() {
@@ -66,12 +72,14 @@ class DisplayQuestions extends Component {
 
 DisplayQuestions.propTypes = {
   getQuestions: PropTypes.func.isRequired,
-  questions: PropTypes.array.isRequired
+  questions: PropTypes.array.isRequired,
+  currentQuestion: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  questions: state.questions
+  questions: state.questions,
+  currentQuestion: state.currentQuestion
 });
 
 export default connect(

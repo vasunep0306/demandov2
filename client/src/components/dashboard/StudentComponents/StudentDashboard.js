@@ -17,7 +17,7 @@ class TeacherDashboard extends Component {
           given crn.
         </small>
         <p>
-          Or go <Link to="/myClasses">here </Link> to see all of your classroom
+          Or go <Link to="/myClasses">here </Link> to see all of your classrooms
         </p>
       </div>
     );
