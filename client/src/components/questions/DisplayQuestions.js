@@ -16,6 +16,7 @@ class DisplayQuestions extends Component {
       this.unsetQuestion();
     }
     localStorage.question = JSON.stringify(question);
+    alert("successfully set question");
   }
   unsetQuestion() {
     localStorage.question = null;
@@ -50,9 +51,11 @@ class DisplayQuestions extends Component {
                 return;
             }
           })()}
-          <button onClick={this.setQuestion(question)}>Publish Question</button>
+          <button onClick={this.setQuestion.bind(this, question)}>
+            Publish Question
+          </button>
           <br />
-          <button onClick={this.unsetQuestion()}>Hide Question</button>
+          <button onClick={this.unsetQuestion}>Hide Question</button>
         </div>
       ));
     }
