@@ -256,14 +256,11 @@ router.post(
 // @desc    Hide the current question
 // @access  Private: only teachers can use it.
 router.post(
-  "/:classroomid/unsetcurrentquestion/:questionid",
+  "/:classroomid/unsetcurrentquestion",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Question.findById(req.params.questionid).then(question => {
-      Classroom.findById(req.params.classroomid).then(classroom => {
-        classroom.currentQuestion = {};
-        classroom.save();
-      });
+    Classroom.findById(req.params.classroomid).then(classroom => {
+      classroom.currentQuestion = {};
     });
   }
 );

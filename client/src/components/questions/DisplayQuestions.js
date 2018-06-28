@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import {
   getQuestions,
   getQuestion,
-  setQuestion
+  setQuestion,
+  unsetQuestion
 } from "../../actions/questionActions";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
@@ -19,8 +20,8 @@ class DisplayQuestions extends Component {
     this.props.setQuestion(this.props.match.params.classroomid, question._id);
     alert("successfully set question");
   }
-  unsetQuestion() {
-    localStorage.question = null;
+  hideQuestion() {
+    this.props.unsetQuestion(this.props.match.params.classroomid);
   }
 
   render() {
@@ -56,7 +57,7 @@ class DisplayQuestions extends Component {
             Publish Question
           </button>
           <br />
-          <button onClick={this.unsetQuestion}>Hide Question</button>
+          <button onClick={this.hideQuestion.bind(this)}>Hide Question</button>
         </div>
       ));
     }
@@ -69,6 +70,7 @@ DisplayQuestions.propTypes = {
   getQuestions: PropTypes.func.isRequired,
   getQuestion: PropTypes.func.isRequired,
   setQuestion: PropTypes.func.isRequired,
+  unsetQuestion: PropTypes.func.isRequired,
   questions: PropTypes.array.isRequired
 };
 
@@ -79,5 +81,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getQuestions, getQuestion, setQuestion }
+  { getQuestions, getQuestion, setQuestion, unsetQuestion }
 )(withRouter(DisplayQuestions));

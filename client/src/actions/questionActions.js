@@ -45,6 +45,15 @@ export const getQuestion = classroomid => dispatch => {
     );
 };
 
+//Unset question
+export const unsetQuestion = classroomid => dispatch => {
+  axios
+    .post(`/api/classrooms/${classroomid}/unsetcurrentquestion`)
+    .then(res => dispatch({ type: UNSET_CURRENT_QUESTION, payload: res.data }))
+    .catch(err =>
+      dispatch({ type: GET_CURRENT_QUESTION, payload: err.response.data })
+    );
+};
 // Set loading state
 export const setQuestionLoading = () => {
   return {
