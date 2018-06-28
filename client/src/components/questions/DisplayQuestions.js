@@ -1,5 +1,9 @@
 import React, { Component } from "react";
-import { getQuestions } from "../../actions/questionActions";
+import {
+  getQuestions,
+  getQuestion,
+  setQuestion
+} from "../../actions/questionActions";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -12,10 +16,7 @@ class DisplayQuestions extends Component {
     this.props.getQuestions(this.props.match.params.classroomid);
   }
   setQuestion(question) {
-    if (!!localStorage.question) {
-      this.unsetQuestion();
-    }
-    localStorage.question = JSON.stringify(question);
+    this.props.setQuestion(this.props.match.params.classroomid, question._id);
     alert("successfully set question");
   }
   unsetQuestion() {
@@ -66,6 +67,8 @@ class DisplayQuestions extends Component {
 
 DisplayQuestions.propTypes = {
   getQuestions: PropTypes.func.isRequired,
+  getQuestion: PropTypes.func.isRequired,
+  setQuestion: PropTypes.func.isRequired,
   questions: PropTypes.array.isRequired
 };
 
@@ -76,5 +79,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getQuestions }
+  { getQuestions, getQuestion, setQuestion }
 )(withRouter(DisplayQuestions));

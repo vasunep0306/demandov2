@@ -237,7 +237,7 @@ router.post(
 );
 
 // @route   POST api/classrooms/:classroomid/setcurrentquestion/:questionid
-// @desc    Post a new question given a classroom
+// @desc    Post the current question
 // @access  Private: only teachers can use it.
 router.post(
   "/:classroomid/setcurrentquestion/:questionid",
@@ -246,6 +246,22 @@ router.post(
     Question.findById(req.params.questionid).then(question => {
       Classroom.findById(req.params.classroomid).then(classroom => {
         classroom.currentQuestion = question;
+        classroom.save();
+      });
+    });
+  }
+);
+
+// @route   POST api/classrooms/:classroomid/unsetcurrentquestion/:questionid
+// @desc    Hide the current question
+// @access  Private: only teachers can use it.
+router.post(
+  "/:classroomid/unsetcurrentquestion/:questionid",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Question.findById(req.params.questionid).then(question => {
+      Classroom.findById(req.params.classroomid).then(classroom => {
+        classroom.currentQuestion = {};
         classroom.save();
       });
     });

@@ -1,5 +1,10 @@
 import isEmpty from "../validation/is-empty";
-import { GET_QUESTIONS, LOADING } from "../actions/types";
+import {
+  GET_QUESTIONS,
+  LOADING,
+  GET_CURRENT_QUESTION,
+  SET_CURRENT_QUESTION
+} from "../actions/types";
 
 const initialState = {
   questions: null,
@@ -18,6 +23,18 @@ export default function(state = initialState, action) {
       return {
         ...state,
         questions: action.payload,
+        loading: false
+      };
+    case GET_CURRENT_QUESTION:
+      return {
+        ...state,
+        question: action.payload,
+        loading: false
+      };
+    case SET_CURRENT_QUESTION:
+      return {
+        ...state,
+        question: action.payload,
         loading: false
       };
     default:
