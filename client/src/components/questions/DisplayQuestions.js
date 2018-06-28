@@ -12,7 +12,8 @@ class DisplayQuestions extends Component {
     this.props.getQuestions(this.props.match.params.classroomid);
   }
   handleClick(question) {
-    localStorage.question = question;
+    localStorage.question = JSON.stringify(question);
+    console.log(localStorage.question);
   }
 
   render() {
@@ -20,7 +21,7 @@ class DisplayQuestions extends Component {
     const cardStyle = {
       width: "18rem"
     };
-    console.log(questions);
+
     let questionsField;
     if (loading || questions === null) {
       questionsField = <h1> Loading </h1>;
@@ -51,7 +52,6 @@ class DisplayQuestions extends Component {
       ));
     }
 
-    console.log(questions);
     return <div>{questionsField}</div>;
   }
 }
