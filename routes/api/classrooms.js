@@ -236,9 +236,47 @@ router.post(
   }
 );
 
-// @route   POST api/classrooms/:questionid/answerquestion
+// @route   POST api/classrooms/:classroomid/setcurrentquestion/:questionid
+// @desc    Post a new question given a classroom
+// @access  Private: only teachers can use it.
+router.post(
+  "/:classroomid/setcurrentquestion/:questionid",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Question.findById(req.params.questionid).then(question => {
+      Classroom.findById(req.params.classroomid).then(classroom => {
+        classroom.currentQuestion = question;
+        classroom.save();
+      });
+    });
+  }
+);
+
+// @route   GET api/classrooms/:classroomid/getcurrentquestion
+// @desc    Post a new question given a classroom
+// @access  Private: students will recieve their questions using this route
+
+router.get(
+  "/:classroomid/getcurrentquestion",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Classroom.findById(req.params.classroomid)
+      .populate("currentQuestion")
+      .then(classroom => {
+        if (!classroom.currentQuestion) {
+          return res.status(500).json({
+            noCurrentQuestion: "No question is set"
+          });
+        }
+        res.status(200).json(classroom.currentQuestion);
+      });
+  }
+);
+
+// @route   GET api/classrooms/:questionid/answerquestion
 // @desc    Post a new question given a classroom
 // @access  Private: students will use this to answer questions.
+
 router.post(
   "/:questionid/answerquestion",
   passport.authenticate("jwt", { session: false }),
