@@ -3,7 +3,8 @@ import {
   GET_QUESTIONS,
   LOADING,
   SET_CURRENT_QUESTION,
-  GET_CURRENT_QUESTION
+  GET_CURRENT_QUESTION,
+  UNSET_CURRENT_QUESTION
 } from "./types";
 import axios from "axios";
 
@@ -49,10 +50,7 @@ export const getQuestion = classroomid => dispatch => {
 export const unsetQuestion = classroomid => dispatch => {
   axios
     .post(`/api/classrooms/${classroomid}/unsetcurrentquestion`)
-    .then(res => dispatch({ type: UNSET_CURRENT_QUESTION, payload: res.data }))
-    .catch(err =>
-      dispatch({ type: GET_CURRENT_QUESTION, payload: err.response.data })
-    );
+    .then(res => dispatch({ type: UNSET_CURRENT_QUESTION, payload: res.data }));
 };
 // Set loading state
 export const setQuestionLoading = () => {

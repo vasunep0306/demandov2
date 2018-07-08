@@ -22,6 +22,7 @@ class DisplayQuestions extends Component {
   }
   hideQuestion() {
     this.props.unsetQuestion(this.props.match.params.classroomid);
+    alert("successfully hid question from students");
   }
 
   render() {
