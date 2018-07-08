@@ -6,14 +6,10 @@ class RegisterForClassroom extends Component {
       <div>
         <h1>Welcome to Demando</h1>
         <p>Please register for a class</p>
-        <form onSubmit={this.onSubmit}>
-          <input
-            type="text"
-            name="classcode"
-            placeholder="classcode"
-            value={this.state.classcode}
-            onChange={this.onChange}
-          />
+        <label htmlFor="crn">Crn: </label>
+        <form>
+          <input type="text" name="crn" placeholder="crn" />
+          <input type="submit" value="Register" />
         </form>
       </div>
     );

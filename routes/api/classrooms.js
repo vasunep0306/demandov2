@@ -152,10 +152,14 @@ router.post(
             classroom.students.unshift(user._id);
             classroom.save();
             console.log(classroom);
-            user.classrooms.ushift(classroom._id);
-            user.save();
-            console.log(user);
-            res.status(200).json(classroom);
+            if (!user.classrooms.includes(classroom._id)) {
+              user.classrooms.ushift(classroom._id);
+              user.save();
+              res.status(200).json(classroom);
+            } else {
+              errors.exists = "there already is a classroom under this user";
+              res.status(400).json(errors);
+            }
           })
           .catch(err => res.status(500).json(err));
       })
