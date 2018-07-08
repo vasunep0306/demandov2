@@ -25,6 +25,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 import CreateClass from "./components/classrooms/CreateClass";
 import DisplayClasses from "./components/classrooms/DisplayClasses";
 import DisplayQuestions from "./components/questions/DisplayQuestions";
+import RegisterForClassroom from "./components/classrooms/RegisterForClassroom";
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -73,6 +74,13 @@ class App extends Component {
                 exact
                 path="/displayClasses"
                 component={DisplayClasses}
+              />
+            </Switch>
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/registerForClassroom"
+                component={RegisterForClassroom}
               />
             </Switch>
             <Footer />
