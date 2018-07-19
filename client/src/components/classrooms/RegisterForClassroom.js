@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 
 class RegisterForClassroom extends Component {
+  onSubmit(e) {
+    e.preventDefault();
+    // console.log(this.state);
+  }
   render() {
     return (
       <div>

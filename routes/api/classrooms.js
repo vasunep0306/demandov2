@@ -124,7 +124,7 @@ router.post(
 // @access  Private
 
 router.post(
-  "/register",
+  "/register/:crn",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const { errors, isValid } = validateCourseRegisterationInput(req.body);
@@ -142,7 +142,7 @@ router.post(
           errors.nouser = "there is no user";
           return res.status(400).json(errors);
         }
-        Classroom.findOne({ crn: req.body.crn })
+        Classroom.findOne({ crn: req.params.crn })
           .then(classroom => {
             // Find classroom
             if (!classroom) {
