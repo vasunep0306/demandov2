@@ -124,11 +124,11 @@ router.post(
 // @access  Private
 
 router.post(
-  "/register/:crn",
+  "/register",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const { errors, isValid } = validateCourseRegisterationInput(req.body);
-    console.log(req.body);
+
     // Check Validation
     if (!isValid) {
       // Return any errors with 400 status
@@ -142,7 +142,7 @@ router.post(
           errors.nouser = "there is no user";
           return res.status(400).json(errors);
         }
-        Classroom.findOne({ crn: req.params.crn })
+        Classroom.findOne({ crn: req.body.crn })
           .then(classroom => {
             // Find classroom
             if (!classroom) {

@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 
 class RegisterForClassroom extends Component {
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
   onSubmit(e) {
     e.preventDefault();
     // console.log(this.state);
@@ -11,8 +15,13 @@ class RegisterForClassroom extends Component {
         <h1>Welcome to Demando</h1>
         <p>Please register for a class</p>
         <label htmlFor="crn">Crn: </label>
-        <form>
-          <input type="text" name="crn" placeholder="crn" />
+        <form noValidate onSubmit={this.onSubmit}>
+          <input
+            type="text"
+            name="crn"
+            placeholder="crn"
+            onChange={this.onChange}
+          />
           <input type="submit" value="Register" />
         </form>
       </div>
