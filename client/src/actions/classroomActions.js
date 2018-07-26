@@ -56,15 +56,15 @@ export const getClass = id => dispatch => {
     );
 };
 
-export const registerForClassroom = () => dispatch => {
+export const registerForClassroom = courseData => dispatch => {
   axios
-    .get(`/api/classrooms/register`)
-    .then(res =>
+    .post(`/api/classrooms/register`, courseData)
+    .then(res => {
       dispatch({
         type: REGISTER_FOR_CLASSROOM,
         payload: res.data
-      })
-    )
+      });
+    })
     .catch(err => {
       dispatch({
         type: REGISTER_FOR_CLASSROOM,

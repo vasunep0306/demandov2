@@ -8,8 +8,11 @@ class RegisterForClassroom extends Component {
   constructor() {
     super();
     this.state = {
+      crn: "",
       errors: {}
     };
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
@@ -26,7 +29,11 @@ class RegisterForClassroom extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    // console.log(this.state);
+    const courseData = {
+      crn: this.state.crn
+    };
+    this.props.registerForClassroom(courseData);
+    alert("successfully registered for course");
   }
   render() {
     return (
@@ -34,11 +41,12 @@ class RegisterForClassroom extends Component {
         <h1>Welcome to Demando</h1>
         <p>Please register for a class</p>
         <label htmlFor="crn">Crn: </label>
-        <form noValidate onSubmit={this.onSubmit}>
+        <form onSubmit={this.onSubmit}>
           <input
             type="text"
             name="crn"
             placeholder="crn"
+            value={this.state.crn}
             onChange={this.onChange}
           />
           <input type="submit" value="Register" />
