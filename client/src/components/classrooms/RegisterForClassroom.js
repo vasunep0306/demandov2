@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 class RegisterForClassroom extends Component {
   onChange(e) {
@@ -29,4 +32,16 @@ class RegisterForClassroom extends Component {
   }
 }
 
-export default RegisterForClassroom;
+RegisterForClassroom.propTypes = {
+  classrooms: PropTypes.object.isRequired,
+  registerForClassroom: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+export default connect(
+  mapStateToProps,
+  { registerForClassroom }
+)(withRouter(RegisterForClassroom));
