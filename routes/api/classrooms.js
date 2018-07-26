@@ -153,7 +153,7 @@ router.post(
             classroom.save();
             console.log(classroom);
             if (!user.classrooms.includes(classroom._id)) {
-              user.classrooms.ushift(classroom._id);
+              user.classrooms.unshift(classroom._id);
               user.save();
               res.status(200).json(classroom);
             } else {

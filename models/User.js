@@ -23,10 +23,12 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  classrooms: {
-    type: Schema.Types.ObjectId,
-    ref: "classrooms"
-  }
+  classrooms: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "classrooms"
+    }
+  ]
 });
 
 module.exports = User = mongoose.model("users", UserSchema);
