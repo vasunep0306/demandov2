@@ -1,9 +1,25 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import { registerForClassroom } from "../../actions/classroomActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 class RegisterForClassroom extends Component {
+  constructor() {
+    super();
+    this.state = {
+      errors: {}
+    };
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+      if (nextProps.errors) {
+        alert(nextProps.errors);
+      }
+    }
+  }
+
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -39,7 +55,8 @@ RegisterForClassroom.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  errors: state.errors
 });
 export default connect(
   mapStateToProps,

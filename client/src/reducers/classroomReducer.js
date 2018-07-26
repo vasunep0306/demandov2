@@ -1,5 +1,10 @@
 import isEmpty from "../validation/is-empty";
-import { GET_CLASSROOMS, LOADING, GET_CLASSROOM } from "../actions/types";
+import {
+  GET_CLASSROOMS,
+  LOADING,
+  GET_CLASSROOM,
+  REGISTER_FOR_CLASSROOM
+} from "../actions/types";
 const initialState = {
   classroom: null,
   classrooms: null,
@@ -19,6 +24,12 @@ export default function(state = initialState, action) {
         loading: false
       };
     case GET_CLASSROOM:
+      return {
+        ...state,
+        classroom: action.payload,
+        loading: false
+      };
+    case REGISTER_FOR_CLASSROOM:
       return {
         ...state,
         classroom: action.payload,

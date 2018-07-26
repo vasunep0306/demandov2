@@ -2,6 +2,7 @@ import {
   GET_CLASSROOM,
   GET_CLASSROOMS,
   CLASSROOM_NOT_FOUND,
+  REGISTER_FOR_CLASSROOM,
   GET_ERRORS,
   LOADING
 } from "./types";
@@ -53,6 +54,23 @@ export const getClass = id => dispatch => {
         payload: null
       })
     );
+};
+
+export const registerForClassroom = () => dispatch => {
+  axios
+    .get(`/api/classrooms/register`)
+    .then(res =>
+      dispatch({
+        type: REGISTER_FOR_CLASSROOM,
+        payload: res.data
+      })
+    )
+    .catch(err => {
+      dispatch({
+        type: REGISTER_FOR_CLASSROOM,
+        payload: err.response.data
+      });
+    });
 };
 
 // Set loading state
