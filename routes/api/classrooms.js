@@ -186,6 +186,7 @@ router.get(
           errors.nouser = "there is no user";
           return res.status(400).json(errors);
         }
+        res.status(200).json(user.classrooms);
       });
   }
 );
