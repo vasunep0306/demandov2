@@ -149,6 +149,11 @@ router.post(
               errors.noclass = "there is no classroom under that crn";
               return res.status(400).json(errors);
             }
+            if (classroom.students.indexOf(user._id) > -1) {
+              errors.exists =
+                "there already is a user enrolled in this classroom";
+              return res.status(400).json(errors);
+            }
             classroom.students.unshift(user._id);
             classroom.save();
             if (user.classrooms.indexOf(classroom._id) > -1) {
@@ -163,6 +168,25 @@ router.post(
           .catch(err => res.status(500).json(err));
       })
       .catch(err => res.status(500).json(err));
+  }
+);
+
+// @route   GET api/classrooms/myclassrooms
+// @desc    Get all the classrooms for the specific user
+// @access  Private: only teachers can use it.
+router.get(
+  "/myclassrooms",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const errors = {};
+    User.findById(req.user._id)
+      .populate("classrooms")
+      .then(user => {
+        if (!user) {
+          errors.nouser = "there is no user";
+          return res.status(400).json(errors);
+        }
+      });
   }
 );
 
