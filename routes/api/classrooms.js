@@ -32,11 +32,12 @@ router.get(
     Classroom.find()
       .populate("user", ["name", "email"])
       .then(classrooms => {
+        console.log(!classrooms);
         if (!classrooms) {
           errors.noClassrooms = "There are no classrooms";
           return res.status(404).json(errors);
         }
-        res.json(profiles);
+        res.json(classrooms);
       })
       .catch(err =>
         res.status(404).json({ classrooms: "There are no classrooms" })
@@ -47,21 +48,20 @@ router.get(
 // @desc    Get one classroom by mongoose id
 // @access  Private
 router.get(
-  "/:classroomid",
+  "/:classroomid/classroom",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const errors = {};
+
     Classroom.findById(req.params.classroomid)
       .then(classroom => {
-        if (!classroom || req.user.userType === "student") {
+        if (!classroom) {
           errors.noclassroom = "sorry, this classroom doesnt exist";
           return res.status(404).json(errors);
         }
-        res.json(classroom);
+        return res.json(classroom);
       })
-      .catch(err =>
-        res.status(404).json({ classroom: "There is no classrooms" })
-      );
+      .catch(err => res.status(404).json({ classroom: err }));
   }
 );
 
@@ -175,18 +175,19 @@ router.post(
 // // @desc    Get all the classrooms for the specific user
 // // @access  Private: only students can use it.
 router.get(
-  "/myclassrooms",
+  "/:userid/myclasses",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const errors = {};
-    User.findById(req.user._id)
+    User.findById(req.params.userid)
       .populate("classrooms")
       .then(user => {
+        console.log("user");
         if (!user) {
           errors.nouser = "there is no user";
           return res.status(400).json(errors);
         }
-        res.status(200).json(user.classrooms);
+        return res.status(200).json(user.classrooms);
       });
   }
 );

@@ -1,24 +1,24 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { myClassrooms } from "../../actions/classroomActions";
 import { connect } from "react-redux";
 
 class ShowStudentClassrooms extends Component {
   componentDidMount() {
-    this.props.myClassrooms();
+    this.props.myClassrooms(this.props.auth.user.id);
   }
   render() {
-    const { user, classrooms } = this.props;
-    const { loading } = this.props.classrooms;
+    const { classrooms, loading } = this.props.classrooms;
+    console.log(classrooms);
     let classroomArea;
     const cardStyle = {
       width: "18rem"
     };
     if (classrooms === null || loading) {
       classroomArea = <h1>Loading</h1>;
-    } else if (classrooms.noclasses) {
-      classroomArea = <h1>{classrooms.noclasses}</h1>;
+    } else if (classrooms.noclassroom) {
+      classroomArea = <h1>{classrooms.noclassroom}</h1>;
     } else {
       classroomArea = classrooms.map(classroom => (
         <div className="card" style={{ cardStyle }}>
@@ -28,14 +28,14 @@ class ShowStudentClassrooms extends Component {
               crn:{classroom.crn}
             </h6>
             <p className="card-text">Class Code {classroom.classcode}</p>
-            <a href="#">Go To Classroom</a>
+            <Link to={`/${classroom._id}/answers`}>Go To Classroom</Link>
           </div>
         </div>
       ));
     }
     return (
       <div>
-        <h1>Here are your classes {user.name}</h1>
+        <h1>Here are your classes: {this.props.auth.user.name}</h1>
         <div>{classroomArea}</div>
       </div>
     );
@@ -43,14 +43,16 @@ class ShowStudentClassrooms extends Component {
 }
 
 ShowStudentClassrooms.propTypes = {
-  classrooms: PropTypes.array.isRequired,
-  myClassrooms: PropTypes.func.isRequired
+  classrooms: PropTypes.object.isRequired,
+  myClassrooms: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
   classrooms: state.classrooms,
-  user: PropTypes.object.isRequired
+  errors: state.errors
 });
 
 export default connect(

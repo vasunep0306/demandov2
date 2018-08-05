@@ -119,7 +119,8 @@ router.get(
       id: req.user._id,
       name: req.user.name,
       email: req.user.email,
-      userType: req.user.userType
+      userType: req.user.userType,
+      classrooms: req.user.classrooms
     });
   }
 );

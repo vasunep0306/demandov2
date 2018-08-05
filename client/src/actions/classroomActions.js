@@ -41,7 +41,7 @@ export const showClassrooms = id => dispatch => {
 export const getClass = id => dispatch => {
   dispatch(setClassLoading());
   axios
-    .get(`/api/classrooms/${id}`)
+    .get(`/api/classrooms/${id}/classroom`)
     .then(res =>
       dispatch({
         type: GET_CLASSROOM,
@@ -51,7 +51,7 @@ export const getClass = id => dispatch => {
     .catch(err =>
       dispatch({
         type: GET_CLASSROOM,
-        payload: null
+        payload: err.response.data
       })
     );
 };
@@ -73,18 +73,20 @@ export const registerForClassroom = courseData => dispatch => {
     });
 };
 
-export const myClassrooms = dispatch => {
+export const myClassrooms = id => dispatch => {
+  dispatch(setClassLoading());
   axios
-    .get(`/api/classrooms/register`)
-    .then(res =>
+    .get(`/api/classrooms/${id}/myclasses`)
+    .then(res => {
+      console.log(res);
       dispatch({
         type: GET_CLASSROOMS,
         payload: res.data
-      })
-    )
+      });
+    })
     .catch(err => {
       dispatch({
-        type: REGISTER_FOR_CLASSROOM,
+        type: GET_CLASSROOMS,
         payload: err.response.data
       });
     });
