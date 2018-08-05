@@ -52,7 +52,6 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const errors = {};
-
     Classroom.findById(req.params.classroomid)
       .then(classroom => {
         if (!classroom) {
