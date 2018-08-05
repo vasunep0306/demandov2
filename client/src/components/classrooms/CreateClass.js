@@ -3,6 +3,7 @@ import { createClassroom } from "../../actions/classroomActions";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import suggest_crn from "../../validation/generate_crn";
 
 class CreateClass extends Component {
   constructor() {
@@ -36,6 +37,7 @@ class CreateClass extends Component {
     this.props.createClassroom(newClass, this.props.history);
   }
   render() {
+    let suggestion = suggest_crn();
     return (
       <div>
         <h1> Use this form to create a class </h1>
@@ -53,7 +55,7 @@ class CreateClass extends Component {
           <input
             type="text"
             name="crn"
-            placeholder="crn"
+            placeholder={suggestion}
             value={this.state.crn}
             onChange={this.onChange}
           />

@@ -171,9 +171,9 @@ router.post(
   }
 );
 
-// @route   GET api/classrooms/myclassrooms
-// @desc    Get all the classrooms for the specific user
-// @access  Private: only students can use it.
+// // @route   GET api/classrooms/myclassrooms
+// // @desc    Get all the classrooms for the specific user
+// // @access  Private: only students can use it.
 router.get(
   "/myclassrooms",
   passport.authenticate("jwt", { session: false }),
