@@ -8,6 +8,9 @@ class TeacherDashboard extends Component {
     return (
       <div>
         <h1>Welcome Professor {user.name}</h1>
+        <h2>
+          User Type: <span style={{ color: "green" }}>{user.userType}</span>
+        </h2>
         <p>
           Please click <Link to="/createClass">here </Link> to create a class
         </p>

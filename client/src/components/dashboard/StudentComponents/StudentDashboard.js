@@ -5,9 +5,13 @@ import { Link } from "react-router-dom";
 class TeacherDashboard extends Component {
   render() {
     const { user } = this.props;
+
     return (
       <div>
         <h1>Welcome {user.name}</h1>
+        <h2>
+          User Type: <span style={{ color: "green" }}>{user.userType}</span>
+        </h2>
         <p>
           Please click <Link to="/registerForClassroom">here </Link> to register
           for a course class
