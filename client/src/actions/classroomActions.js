@@ -92,6 +92,11 @@ export const myClassrooms = id => dispatch => {
     });
 };
 
+// get students in a given classroom
+export const getStudents = id => dispatch => {
+  dispatch(setClassLoading());
+  axios.get(`/api/classrooms/${id}/getstudents`);
+};
 // Set loading state
 export const setClassLoading = () => {
   return {
