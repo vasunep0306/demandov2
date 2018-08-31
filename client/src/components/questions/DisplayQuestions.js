@@ -46,7 +46,10 @@ class DisplayQuestions extends Component {
               case "multiple choice":
                 field = question.answerchoices.map((choice, index) => (
                   <ul key={index}>
-                    <li> {choice} </li>
+                    <li>
+                      <input type="radio" id={choice} name="answerchoice" />
+                      {choice}
+                    </li>
                   </ul>
                 ));
                 return <div>{field}</div>;

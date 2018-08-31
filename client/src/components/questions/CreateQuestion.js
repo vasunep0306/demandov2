@@ -105,10 +105,10 @@ class CreateQuestion extends Component {
         <input
           type="text"
           name="answerchoices"
-          placeholder="Leave blank if extended-response"
           value={this.state.answerchoices}
           onChange={this.onChange}
         />
+        <span> Leave blank if your question is extended response </span>
         <br />
         <input type="submit" value="Create Question" />
       </form>
