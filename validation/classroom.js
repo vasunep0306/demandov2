@@ -24,7 +24,7 @@ module.exports = function validateClassroomInput(data) {
     errors.classcode = "Classcode field is required";
   }
   if (Validator.isEmpty(data.crn)) {
-    errors.crn = "Crn field is required";
+    errors.crn = "crn field is required";
   }
   if (Validator.isEmpty(data.classtitle)) {
     errors.classtitle = "classtitle field is required";

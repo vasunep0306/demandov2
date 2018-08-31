@@ -51,7 +51,7 @@ class CreateClass extends Component {
             onChange={this.onChange}
           />
           <br />
-          <label htmlFor="crn">Crn: </label>
+          <label htmlFor="crn">crn: </label>
           <input
             type="text"
             name="crn"

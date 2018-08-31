@@ -40,7 +40,7 @@ class RegisterForClassroom extends Component {
       <div>
         <h1>Welcome to Demando</h1>
         <p>Please register for a class</p>
-        <label htmlFor="crn">Crn: </label>
+        <label htmlFor="crn">crn: </label>
         <form onSubmit={this.onSubmit}>
           <input
             type="text"

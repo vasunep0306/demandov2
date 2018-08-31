@@ -36,7 +36,8 @@ class DisplayClasses extends Component {
           <div className="card-body">
             <h5 className="card-title">{classroom.classtitle}</h5>
             <h6 className="card-subtitle mb-2 text-muted">
-              crn:{classroom.crn}
+              crn:
+              {classroom.crn}
             </h6>
             <p className="card-text">Class Code {classroom.classcode}</p>
             <button onClick={this.handleClick.bind(this, classroom._id)}>

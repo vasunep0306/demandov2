@@ -5,7 +5,7 @@ module.exports = function validateCourseRegisterationInput(data) {
   let errors = {};
   data.crn = !isEmpty(data.crn) ? data.crn : "";
   if (Validator.isEmpty(data.crn)) {
-    errors.crn = "Crn field is required";
+    errors.crn = "crn field is required";
   }
   return {
     errors,
