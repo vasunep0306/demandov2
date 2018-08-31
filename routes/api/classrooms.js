@@ -1,29 +1,31 @@
+//basic constants and require statements
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const passport = require("passport");
 const detect = require("detect-csv");
-
 const validateClassroomInput = require("../../validation/classroom");
 const validateCourseRegisterationInput = require("../../validation/registerForCourse");
 const validateNewQuestion = require("../../validation/questions");
 const validateAnswer = require("../../validation/answer");
+const User = require("../../models/User"); // Load User model
+const Classroom = require("../../models/Classroom"); // Load Classroom model
+const Question = require("../../models/Question"); // Load Question model
 
-// Load User model
-const User = require("../../models/User");
-// Load Classroom model
-const Classroom = require("../../models/Classroom");
-// Load Question model
-const Question = require("../../models/Question");
-
-// @route   GET api/classrooms/test
-// @desc    Tests users route
-// @access  Public
+//SECTION FOR THE FIRST TEST ROUTE
+/**
+ * @route   GET api/classrooms/test
+ * @desc    Tests users route
+ * @access  Public
+ * */
 router.get("/test", (req, res) => res.json({ msg: "Classroom Works" }));
+//END SECTION
 
-// @route   Get api/classrooms/
-// @desc    Get all classrooms
-// @access  Private
+//SECTION FOR THE ROOT ROUTE AS WELL AS ROUTES THAT GET THE CLASSROOM BY ID
+/** @route   Get api/classrooms/
+ * @desc    Get all classrooms
+ * @access  Private
+ */
 router.get(
   "/",
   passport.authenticate("jwt", { session: false }),
@@ -44,9 +46,10 @@ router.get(
       );
   }
 );
-// @route   Get api/classrooms/:id
-// @desc    Get one classroom by mongoose id
-// @access  Private
+/** @route   Get api/classrooms/:id
+ * @desc    Get one classroom by mongoose id
+ * @access  Private
+ */
 router.get(
   "/:classroomid/classroom",
   passport.authenticate("jwt", { session: false }),
@@ -81,7 +84,7 @@ router.get(
     });
   }
 );
-
+//END SECTION
 // @route   Post api/classrooms/
 // @desc    Create a classroom
 // @access  Private
