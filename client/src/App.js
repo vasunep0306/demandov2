@@ -84,6 +84,13 @@ class App extends Component {
                 component={DisplayQuestions}
               />
             </Switch>
+            {/* <Switch>
+              <PrivateRoute
+                exact
+                path="/:classroomid/students"
+                component={ClassList}
+              />
+            </Switch> */}
             <Switch>
               <PrivateRoute
                 exact

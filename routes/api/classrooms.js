@@ -191,6 +191,33 @@ router.get(
   }
 );
 
+// @route   Get api/classrooms/:classroomid/getstudents
+// @desc    get all of the students from a given classroom
+// @access  Private
+
+router.get(
+  "/:classroomid/getstudents",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const errors = {};
+    Classroom.findById(req.params.classroomid)
+      .populate("students")
+      .then(classroom => {
+        if (!classroom || req.user.userType === "student") {
+          errors.noclass = "No students to show";
+          return res.status(404).json(errors);
+        }
+        if (classroom.students.length === 0) {
+          errors.nostudents = "No students are registered yet";
+          return res.status(404).json(errors);
+        }
+        const students = classroom.students;
+        res.status(200).json(students);
+      })
+      .catch(err => res.status(500).json(err));
+  }
+);
+
 // @route   GET api/classrooms/:classroomid/questions
 // @desc    Get all the questions for that specific classroom
 // @access  Private: only teachers can use it.
