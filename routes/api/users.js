@@ -4,24 +4,21 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const passport = require("passport");
-
-// Load Input Validation
-const validateRegisterInput = require("../../validation/register");
+const validateRegisterInput = require("../../validation/register"); // Load Input Validation
 const validateLoginInput = require("../../validation/login");
+const User = require("../../models/User"); // Load User model
+const Classroom = require("../../models/Classroom"); // Load Classroom model
 
-// Load User model
-const User = require("../../models/User");
-// Load Classroom model
-const Classroom = require("../../models/Classroom");
-
-// @route   GET api/users/test
-// @desc    Tests users route
-// @access  Public
+/** @route   GET api/users/test
+ * @desc    Tests users route
+ * @access  Public
+ */
 router.get("/test", (req, res) => res.json({ msg: "Users Works" }));
 
-// @route   POST api/users/register
-// @desc    Register user
-// @access  Public
+/** @route   POST api/users/register
+ * @desc    Register user
+ * @access  Public
+ */
 router.post("/register", (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
 
@@ -56,9 +53,10 @@ router.post("/register", (req, res) => {
   });
 });
 
-// @route   GET api/users/login
-// @desc    Login User / Returning JWT Token
-// @access  Public
+/** @route   GET api/users/login
+ * @desc    Login User / Returning JWT Token
+ * @access  Public
+ */
 router.post("/login", (req, res) => {
   const { errors, isValid } = validateLoginInput(req.body);
 
@@ -108,9 +106,10 @@ router.post("/login", (req, res) => {
   });
 });
 
-// @route   GET api/users/current
-// @desc    Return current user
-// @access  Private
+/** @route   GET api/users/current
+ * @desc    Return current user
+ * @access  Private
+ */
 router.get(
   "/current",
   passport.authenticate("jwt", { session: false }),
@@ -125,9 +124,10 @@ router.get(
   }
 );
 
-// @route   GET api/users/:instructorid/classrooms
-// @desc    Return current user
-// @access  Private Teacher
+/** @route   GET api/users/:instructorid/classrooms
+ * @desc    Return current user
+ * @access  Private Teacher
+ */
 router.get(
   "/:instructorid/classrooms",
   passport.authenticate("jwt", { session: false }),
