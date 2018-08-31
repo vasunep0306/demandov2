@@ -67,9 +67,10 @@ router.get(
   }
 );
 
-// @route   Get api/classrooms/:cid
-// @desc    Get one classroom by cid
-// @access  Private but universal to both teachers and students
+/** @route   Get api/classrooms/:cid
+ * @desc    Get one classroom by cid
+ * @access  Private but universal to both teachers and students
+ */
 router.get(
   "/:cid",
   passport.authenticate("jwt", { session: false }),
@@ -85,9 +86,12 @@ router.get(
   }
 );
 //END SECTION
-// @route   Post api/classrooms/
-// @desc    Create a classroom
-// @access  Private
+
+//SECTION FOR ADDING NEW CLASSROOMS AND REGISTERING STUDENTS
+/** @route   Post api/classrooms/
+ * @desc    Create a classroom
+ * @access  Private
+ */
 router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
@@ -121,10 +125,10 @@ router.post(
   }
 );
 
-// @route   Post api/classrooms/register
-// @desc    Get students to register for class
-// @access  Private
-
+/** @route   Post api/classrooms/register
+ * @desc    Get students to register for class
+ * @access  Private
+ */
 router.post(
   "/register",
   passport.authenticate("jwt", { session: false }),
@@ -173,9 +177,10 @@ router.post(
   }
 );
 
-// // @route   GET api/classrooms/myclassrooms
-// // @desc    Get all the classrooms for the specific user
-// // @access  Private: only students can use it.
+/** @route   GET api/classrooms/myclassrooms
+ * @desc    Get all the classrooms for the specific user
+ * @access  Private: only students can use it.
+ */
 router.get(
   "/:userid/myclasses",
   passport.authenticate("jwt", { session: false }),
@@ -220,10 +225,13 @@ router.get(
       .catch(err => res.status(500).json(err));
   }
 );
+//END SECTION
 
-// @route   GET api/classrooms/:classroomid/questions
-// @desc    Get all the questions for that specific classroom
-// @access  Private: only teachers can use it.
+// SECTION FOR QUESTIONS
+/** @route   GET api/classrooms/:classroomid/questions
+ * @desc    Get all the questions for that specific classroom
+ * @access  Private: only teachers can use it.
+ */
 
 router.get(
   "/:classroomid/questions",
@@ -248,9 +256,10 @@ router.get(
   }
 );
 
-// @route   POST api/classrooms/:classroomid/newquestion
-// @desc    Post a new question given a classroom
-// @access  Private: only teachers can use it.
+/** @route   POST api/classrooms/:classroomid/newquestion
+ * @desc    Post a new question given a classroom
+ * @access  Private: only teachers can use it.
+ */
 
 router.post(
   "/:classroomid/newquestion",
@@ -294,9 +303,10 @@ router.post(
   }
 );
 
-// @route   POST api/classrooms/:classroomid/setcurrentquestion/:questionid
-// @desc    Post the current question
-// @access  Private: only teachers can use it.
+/** @route   POST api/classrooms/:classroomid/setcurrentquestion/:questionid
+ * @desc    Post the current question
+ * @access  Private: only teachers can use it.
+ */
 router.post(
   "/:classroomid/setcurrentquestion/:questionid",
   passport.authenticate("jwt", { session: false }),
@@ -310,9 +320,10 @@ router.post(
   }
 );
 
-// @route   POST api/classrooms/:classroomid/unsetcurrentquestion/:questionid
-// @desc    Hide the current question
-// @access  Private: only teachers can use it.
+/** @route   POST api/classrooms/:classroomid/unsetcurrentquestion/:questionid
+ * @desc    Hide the current question
+ * @access  Private: only teachers can use it.
+ */
 router.post(
   "/:classroomid/unsetcurrentquestion",
   passport.authenticate("jwt", { session: false }),
@@ -344,9 +355,10 @@ router.get(
   }
 );
 
-// @route   GET api/classrooms/:questionid/answerquestion
-// @desc    Post a new question given a classroom
-// @access  Private: students will use this to answer questions.
+/** @route   GET api/classrooms/:questionid/answerquestion
+ * @desc    Post a new question given a classroom
+ * @access  Private: students will use this to answer questions.
+ */
 
 router.post(
   "/:questionid/answerquestion",
@@ -380,4 +392,5 @@ router.post(
     });
   }
 );
+//END SECTION
 module.exports = router;
