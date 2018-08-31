@@ -44,6 +44,7 @@ class DisplayClasses extends Component {
               Add Questions
             </button>
             <Link to={`/${classroom._id}/questions`}> Manage Questions </Link>
+            <Link to={`/${classroom._id}/students`}> See Classlist </Link>
             <div key={classroom._id} id={`questionForm${classroom._id}`}>
               <br />
               <CreateQuestion key={classroom._id} classroomid={classroom._id} />
