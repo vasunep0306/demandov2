@@ -8,7 +8,7 @@ class RegisterForClassroom extends Component {
   constructor() {
     super();
     this.state = {
-      crn: "",
+      cid: "",
       errors: {}
     };
     this.onChange = this.onChange.bind(this);
@@ -30,7 +30,7 @@ class RegisterForClassroom extends Component {
   onSubmit(e) {
     e.preventDefault();
     const courseData = {
-      crn: this.state.crn
+      cid: this.state.cid
     };
     this.props.registerForClassroom(courseData);
     alert("successfully registered for course");
@@ -40,13 +40,13 @@ class RegisterForClassroom extends Component {
       <div>
         <h1>Welcome to Demando</h1>
         <p>Please register for a class</p>
-        <label htmlFor="crn">crn: </label>
+        <label htmlFor="cid">cid: </label>
         <form onSubmit={this.onSubmit}>
           <input
             type="text"
-            name="crn"
-            placeholder="crn"
-            value={this.state.crn}
+            name="cid"
+            placeholder="cid"
+            value={this.state.cid}
             onChange={this.onChange}
           />
           <input type="submit" value="Register" />

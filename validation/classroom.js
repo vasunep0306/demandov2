@@ -3,7 +3,7 @@
 //   type: String,
 //   required: true
 // },
-// crn: {
+// cid: {
 //   type: String,
 //   required: true
 // },
@@ -17,14 +17,14 @@ const isEmpty = require("./isEmpty");
 module.exports = function validateClassroomInput(data) {
   let errors = {};
   data.classcode = !isEmpty(data.classcode) ? data.classcode : "";
-  data.crn = !isEmpty(data.crn) ? data.crn : "";
+  data.cid = !isEmpty(data.cid) ? data.cid : "";
   data.classtitle = !isEmpty(data.classtitle) ? data.classtitle : "";
 
   if (Validator.isEmpty(data.classcode)) {
     errors.classcode = "Classcode field is required";
   }
-  if (Validator.isEmpty(data.crn)) {
-    errors.crn = "crn field is required";
+  if (Validator.isEmpty(data.cid)) {
+    errors.cid = "cid field is required";
   }
   if (Validator.isEmpty(data.classtitle)) {
     errors.classtitle = "classtitle field is required";

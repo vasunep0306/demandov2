@@ -64,17 +64,17 @@ router.get(
   }
 );
 
-// @route   Get api/classrooms/:crn
-// @desc    Get one classroom by crn
+// @route   Get api/classrooms/:cid
+// @desc    Get one classroom by cid
 // @access  Private but universal to both teachers and students
 router.get(
-  "/:crn",
+  "/:cid",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const errors = {};
-    Classroom.findOne({ crn: req.params.crn }).then(classroom => {
+    Classroom.findOne({ cid: req.params.cid }).then(classroom => {
       if (!classroom) {
-        errors.noclass = "there is no classroom under that crn";
+        errors.noclass = "there is no classroom under that cid";
         return res.status(400).json(errors);
       }
       res.json(classroom);
@@ -102,14 +102,14 @@ router.post(
     //Get fields
     const classData = {};
     classData.instructor = req.user._id;
-    classData.crn = req.body.crn;
+    classData.cid = req.body.cid;
     classData.classcode = req.body.classcode;
     classData.classtitle = req.body.classtitle;
 
-    Classroom.findOne({ crn: req.body.crn }).then(classroom => {
+    Classroom.findOne({ cid: req.body.cid }).then(classroom => {
       if (classroom) {
-        // Check if crn exists
-        errors.crn = "That crn already exists";
+        // Check if cid exists
+        errors.cid = "That cid already exists";
         return res.status(400).json(errors);
       }
       // Save classroom
@@ -141,11 +141,11 @@ router.post(
           errors.nouser = "there is no user";
           return res.status(400).json(errors);
         }
-        Classroom.findOne({ crn: req.body.crn })
+        Classroom.findOne({ cid: req.body.cid })
           .then(classroom => {
             // Find classroom
             if (!classroom) {
-              errors.noclass = "there is no classroom under that crn";
+              errors.noclass = "there is no classroom under that cid";
               return res.status(400).json(errors);
             }
             if (classroom.students.indexOf(user._id) > -1) {

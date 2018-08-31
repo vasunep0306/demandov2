@@ -25,8 +25,8 @@ class ShowStudentClassrooms extends Component {
           <div className="card-body">
             <h5 className="card-title">{classroom.classtitle}</h5>
             <h6 className="card-subtitle mb-2 text-muted">
-              crn:
-              {classroom.crn}
+              cid:
+              {classroom.cid}
             </h6>
             <p className="card-text">Class Code {classroom.classcode}</p>
             <Link to={`/${classroom._id}/answers`}>Go To Classroom</Link>
