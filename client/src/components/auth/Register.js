@@ -21,6 +21,7 @@ class Register extends Component {
 
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
+      alert(`Successfully created account ${this.state.names}`);
       this.props.history.push("/dashboard");
     }
   }
