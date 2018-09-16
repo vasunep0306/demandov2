@@ -12,8 +12,9 @@ class Navbar extends Component {
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
+    let authBar, guestBar;
 
-    const guestBar = (
+    guestBar = (
       <ul>
         <li>
           <Link to="/">Demando</Link>
@@ -27,24 +28,42 @@ class Navbar extends Component {
       </ul>
     );
 
-    const authBar = (
-      <ul>
-        <li>
-          <Link to="/">Demando</Link>
-        </li>
-        <li>
-          <Link to="/dashboard">My Page </Link>
-        </li>
-        <li>
-          <Link to="/displayClasses">My Classes </Link>
-        </li>
-        <li>
-          <a href="" onClick={this.onLogoutClick.bind(this)}>
-            Logout
-          </a>
-        </li>
-      </ul>
-    );
+    if (user.userType === "teacher") {
+      authBar = (
+        <ul>
+          <li>
+            <Link to="/">Demando</Link>
+          </li>
+          <li>
+            <Link to="/dashboard">My Page </Link>
+          </li>
+          <li>
+            <Link to="/displayClasses">My Classes </Link>
+          </li>
+          <li>
+            <a href="" onClick={this.onLogoutClick.bind(this)}>
+              Logout
+            </a>
+          </li>
+        </ul>
+      );
+    } else {
+      authBar = (
+        <ul>
+          <li>
+            <Link to="/">Demando</Link>
+          </li>
+          <li>
+            <Link to="/dashboard">My Page </Link>
+          </li>
+          <li>
+            <a href="" onClick={this.onLogoutClick.bind(this)}>
+              Logout
+            </a>
+          </li>
+        </ul>
+      );
+    }
 
     return <div className="Navbar">{isAuthenticated ? authBar : guestBar}</div>;
   }
