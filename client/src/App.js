@@ -28,7 +28,7 @@ import DisplayQuestions from "./components/questions/DisplayQuestions";
 import RegisterForClassroom from "./components/classrooms/RegisterForClassroom";
 import ShowStudentClassrooms from "./components/classrooms/ShowStudentClassrooms";
 import MyClassroom from "./components/classrooms/MyClassroom";
-import ClassList from "./components/classrooms/MyClassroom";
+import ClassList from "./components/classrooms/ClassList";
 // Check for token
 if (localStorage.jwtToken) {
   // Set auth token header auth
