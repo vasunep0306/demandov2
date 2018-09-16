@@ -6,6 +6,9 @@ import { getStudents } from "../../actions/classroomActions";
 import { getClass } from "../../actions/classroomActions";
 
 class ClassList extends Component {
+  componentDidMount() {
+    this.props.getClass(this.props.match.params.classroomid);
+  }
   render() {
     return (
       <div>
