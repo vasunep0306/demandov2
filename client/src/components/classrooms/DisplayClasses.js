@@ -12,7 +12,7 @@ class DisplayClasses extends Component {
 
   handleClick(id) {
     const form = document.getElementById(`questionForm${id}`);
-    console.log(form);
+
     if (form.style.display === "none") {
       form.style.display = "block";
     } else {
