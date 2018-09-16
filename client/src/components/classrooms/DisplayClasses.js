@@ -39,7 +39,7 @@ class DisplayClasses extends Component {
               cid:
               {classroom.cid}
             </h6>
-            <p className="card-text">Class Code {classroom.classcode}</p>
+            <p className="card-text">Class Code: {classroom.classcode}</p>
             <button onClick={this.handleClick.bind(this, classroom._id)}>
               Add Questions
             </button>
