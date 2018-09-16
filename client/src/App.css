@@ -77,3 +77,21 @@ li a:hover {
   width: 250px;
   font-size: 1em;
 }
+.setQuestionBtn {
+  float: left;
+  display: block;
+  padding: 0px 20px;
+  margin: 0px 3px;
+  width: 25%;
+  background-color: "#66666";
+  text-align: center;
+}
+.hideQuestionBtn {
+  float: left;
+  display: block;
+  padding: 0px 20px;
+  margin: 0px 3px;
+  width: 25%;
+  background-color: "#66666";
+  text-align: center;
+}

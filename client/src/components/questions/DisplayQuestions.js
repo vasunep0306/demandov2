@@ -57,11 +57,19 @@ class DisplayQuestions extends Component {
                 return;
             }
           })()}
-          <button onClick={this.setQuestion.bind(this, question)}>
+          <button
+            className="setQuestionBtn"
+            onClick={this.setQuestion.bind(this, question)}
+          >
             Publish Question
           </button>
           <br />
-          <button onClick={this.hideQuestion.bind(this)}>Hide Question</button>
+          <button
+            className="hideQuestionBtn"
+            onClick={this.hideQuestion.bind(this)}
+          >
+            Hide Question
+          </button>
         </div>
       ));
     }
