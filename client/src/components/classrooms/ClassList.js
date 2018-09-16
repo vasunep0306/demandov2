@@ -12,38 +12,49 @@ class ClassList extends Component {
   }
 
   render() {
-    let listOfStudents;
-    const { students, classroom, loading } = this.props.classrooms;
-    if (classroom === null || loading) {
-      listOfStudents = <h1>Loading</h1>;
-    } else if (students === null || loading) {
-      listOfStudents = <h1>Loading</h1>;
-    } else if (students.nostudents) {
-      listOfStudents = <h1>{students.nostudents}</h1>;
-    } else {
-      let studentData = students.map(student => (
-        <tr>
-          <td>{student.name}</td>
-          <td>{student.email}</td>
-        </tr>
-      ));
-      listOfStudents = (
-        <div>
-          <h1>Classlist</h1>
-          <table className="table">
-            <thead>
-              <tr>
-                <th scope="col">Student Name</th>
-                <th scope="col">Student Email</th>
-                <th scope="col">Teacher Action</th>
-              </tr>
-            </thead>
-            <tbody>{studentData}</tbody>
-          </table>
-        </div>
-      );
+    try {
+      let listOfStudents;
+      const { students, classroom, loading } = this.props.classrooms;
+      if (classroom === null || loading) {
+        listOfStudents = <h1>Loading</h1>;
+      } else if (students === null || loading) {
+        listOfStudents = <h1>Loading</h1>;
+      } else if (students.nostudents) {
+        listOfStudents = <h1>{students.nostudents}</h1>;
+      } else {
+        let studentData = students.map(student => (
+          <tr>
+            <td>{student.name}</td>
+            <td>{student.email}</td>
+            <td>
+              <button className="btn btn-danger">Drop Student</button>
+            </td>
+          </tr>
+        ));
+        listOfStudents = (
+          <div>
+            <h1>
+              {`${classroom.classtitle}'s `}
+              Classlist
+            </h1>
+            <table className="table">
+              <thead>
+                <tr>
+                  <th scope="col">Student Name</th>
+                  <th scope="col">Student Email</th>
+                  <th scope="col">Teacher Action</th>
+                </tr>
+              </thead>
+              <tbody>{studentData}</tbody>
+            </table>
+          </div>
+        );
+      }
+      return <div>{listOfStudents}</div>;
+    } catch (err) {
+      let listOfStudents = <h1>Please reload page</h1>;
+      return <div>{listOfStudents}</div>;
     }
-    return <div>{listOfStudents}</div>;
   }
 }
 ClassList.propTypes = {
