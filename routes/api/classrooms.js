@@ -392,5 +392,11 @@ router.post(
     });
   }
 );
+
+/** @route   POST api/classrooms/:classroomid/removeStudent
+ * @desc    Remove a student from a given classroom.
+ * @access  Private: Teachers use this route to delete a given student from the classroom
+ */
+
 //END SECTION
 module.exports = router;
