@@ -3,6 +3,7 @@ import {
   GET_CLASSROOMS,
   LOADING,
   GET_CLASSROOM,
+  GET_STUDENTS,
   REGISTER_FOR_CLASSROOM
 } from "../actions/types";
 const initialState = {
