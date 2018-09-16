@@ -8,6 +8,7 @@ import {
 const initialState = {
   classroom: null,
   classrooms: null,
+  students: null,
   loading: false
 };
 export default function(state = initialState, action) {
@@ -33,6 +34,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         classroom: action.payload,
+        loading: false
+      };
+    case GET_STUDENTS:
+      return {
+        ...state,
+        students: action.payload,
         loading: false
       };
     default:

@@ -1,7 +1,7 @@
 import {
   GET_CLASSROOM,
   GET_CLASSROOMS,
-  CLASSROOM_NOT_FOUND,
+  GET_STUDENTS,
   REGISTER_FOR_CLASSROOM,
   GET_ERRORS,
   LOADING
@@ -95,7 +95,20 @@ export const myClassrooms = id => dispatch => {
 // get students in a given classroom
 export const getStudents = id => dispatch => {
   dispatch(setClassLoading());
-  axios.get(`/api/classrooms/${id}/getstudents`);
+  axios
+    .get(`/api/classrooms/${id}/getstudents`)
+    .then(res => {
+      dispatch({
+        type: GET_STUDENTS,
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_STUDENTS,
+        payload: err.response.data
+      });
+    });
 };
 // Set loading state
 export const setClassLoading = () => {
