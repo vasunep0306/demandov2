@@ -64,6 +64,7 @@ class CreateQuestion extends Component {
     this.props.addQuestion(classroomid, newQuestion);
   }
   render() {
+    // Might keep or delete this because it doesnt seem to be used anywhere
     const answerChoices = (
       <input
         type="text"
@@ -82,7 +83,7 @@ class CreateQuestion extends Component {
         >
           <option>*Please select question type</option>
           <option value="multiple choice"> Multiple Choice </option>
-          <option value="extended response"> Extended Response </option>
+          <option value="textual response"> Textual Response </option>
         </select>
         <br />
         <label for="questionbody">Question Body: </label>
