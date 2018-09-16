@@ -398,5 +398,40 @@ router.post(
  * @access  Private: Teachers use this route to delete a given student from the classroom
  */
 
+router.post(
+  "/:classroomid/:studentid/removestudent",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    User.findById(req.params.id)
+      .populate("classrooms")
+      .then(studentToRemove => {
+        if (!studentToRemove) {
+          return res.json({ noStudent: "There is no student under this id" });
+        }
+        Classroom.findById(req.params.classroomid)
+          .populate("students")
+          .then(classroom => {
+            if (!classroom) {
+              return res.json({
+                noClassroom: "There is no classroom under this id"
+              });
+            }
+            classroom.students.forEach(student => {
+              if (student._id.equals(studentToRemove._id)) {
+                classroom.students.remove(student);
+              }
+            });
+            studentToRemove.classrooms.forEach(room => {
+              if (room._id.equals(classroom._id)) {
+                studentToRemove.classrooms.remove(student);
+              }
+            });
+            classroom.save();
+            studentToRemove.save();
+          });
+      })
+      .catch(err => res.status(500).json(err));
+  }
+);
 //END SECTION
 module.exports = router;
