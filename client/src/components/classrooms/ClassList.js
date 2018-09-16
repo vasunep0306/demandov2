@@ -10,8 +10,14 @@ class ClassList extends Component {
     this.props.getClass(this.props.match.params.classroomid);
     this.props.getStudents(this.props.match.params.classroomid);
   }
+
   render() {
-    return (
+    let listOfStudents;
+    const { students, classroom, loading } = this.props;
+    if (classroom === null || loading) {
+      listOfStudents = <h1>Loading</h1>;
+    }
+    listOfStudents = (
       <div>
         <h1>Classlist</h1>
         <table className="table">
@@ -42,11 +48,13 @@ class ClassList extends Component {
         </table>
       </div>
     );
+    return <div>{listOfStudents}</div>;
   }
 }
 ClassList.propTypes = {
   classroom: PropTypes.object.isRequired,
   getStudents: PropTypes.func.isRequired,
+  students: PropTypes.array.isRequired,
   getClass: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
