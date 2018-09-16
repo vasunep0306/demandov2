@@ -13,41 +13,46 @@ class ClassList extends Component {
 
   render() {
     let listOfStudents;
-    const { students, classroom, loading } = this.props;
+    const { students, classroom, loading } = this.props.classrooms;
     if (classroom === null || loading) {
       listOfStudents = <h1>Loading</h1>;
+    } else if (students === null || loading) {
+      listOfStudents = <h1>Loading</h1>;
+    } else if (students.nostudents) {
+      listOfStudents = <h1>{students.nostudents}</h1>;
+    } else {
+      listOfStudents = (
+        <div>
+          <h1>Classlist</h1>
+          <table className="table">
+            <thead>
+              <tr>
+                <th scope="col">Student Name</th>
+                <th scope="col">Student Email</th>
+                <th scope="col">Teacher Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      );
     }
-    listOfStudents = (
-      <div>
-        <h1>Classlist</h1>
-        <table className="table">
-          <thead>
-            <tr>
-              <th scope="col">Student Name</th>
-              <th scope="col">Student Email</th>
-              <th scope="col">Teacher Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>@twitter</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    );
     return <div>{listOfStudents}</div>;
   }
 }
@@ -60,7 +65,8 @@ ClassList.propTypes = {
 };
 const mapStateToProps = state => ({
   auth: state.auth,
-  errors: state.errors
+  errors: state.errors,
+  classrooms: state.classrooms
 });
 
 export default connect(
