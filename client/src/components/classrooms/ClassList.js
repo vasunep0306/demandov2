@@ -11,7 +11,9 @@ class ClassList extends Component {
     this.props.getStudents(this.props.match.params.classroomid);
   }
 
-  removeStudent(student) {}
+  removeStudent(student) {
+    //TODO: implement remove student function
+  }
 
   render() {
     try {
@@ -31,7 +33,7 @@ class ClassList extends Component {
             <td>
               <button
                 className="btn btn-danger"
-                onClick={this.setQuestion.bind(this, question)}
+                onClick={this.setQuestion.bind(this, classroom, question)}
               >
                 Drop Student
               </button>
