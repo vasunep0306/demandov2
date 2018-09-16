@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { getStudents } from "../../actions/classroomActions";
+import { getClass } from "../../actions/classroomActions";
 
 class ClassList extends Component {
   render() {
@@ -40,8 +41,9 @@ class ClassList extends Component {
   }
 }
 ClassList.propTypes = {
-  classrooms: PropTypes.object.isRequired,
+  classroom: PropTypes.object.isRequired,
   getStudents: PropTypes.func.isRequired,
+  getClass: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({
@@ -51,5 +53,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getStudents }
+  { getStudents, getClass }
 )(withRouter(ClassList));
