@@ -81,7 +81,6 @@ class DisplayQuestions extends Component {
 DisplayQuestions.propTypes = {
   getQuestions: PropTypes.func.isRequired,
   getQuestion: PropTypes.func.isRequired,
-  setQuestion: PropTypes.func.isRequired,
   unsetQuestion: PropTypes.func.isRequired,
   questions: PropTypes.array.isRequired
 };

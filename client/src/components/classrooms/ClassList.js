@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { getStudents } from "../../actions/classroomActions";
+import { getStudents, removeStudent } from "../../actions/classroomActions";
 import { getClass } from "../../actions/classroomActions";
 
 class ClassList extends Component {
@@ -10,6 +10,8 @@ class ClassList extends Component {
     this.props.getClass(this.props.match.params.classroomid);
     this.props.getStudents(this.props.match.params.classroomid);
   }
+
+  removeStudent(student) {}
 
   render() {
     try {
@@ -27,7 +29,12 @@ class ClassList extends Component {
             <td>{student.name}</td>
             <td>{student.email}</td>
             <td>
-              <button className="btn btn-danger">Drop Student</button>
+              <button
+                className="btn btn-danger"
+                onClick={this.setQuestion.bind(this, question)}
+              >
+                Drop Student
+              </button>
             </td>
           </tr>
         ));
@@ -62,7 +69,8 @@ ClassList.propTypes = {
   getStudents: PropTypes.func.isRequired,
   students: PropTypes.array.isRequired,
   getClass: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  removeStudent: PropTypes.func.isRequired
 };
 const mapStateToProps = state => ({
   auth: state.auth,
@@ -72,5 +80,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getStudents, getClass }
+  { getStudents, getClass, removeStudent }
 )(withRouter(ClassList));

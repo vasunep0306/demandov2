@@ -2,6 +2,7 @@ import {
   GET_CLASSROOM,
   GET_CLASSROOMS,
   GET_STUDENTS,
+  REMOVE_STUDENT,
   REGISTER_FOR_CLASSROOM,
   GET_ERRORS,
   LOADING
@@ -109,6 +110,17 @@ export const getStudents = id => dispatch => {
         payload: err.response.data
       });
     });
+};
+
+// get students in a given classroom
+export const removeStudent = (classid, studid, dispatch) => {
+  dispatch(setClassLoading());
+  axios.post(`/api/classrooms/${classid}/${studid}/removestudent`).then(res => {
+    dispatch({
+      type: REMOVE_STUDENT,
+      payload: res.data
+    });
+  });
 };
 // Set loading state
 export const setClassLoading = () => {

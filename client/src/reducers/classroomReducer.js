@@ -4,7 +4,8 @@ import {
   LOADING,
   GET_CLASSROOM,
   GET_STUDENTS,
-  REGISTER_FOR_CLASSROOM
+  REGISTER_FOR_CLASSROOM,
+  REMOVE_STUDENT
 } from "../actions/types";
 const initialState = {
   classroom: null,
@@ -38,6 +39,12 @@ export default function(state = initialState, action) {
         loading: false
       };
     case GET_STUDENTS:
+      return {
+        ...state,
+        students: action.payload,
+        loading: false
+      };
+    case REMOVE_STUDENT:
       return {
         ...state,
         students: action.payload,
