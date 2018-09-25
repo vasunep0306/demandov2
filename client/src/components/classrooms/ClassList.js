@@ -31,12 +31,7 @@ class ClassList extends Component {
             <td>{student.name}</td>
             <td>{student.email}</td>
             <td>
-              <button
-                className="btn btn-danger"
-                onClick={this.setQuestion.bind(this, classroom, question)}
-              >
-                Drop Student
-              </button>
+              <button className="btn btn-danger">Drop Student</button>
             </td>
           </tr>
         ));
@@ -61,6 +56,7 @@ class ClassList extends Component {
       }
       return <div>{listOfStudents}</div>;
     } catch (err) {
+      alert(err);
       let listOfStudents = <h1>Please reload page</h1>;
       return <div>{listOfStudents}</div>;
     }
