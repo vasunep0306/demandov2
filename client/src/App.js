@@ -25,7 +25,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 import CreateClass from "./components/classrooms/CreateClass";
 import DisplayClasses from "./components/classrooms/DisplayClasses";
 import DisplayQuestions from "./components/questions/DisplayQuestions";
-import CreateQuestions from "./components/questions/CreateQuestion";
+import CreateQuestion from "./components/questions/CreateQuestion";
 import RegisterForClassroom from "./components/classrooms/RegisterForClassroom";
 import ShowStudentClassrooms from "./components/classrooms/ShowStudentClassrooms";
 import MyClassroom from "./components/classrooms/MyClassroom";
@@ -95,8 +95,8 @@ class App extends Component {
             <Switch>
               <PrivateRoute
                 exact
-                path="/:classroomid/questions/createQuestions"
-                component={CreateQuestions}
+                path="/:classroomid/questions/createQuestion"
+                component={CreateQuestion}
               />
             </Switch>
             {/* Student route for showing his/her registered courses */}

@@ -6,7 +6,7 @@ import {
   unsetQuestion
 } from "../../actions/questionActions";
 import PropTypes from "prop-types";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 class DisplayQuestions extends Component {
@@ -74,7 +74,18 @@ class DisplayQuestions extends Component {
       ));
     }
 
-    return <div>{questionsField}</div>;
+    return (
+      <div>
+        {questionsField}
+        <Link
+          to={`/${
+            this.props.match.params.classroomid
+          }/questions/createQuestion`}
+        >
+          Add New Question
+        </Link>
+      </div>
+    );
   }
 }
 
