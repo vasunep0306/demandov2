@@ -25,6 +25,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 import CreateClass from "./components/classrooms/CreateClass";
 import DisplayClasses from "./components/classrooms/DisplayClasses";
 import DisplayQuestions from "./components/questions/DisplayQuestions";
+import CreateQuestions from "./components/questions/CreateQuestion";
 import RegisterForClassroom from "./components/classrooms/RegisterForClassroom";
 import ShowStudentClassrooms from "./components/classrooms/ShowStudentClassrooms";
 import MyClassroom from "./components/classrooms/MyClassroom";
@@ -58,12 +59,15 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
+            {/* Dashboard Route */}
             <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
             </Switch>
+            {/* teacher route for creating a course */}
             <Switch>
               <PrivateRoute exact path="/createClass" component={CreateClass} />
             </Switch>
+            {/* student route for showing his/her registered courses */}
             <Switch>
               <PrivateRoute
                 exact
@@ -71,6 +75,7 @@ class App extends Component {
                 component={ShowStudentClassrooms}
               />
             </Switch>
+            {/* Student route for answering a question */}
             <Switch>
               <PrivateRoute
                 exact
@@ -78,6 +83,7 @@ class App extends Component {
                 component={MyClassroom}
               />
             </Switch>
+            {/* teacher route for displaying course questions */}
             <Switch>
               <PrivateRoute
                 exact
@@ -85,6 +91,7 @@ class App extends Component {
                 component={DisplayQuestions}
               />
             </Switch>
+            {/* teacher route for displaying students */}
             <Switch>
               <PrivateRoute
                 exact
@@ -92,6 +99,7 @@ class App extends Component {
                 component={ClassList}
               />
             </Switch>
+            {/* teacher route for displaying courses */}
             <Switch>
               <PrivateRoute
                 exact
@@ -99,11 +107,21 @@ class App extends Component {
                 component={DisplayClasses}
               />
             </Switch>
+            {/* Student route for registering for a course */}
             <Switch>
               <PrivateRoute
                 exact
                 path="/registerForClassroom"
                 component={RegisterForClassroom}
+              />
+            </Switch>
+
+            {/* Teacher route for creating a question */}
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/:classroomid/questions/createQuestion"
+                component={CreateQuestions}
               />
             </Switch>
             <Footer />

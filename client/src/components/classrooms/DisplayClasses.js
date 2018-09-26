@@ -10,50 +10,44 @@ class DisplayClasses extends Component {
     this.props.showClassrooms(this.props.auth.user.id);
   }
 
-  handleClick(id) {
-    const form = document.getElementById(`questionForm${id}`);
-
-    if (form.style.display === "none") {
-      form.style.display = "block";
-    } else {
-      form.style.display = "none";
-    }
-  }
-
   render() {
     const { classrooms, loading } = this.props.classrooms;
     let classroomArea;
-    const cardStyle = {
-      width: "18rem"
-    };
+
     if (classrooms === null || loading) {
       classroomArea = <h1>Loading</h1>;
     } else if (classrooms.noclasses) {
       classroomArea = <h1>{classrooms.noclasses}</h1>;
     } else {
       classroomArea = classrooms.map(classroom => (
-        <div className="card" style={{ cardStyle }}>
-          <div className="card-body">
-            <h5 className="card-title">{classroom.classtitle}</h5>
-            <h6 className="card-subtitle mb-2 text-muted">
-              cid:
-              {classroom.cid}
-            </h6>
-            <p className="card-text">Class Code: {classroom.classcode}</p>
-            <button onClick={this.handleClick.bind(this, classroom._id)}>
-              Add Questions
-            </button>
+        <tr>
+          <td>{classroom.name}</td>
+          <td>{classroom.cid}</td>
+          <td>
             <Link to={`/${classroom._id}/questions`}> Manage Questions </Link>
+          </td>
+          <td>
             <Link to={`/${classroom._id}/students`}> See Classlist </Link>
-            <div key={classroom._id} id={`questionForm${classroom._id}`}>
-              <br />
-              <CreateQuestion key={classroom._id} classroomid={classroom._id} />
-            </div>
-          </div>
-        </div>
+          </td>
+        </tr>
       ));
     }
-    return <div>{classroomArea}</div>;
+    return (
+      <div>
+        <h1>Here are your courses</h1>
+        <table className="table">
+          <thead>
+            <tr>
+              <th scope="col">Course Name</th>
+              <th scope="col">Course ID</th>
+              <th scope="col">Course Questions</th>
+              <th scope="col">Current Students</th>
+            </tr>
+          </thead>
+          <tbody>{classroomArea}</tbody>
+        </table>
+      </div>
+    );
   }
 }
 

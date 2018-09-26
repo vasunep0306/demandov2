@@ -35,7 +35,7 @@ class DisplayQuestions extends Component {
     if (loading || questions === null) {
       questionsField = <h1> Loading </h1>;
     } else if (!loading && questions === null) {
-      questionsField = <h1> Nothing found </h1>;
+      questionsField = <h1> Please add questions </h1>;
     } else {
       questionsField = questions.map(question => (
         <div key={question._id} className="card" style={{ cardStyle }}>

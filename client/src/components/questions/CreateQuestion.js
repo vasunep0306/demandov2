@@ -4,24 +4,6 @@ import { connect } from "react-redux";
 import { addQuestion } from "../../actions/questionActions";
 
 class CreateQuestion extends Component {
-  /**
-   * questiontype: {
-    type: String,
-    required: true
-  },
-  questionbody: {
-    type: String,
-    required: true
-  },
-  correctanswer: {
-    type: String,
-    required: true
-  },
-  answerchoices: {
-    type: String,
-    required: this.isMultipleChoice
-  },
-   */
   constructor() {
     super();
     this.state = {
@@ -64,15 +46,6 @@ class CreateQuestion extends Component {
     this.props.addQuestion(classroomid, newQuestion);
   }
   render() {
-    // Might keep or delete this because it doesnt seem to be used anywhere
-    const answerChoices = (
-      <input
-        type="text"
-        name="answerchoices"
-        value={this.state.questionbody}
-        onChange={this.onChange}
-      />
-    );
     return (
       <form onSubmit={this.onSubmit}>
         <label for="questiontype">Question Type: </label>

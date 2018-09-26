@@ -95,3 +95,15 @@ li a:hover {
   background-color: "#66666";
   text-align: center;
 }
+
+table {
+  width: 100%;
+}
+
+th {
+  width: 29%;
+}
+
+td {
+  width: 29%;
+}
