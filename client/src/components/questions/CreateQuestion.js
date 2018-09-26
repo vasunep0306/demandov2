@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { addQuestion } from "../../actions/questionActions";
+import { withRouter, Link } from "react-router-dom";
 
 class CreateQuestion extends Component {
   constructor() {
@@ -48,6 +49,7 @@ class CreateQuestion extends Component {
   render() {
     return (
       <div>
+        <Link to={`/${this.props.classroomid}/questions`}>Go Back To List</Link>
         <form onSubmit={this.onSubmit}>
           <label for="questiontype">Question Type: </label>
           <select
@@ -107,4 +109,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { addQuestion }
-)(CreateQuestion);
+)(withRouter(CreateQuestion));
