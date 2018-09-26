@@ -21,7 +21,7 @@ class DisplayClasses extends Component {
     } else {
       classroomArea = classrooms.map(classroom => (
         <tr>
-          <td>{classroom.name}</td>
+          <td>{classroom.classtitle}</td>
           <td>{classroom.cid}</td>
           <td>
             <Link to={`/${classroom._id}/questions`}> Manage Questions </Link>

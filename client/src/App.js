@@ -67,22 +67,6 @@ class App extends Component {
             <Switch>
               <PrivateRoute exact path="/createClass" component={CreateClass} />
             </Switch>
-            {/* student route for showing his/her registered courses */}
-            <Switch>
-              <PrivateRoute
-                exact
-                path="/myClasses"
-                component={ShowStudentClassrooms}
-              />
-            </Switch>
-            {/* Student route for answering a question */}
-            <Switch>
-              <PrivateRoute
-                exact
-                path="/:classroomid/answers"
-                component={MyClassroom}
-              />
-            </Switch>
             {/* teacher route for displaying course questions */}
             <Switch>
               <PrivateRoute
@@ -107,21 +91,38 @@ class App extends Component {
                 component={DisplayClasses}
               />
             </Switch>
+            {/* Teacher route for creating a question */}
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/:classroomid/questions/createQuestions"
+                component={CreateQuestions}
+              />
+            </Switch>
+            {/* Student route for showing his/her registered courses */}
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/myClasses"
+                component={ShowStudentClassrooms}
+              />
+            </Switch>
+
+            {/* Student route for answering a question */}
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/:classroomid/answers"
+                component={MyClassroom}
+              />
+            </Switch>
+
             {/* Student route for registering for a course */}
             <Switch>
               <PrivateRoute
                 exact
                 path="/registerForClassroom"
                 component={RegisterForClassroom}
-              />
-            </Switch>
-
-            {/* Teacher route for creating a question */}
-            <Switch>
-              <PrivateRoute
-                exact
-                path="/:classroomid/questions/createQuestion"
-                component={CreateQuestions}
               />
             </Switch>
             <Footer />
