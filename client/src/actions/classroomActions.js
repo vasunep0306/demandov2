@@ -113,7 +113,7 @@ export const getStudents = id => dispatch => {
 };
 
 // get students in a given classroom
-export const removeStudent = (classid, studid, dispatch) => {
+export const removeStudent = (classid, studid) => dispatch => {
   dispatch(setClassLoading());
   axios.post(`/api/classrooms/${classid}/${studid}/removestudent`).then(res => {
     dispatch({

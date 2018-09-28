@@ -12,6 +12,9 @@ class ClassList extends Component {
   }
 
   removeStudent(student) {
+    let classroomid = this.props.match.params.classroomid;
+    let studentid = student._id;
+    this.props.removeStudent(classroomid, studentid);
     //TODO: implement remove student function
   }
 
@@ -31,7 +34,12 @@ class ClassList extends Component {
             <td>{student.name}</td>
             <td>{student.email}</td>
             <td>
-              <button className="btn btn-danger">Drop Student</button>
+              <button
+                className="btn btn-danger"
+                onClick={this.removeStudent.bind(this, student)}
+              >
+                Drop Student
+              </button>
             </td>
           </tr>
         ));
