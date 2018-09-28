@@ -33,13 +33,13 @@ class CreateQuestion extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    const classroomid = this.props.classroomid;
+    const classroomid = this.props.match.params.classroomid;
     const newQuestion = {
       questiontype: this.state.questiontype,
       questionbody: this.state.questionbody,
       correctanswer: this.state.correctanswer
     };
-    if (this.state.questiontype === "extended response") {
+    if (this.state.questiontype === "textual response") {
       newQuestion.answerchoices = "Not Applicable";
     } else {
       newQuestion.answerchoices = this.state.answerchoices;
@@ -49,7 +49,9 @@ class CreateQuestion extends Component {
   render() {
     return (
       <div>
-        <Link to={`/${this.props.classroomid}/questions`}>Go Back To List</Link>
+        <Link to={`/${this.props.match.params.classroomid}/questions`}>
+          Go Back To List
+        </Link>
         <form onSubmit={this.onSubmit}>
           <label for="questiontype">Question Type: </label>
           <select

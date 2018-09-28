@@ -65,7 +65,7 @@ class DisplayQuestions extends Component {
           </button>
           <br />
           <button
-            className="hideQuestionBtn"
+            className="card-link hideQuestionBtn"
             onClick={this.hideQuestion.bind(this)}
           >
             Hide Question
@@ -75,7 +75,7 @@ class DisplayQuestions extends Component {
     }
 
     return (
-      <div>
+      <div class="card">
         {questionsField}
         <Link
           to={`/${
