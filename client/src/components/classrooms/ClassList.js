@@ -11,17 +11,16 @@ class ClassList extends Component {
     this.props.getStudents(this.props.match.params.classroomid);
   }
 
-  removeStudent(student) {
+  removeCurrStudent(student) {
     let classroomid = this.props.match.params.classroomid;
     let studentid = student._id;
     this.props.removeStudent(classroomid, studentid);
-    //TODO: implement remove student function
   }
 
   render() {
     try {
       let listOfStudents;
-      const { students, classroom, loading } = this.props.classrooms;
+      let { students, classroom, loading } = this.props.classrooms;
       if (classroom === null || loading) {
         listOfStudents = <h1>Loading</h1>;
       } else if (students === null || loading) {
@@ -29,6 +28,7 @@ class ClassList extends Component {
       } else if (students.nostudents) {
         listOfStudents = <h1>{students.nostudents}</h1>;
       } else {
+        students = Array.from(this.props.classrooms.students);
         let studentData = students.map(student => (
           <tr>
             <td>{student.name}</td>
@@ -36,7 +36,7 @@ class ClassList extends Component {
             <td>
               <button
                 className="btn btn-danger"
-                onClick={this.removeStudent.bind(this, student)}
+                onClick={this.removeCurrStudent.bind(this, student)}
               >
                 Drop Student
               </button>

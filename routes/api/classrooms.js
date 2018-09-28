@@ -402,7 +402,7 @@ router.post(
   "/:classroomid/:studentid/removestudent",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    User.findById(req.params.id)
+    User.findById(req.params.studentid)
       .populate("classrooms")
       .then(studentToRemove => {
         if (!studentToRemove) {
@@ -419,11 +419,13 @@ router.post(
             classroom.students.forEach(student => {
               if (student._id.equals(studentToRemove._id)) {
                 classroom.students.remove(student);
+                classroom.save();
               }
             });
             studentToRemove.classrooms.forEach(room => {
               if (room._id.equals(classroom._id)) {
                 studentToRemove.classrooms.remove(student);
+                studentToRemove.save();
               }
             });
             classroom.save();
