@@ -1,4 +1,4 @@
 Push to brahe
-#on security1
+#on security2
 
-Add security measure for signing up as a teachers
+Change pin number to not be unique identifier. Also create a course table for all courses. I might have an api set up but not sure.
