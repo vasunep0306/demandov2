@@ -11,7 +11,6 @@ class ShowStudentClassrooms extends Component {
   render() {
     try {
       const { classrooms, loading } = this.props.classrooms;
-      console.log(this.props);
       let classroomArea;
       const cardStyle = {
         width: "18rem"
@@ -22,23 +21,28 @@ class ShowStudentClassrooms extends Component {
         classroomArea = <h1>{classrooms.noClassrooms}</h1>;
       } else {
         classroomArea = classrooms.map(classroom => (
-          <div className="card" style={{ cardStyle }}>
-            <div className="card-body">
-              <h5 className="card-title">{classroom.classtitle}</h5>
-              <h6 className="card-subtitle mb-2 text-muted">
-                cid:
-                {classroom.cid}
-              </h6>
-              <p className="card-text">Class Code {classroom.classcode}</p>
-              <Link to={`/${classroom._id}/answers`}>Go To Classroom</Link>
-            </div>
-          </div>
+          <tr>
+            <td>{classroom.classtitle}</td>
+            <td>{classroom.cid}</td>
+            <td>{classroom.classcode}</td>
+            <Link to={`/${classroom._id}/answers`}>Go To Classroom</Link>
+          </tr>
         ));
       }
       return (
         <div>
           <h1>Here are your classes: {this.props.auth.user.name}</h1>
-          <div>{classroomArea}</div>
+          <table className="table">
+            <thead>
+              <tr>
+                <th scope="col">Course Name</th>
+                <th scope="col">Course ID</th>
+                <th scope="col">Class Code</th>
+                <th scope="col">Course Dashboard</th>
+              </tr>
+            </thead>
+            <tbody>{classroomArea}</tbody>
+          </table>
         </div>
       );
     } catch (err) {
