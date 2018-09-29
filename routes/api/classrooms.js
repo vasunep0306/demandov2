@@ -158,14 +158,6 @@ router.post(
   "/register/:classid",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    const { errors, isValid } = validateCourseRegisterationInput(req.body);
-
-    // Check Validation
-    if (!isValid) {
-      // Return any errors with 400 status
-      return res.status(400).json(errors);
-    }
-
     // Register student for classroom
     User.findById(req.user._id)
       .then(user => {
@@ -456,20 +448,21 @@ router.post(
                 noClassroom: "There is no classroom under this id"
               });
             }
+
             classroom.students.forEach(student => {
-              if (student._id.equals(studentToRemove._id)) {
-                classroom.students.remove(student);
+              if (student._id.toString() === studentToRemove._id.toString()) {
+                classroom.students.splice(
+                  classroom.students.indexOf(student),
+                  1
+                );
                 classroom.save();
+                student.classrooms.splice(
+                  student.classrooms.indexOf(classroom),
+                  1
+                );
+                student.save();
               }
             });
-            studentToRemove.classrooms.forEach(room => {
-              if (room._id.equals(classroom._id)) {
-                studentToRemove.classrooms.remove(student);
-                studentToRemove.save();
-              }
-            });
-            classroom.save();
-            studentToRemove.save();
           });
       })
       .catch(err => res.status(500).json(err));

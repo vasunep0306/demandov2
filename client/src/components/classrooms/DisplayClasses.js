@@ -25,55 +25,59 @@ class DisplayClasses extends Component {
   }
 
   render() {
-    const { classrooms, loading } = this.props.classrooms;
-    let classroomArea;
+    try {
+      const { classrooms, loading } = this.props.classrooms;
+      let classroomArea;
 
-    if (classrooms === null || loading) {
-      classroomArea = <h1>Loading</h1>;
-    } else if (classrooms.noclasses) {
-      classroomArea = <h1>{classrooms.noclasses}</h1>;
-    } else {
-      classroomArea = classrooms.map(classroom => (
-        <tr>
-          <td>{classroom.classtitle}</td>
-          <td>{classroom.cid}</td>
-          <td>
-            <Link to={`/${classroom._id}/questions`}> Manage Questions </Link>
-          </td>
-          <td>{classroom.registeration_pin}</td>
-          <td>
-            <button
-              className="btn btn-danger"
-              onClick={this.changePin.bind(this, classroom)}
-            >
-              Edit Pin
-            </button>
-          </td>
-          <td>
-            <Link to={`/${classroom._id}/students`}> See Classlist </Link>
-          </td>
-        </tr>
-      ));
+      if (classrooms === null || loading) {
+        classroomArea = <h1>Loading</h1>;
+      } else if (classrooms.noclasses) {
+        classroomArea = <h1>{classrooms.noclasses}</h1>;
+      } else {
+        classroomArea = classrooms.map(classroom => (
+          <tr>
+            <td>{classroom.classtitle}</td>
+            <td>{classroom.cid}</td>
+            <td>
+              <Link to={`/${classroom._id}/questions`}> Manage Questions </Link>
+            </td>
+            <td>{classroom.registeration_pin}</td>
+            <td>
+              <button
+                className="btn btn-danger"
+                onClick={this.changePin.bind(this, classroom)}
+              >
+                Edit Pin
+              </button>
+            </td>
+            <td>
+              <Link to={`/${classroom._id}/students`}> See Classlist </Link>
+            </td>
+          </tr>
+        ));
+      }
+      return (
+        <div>
+          <h1>Here are your courses</h1>
+          <table className="table">
+            <thead>
+              <tr>
+                <th scope="col">Course Name</th>
+                <th scope="col">Course ID</th>
+                <th scope="col">Course Questions</th>
+                <th scope="col">Course Pin</th>
+                <th scope="col">Change Course Pin</th>
+                <th scope="col">Current Students</th>
+              </tr>
+            </thead>
+            <tbody>{classroomArea}</tbody>
+          </table>
+          <Link to={`/createClass`}>Create a new course</Link>
+        </div>
+      );
+    } catch (err) {
+      window.location.reload(true);
     }
-    return (
-      <div>
-        <h1>Here are your courses</h1>
-        <table className="table">
-          <thead>
-            <tr>
-              <th scope="col">Course Name</th>
-              <th scope="col">Course ID</th>
-              <th scope="col">Course Questions</th>
-              <th scope="col">Course Pin</th>
-              <th scope="col">Change Course Pin</th>
-              <th scope="col">Current Students</th>
-            </tr>
-          </thead>
-          <tbody>{classroomArea}</tbody>
-        </table>
-        <Link to={`/createClass`}>Create a new course</Link>
-      </div>
-    );
   }
 }
 
