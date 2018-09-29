@@ -20,14 +20,22 @@ export const createClassroom = (classroomData, history) => dispatch => {
       })
     );
 };
-export const showAllClassrooms = dispatch => {
+export const showAllClassrooms = () => dispatch => {
   dispatch(setClassLoading());
-  axios.get(`api/classrooms/`).then(res =>
-    dispatch({
-      type: GET_CLASSROOMS,
-      payload: res.data
-    })
-  );
+  axios
+    .get(`api/classrooms/`)
+    .then(res =>
+      dispatch({
+        type: GET_CLASSROOMS,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_CLASSROOMS,
+        payload: err.response.data
+      })
+    );
 };
 export const showClassrooms = id => dispatch => {
   dispatch(setClassLoading());
@@ -87,7 +95,6 @@ export const myClassrooms = id => dispatch => {
   axios
     .get(`/api/classrooms/${id}/myclasses`)
     .then(res => {
-      console.log(res);
       dispatch({
         type: GET_CLASSROOMS,
         payload: res.data

@@ -31,13 +31,16 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const errors = {};
-    Classroom.find()
+    Classroom.find({})
       .populate("user", ["name", "email"])
       .then(classrooms => {
-        console.log(!classrooms);
         if (!classrooms) {
           errors.noClassrooms = "There are no classrooms";
           return res.status(404).json(errors);
+        }
+        if (classrooms.length === 0) {
+          errors.noClassrooms = "There are 0 classrooms";
+          return res.status(400).json(errors);
         }
         return res.json(classrooms);
       })
@@ -63,7 +66,9 @@ router.get(
         }
         return res.json(classroom);
       })
-      .catch(err => res.status(404).json({ classroom: err }));
+      .catch(err => {
+        return res.status(404).json({ classroom: err });
+      });
   }
 );
 
@@ -221,9 +226,12 @@ router.get(
     User.findById(req.params.userid)
       .populate("classrooms")
       .then(user => {
-        console.log("user");
         if (!user) {
           errors.nouser = "there is no user";
+          return res.status(400).json(errors);
+        }
+        if (user.classrooms.length === 0) {
+          errors.noClassrooms = "there are no classes for you yet";
           return res.status(400).json(errors);
         }
         return res.status(200).json(user.classrooms);

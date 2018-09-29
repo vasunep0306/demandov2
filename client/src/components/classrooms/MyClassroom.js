@@ -10,34 +10,37 @@ class MyClassroom extends Component {
   }
   render() {
     //console.log(this.props);
-    const { classroom, loading } = this.props.classrooms;
-    let classroomArea;
-    if (classroom === null || loading) {
-      classroomArea = <h1>Loading</h1>;
-    } else if (classroom.noclassroom) {
-      classroomArea = <h1>{classroom.noclassroom}</h1>;
-    } else {
-      if (!classroom.currentQuestion) {
-        classroomArea = (
-          <div>
-            <h1>
-              Welcome to <em>{classroom.classtitle}</em>
-            </h1>
-            <p>
-              The teacher hasn't really published a question yet. Please click
-              refresh
-            </p>
-          </div>
-        );
+    try {
+      const { classroom, loading } = this.props.classrooms;
+      let classroomArea;
+      if (classroom === null || loading) {
+        classroomArea = <h1>Loading</h1>;
+      } else if (classroom.noclassroom) {
+        classroomArea = <h1>{classroom.noclassroom}</h1>;
       } else {
-        // we want an html form where the student can answer the question.
-        classroomArea = <h1>{classroom.currentQuestion}</h1>;
+        if (!classroom.currentQuestion) {
+          classroomArea = (
+            <div>
+              <h1>
+                Welcome to <em>{classroom.classtitle}</em>
+              </h1>
+              <p>
+                The teacher hasn't really published a question yet. Please click
+                refresh
+              </p>
+            </div>
+          );
+        } else {
+          // we want an html form where the student can answer the question.
+          classroomArea = <h1>{classroom.currentQuestion}</h1>;
+        }
       }
+      return <div>{classroomArea}</div>;
+    } catch (err) {
+      window.location.reload(true);
     }
-    return <div>{classroomArea}</div>;
   }
 }
-
 MyClassroom.propTypes = {
   errors: PropTypes.object.isRequired,
   classrooms: PropTypes.object.isRequired,
