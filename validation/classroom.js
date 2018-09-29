@@ -19,6 +19,9 @@ module.exports = function validateClassroomInput(data) {
   data.classcode = !isEmpty(data.classcode) ? data.classcode : "";
   data.cid = !isEmpty(data.cid) ? data.cid : "";
   data.classtitle = !isEmpty(data.classtitle) ? data.classtitle : "";
+  data.registeration_pin = !isEmpty(data.registeration_pin)
+    ? data.registeration_pin
+    : "";
 
   if (Validator.isEmpty(data.classcode)) {
     errors.classcode = "Classcode field is required";

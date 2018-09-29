@@ -112,6 +112,7 @@ router.post(
     classData.cid = req.body.cid;
     classData.classcode = req.body.classcode;
     classData.classtitle = req.body.classtitle;
+    classData.registeration_pin = req.body.registeration_pin;
 
     Classroom.findOne({ cid: req.body.cid }).then(classroom => {
       if (classroom) {
@@ -124,7 +125,26 @@ router.post(
     });
   }
 );
-
+/** @route   Post api/classrooms/:classroomid/changepin
+ * @desc    Get students to register for class
+ * @access  Private
+ */
+router.post(
+  "/:classroomid/changepin",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Classroom.findById(req.params.classroomid).then(classroom => {
+      if (!classroom) {
+        return res
+          .status(400)
+          .json({ "no classroom": "classroom doesnt exist" });
+      }
+      let keys = Object.keys(req.body);
+      classroom.registeration_pin = keys[0];
+      classroom.save().then(classroom => res.json(classroom));
+    });
+  }
+);
 /** @route   Post api/classrooms/register
  * @desc    Get students to register for class
  * @access  Private

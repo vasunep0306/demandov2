@@ -33,7 +33,8 @@ class CreateClass extends Component {
     const newClass = {
       classcode: this.state.classcode,
       cid: this.state.cid,
-      classtitle: this.state.classtitle
+      classtitle: this.state.classtitle,
+      registeration_pin: this.state.registeration_pin
     };
     this.props.createClassroom(newClass, this.props.history);
   }
@@ -68,6 +69,8 @@ class CreateClass extends Component {
             value={this.state.classtitle}
             onChange={this.onChange}
           />
+          <br />
+          <label htmlFor="registeration_pin">Registeration Pin: </label>
           <input
             type="text"
             name="registeration_pin"

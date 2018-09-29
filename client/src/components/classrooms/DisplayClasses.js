@@ -2,12 +2,25 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { showClassrooms } from "../../actions/classroomActions";
+import { showClassrooms, changeClasspin } from "../../actions/classroomActions";
 import CreateQuestion from "../questions/CreateQuestion";
 
 class DisplayClasses extends Component {
   componentDidMount() {
     this.props.showClassrooms(this.props.auth.user.id);
+  }
+
+  changePin(classroom) {
+    let new_pin = prompt("Please enter new pin: ");
+    let certainty = window.confirm(
+      "Are you sure you want to change the classpin? "
+    );
+    if (certainty) {
+      this.props.changeClasspin(new_pin, classroom._id);
+      alert(
+        `Successfully changed classpin to ${new_pin}. Please let your students know that the pin was changed`
+      );
+    }
   }
 
   render() {
@@ -26,6 +39,15 @@ class DisplayClasses extends Component {
           <td>
             <Link to={`/${classroom._id}/questions`}> Manage Questions </Link>
           </td>
+          <td>{classroom.registeration_pin}</td>
+          <td>
+            <button
+              className="btn btn-danger"
+              onClick={this.changePin.bind(this, classroom)}
+            >
+              Edit Pin
+            </button>
+          </td>
           <td>
             <Link to={`/${classroom._id}/students`}> See Classlist </Link>
           </td>
@@ -41,6 +63,8 @@ class DisplayClasses extends Component {
               <th scope="col">Course Name</th>
               <th scope="col">Course ID</th>
               <th scope="col">Course Questions</th>
+              <th scope="col">Course Pin</th>
+              <th scope="col">Change Course Pin</th>
               <th scope="col">Current Students</th>
             </tr>
           </thead>
@@ -55,6 +79,7 @@ class DisplayClasses extends Component {
 DisplayClasses.propTypes = {
   classrooms: PropTypes.object.isRequired,
   showClassrooms: PropTypes.func.isRequired,
+  changeClasspin: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
 
@@ -65,5 +90,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { showClassrooms }
+  { showClassrooms, changeClasspin }
 )(withRouter(DisplayClasses));

@@ -122,6 +122,15 @@ export const removeStudent = (classid, studid) => dispatch => {
     });
   });
 };
+
+export const changeClasspin = (newpin, classid) => dispatch => {
+  axios.post(`/api/classrooms/${classid}/changepin`, newpin).then(res => {
+    dispatch({
+      type: "CHANGED_PIN",
+      payload: res.data
+    });
+  });
+};
 // Set loading state
 export const setClassLoading = () => {
   return {
