@@ -41,6 +41,7 @@ class MyClassroom extends Component {
                 {header}
                 <br />
                 <textarea />
+                <input type="submit" />
               </div>
             );
           } else {
@@ -58,6 +59,7 @@ class MyClassroom extends Component {
               <div>
                 {header}
                 {choiceArray}
+                <input type="submit" />
               </div>
             );
           }
