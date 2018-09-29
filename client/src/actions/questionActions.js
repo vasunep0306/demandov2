@@ -8,10 +8,13 @@ import {
 } from "./types";
 import axios from "axios";
 
-export const addQuestion = (classroomid, newQuestion) => dispatch => {
+export const addQuestion = (classroomid, newQuestion, history) => dispatch => {
   axios
     .post(`/api/classrooms/${classroomid}/newquestion`, newQuestion)
-    .then(res => alert("successfully created question"))
+    .then(res => {
+      alert("successfully created question");
+      history.goBack();
+    })
     .catch(err =>
       dispatch({
         type: GET_ERRORS,

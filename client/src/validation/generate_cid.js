@@ -5,7 +5,7 @@ function getRandomIntInclusive(min, max) {
 }
 
 const suggest_cid = function() {
-  let cid = getRandomIntInclusive(1000000, 9999999);
+  let cid = getRandomIntInclusive(100000, 999999);
   return cid.toString();
 };
 

@@ -12,7 +12,7 @@ import axios from "axios";
 export const createClassroom = (classroomData, history) => dispatch => {
   axios
     .post("/api/classrooms/", classroomData)
-    .then(res => history.push("/dashboard"))
+    .then(res => history.push("/displayClasses"))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,

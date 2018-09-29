@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import suggest_cid from "../../validation/generate_cid";
-
+const suggestion = suggest_cid();
 class CreateClass extends Component {
   constructor() {
     super();
@@ -37,7 +37,6 @@ class CreateClass extends Component {
     this.props.createClassroom(newClass, this.props.history);
   }
   render() {
-    let suggestion = suggest_cid();
     return (
       <div>
         <h1> Use this form to create a class </h1>

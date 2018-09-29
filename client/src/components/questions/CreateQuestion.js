@@ -44,7 +44,7 @@ class CreateQuestion extends Component {
     } else {
       newQuestion.answerchoices = this.state.answerchoices;
     }
-    this.props.addQuestion(classroomid, newQuestion);
+    this.props.addQuestion(classroomid, newQuestion, this.props.history);
   }
   render() {
     return (

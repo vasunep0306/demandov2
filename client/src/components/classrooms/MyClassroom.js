@@ -9,7 +9,7 @@ class MyClassroom extends Component {
     this.props.getClass(this.props.match.params.classroomid);
   }
   render() {
-    console.log(this.props);
+    //console.log(this.props);
     const { classroom, loading } = this.props.classrooms;
     let classroomArea;
     if (classroom === null || loading) {
