@@ -49,6 +49,8 @@ class Register extends Component {
     this.props.registerUser(newUser, this.props.history);
     if (!(Object.keys(this.state.errors).length === 0)) {
       alert(JSON.stringify(this.state.errors));
+    } else {
+      alert(`Successfully created new ${newUser.userType} ${newUser.name}`);
     }
   }
 
