@@ -84,6 +84,7 @@ class DisplayQuestions extends Component {
         >
           Add New Question
         </Link>
+        <Link to={`/displayClasses`}>Back To CourseList</Link>
       </div>
     );
   }
