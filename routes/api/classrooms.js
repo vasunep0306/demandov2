@@ -41,9 +41,9 @@ router.get(
         }
         return res.json(classrooms);
       })
-      .catch(err =>
-        res.status(404).json({ classrooms: "There are no classrooms" })
-      );
+      .catch(err => {
+        return res.status(404).json({ classrooms: "There are no classrooms" });
+      });
   }
 );
 /** @route   Get api/classrooms/:id

@@ -5,6 +5,9 @@ import { connect } from "react-redux";
 import { showAllClassrooms } from "../../actions/classroomActions";
 
 class RegisterForClassrooms extends Component {
+  componentDidMount() {
+    this.props.showAllClassrooms();
+  }
   render() {
     return <div />;
   }
