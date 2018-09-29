@@ -10,7 +10,6 @@ module.exports = function validateRegisterInput(data) {
   data.password2 = !isEmpty(data.password2) ? data.password2 : "";
   data.userType = !isEmpty(data.userType) ? data.userType : "";
   data.secretKey = !isEmpty(data.secretKey) ? data.secretKey : "";
-
   if (!Validator.isLength(data.name, { min: 2, max: 30 })) {
     errors.name = "Name must be between 2 and 30 characters";
   }
@@ -46,12 +45,7 @@ module.exports = function validateRegisterInput(data) {
   if (Validator.isEmpty(data.userType)) {
     errors.userType = "User type is required";
   } else if (
-    data.userType.equals("teacher") &&
-    Validator.isEmpty(data.secretKey)
-  ) {
-    errors.secretKey = "You need the secret key to continue";
-  } else if (
-    data.userType.equals("teacher") &&
+    data.userType === "teacher" &&
     !Validator.equals(data.secretKey, secretKey)
   ) {
     errors.secretKey = "Invalid secret key";

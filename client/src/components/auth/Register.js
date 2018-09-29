@@ -13,6 +13,7 @@ class Register extends Component {
       password: "",
       password2: "",
       userType: "",
+      secretKey: "",
       errors: {}
     };
     this.onChange = this.onChange.bind(this);
@@ -28,21 +29,6 @@ class Register extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
-      if (nextProps.errors.name) {
-        alert(nextProps.errors.name);
-      }
-      if (nextProps.errors.email) {
-        alert(nextProps.errors.email);
-      }
-      if (nextProps.errors.password) {
-        alert(nextProps.errors.password);
-      }
-      if (nextProps.errors.password2) {
-        alert(nextProps.errors.password2);
-      }
-      if (nextProps.errors.userType) {
-        alert(nextProps.errors.userType);
-      }
     }
   }
 
@@ -52,16 +38,18 @@ class Register extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-
     const newUser = {
       name: this.state.name,
       email: this.state.email,
       password: this.state.password,
       password2: this.state.password2,
-      userType: this.state.userType
+      userType: this.state.userType,
+      secretKey: this.state.secretKey
     };
-    alert(`Successfully created new user ${newUser.name}`);
     this.props.registerUser(newUser, this.props.history);
+    if (!(Object.keys(this.state.errors).length === 0)) {
+      alert(JSON.stringify(this.state.errors));
+    }
   }
 
   render() {
