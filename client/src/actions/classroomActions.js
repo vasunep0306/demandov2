@@ -65,9 +65,9 @@ export const getClass = id => dispatch => {
     );
 };
 
-export const registerForClassroom = courseData => dispatch => {
+export const registerForClassroom = (classid, passcode) => dispatch => {
   axios
-    .post(`/api/classrooms/register`, courseData)
+    .post(`/api/classrooms/register/${classid}`, passcode)
     .then(res => {
       dispatch({
         type: REGISTER_FOR_CLASSROOM,

@@ -198,9 +198,10 @@ router.post(
                 user.save();
                 return res.status(200).json(classroom);
               }
+            } else {
+              errors.noclass = "wrong registeration pin";
+              return res.status(400).json(errors);
             }
-            classroom.students.unshift(user._id);
-            classroom.save();
           })
           .catch(err => res.status(500).json(err));
       })

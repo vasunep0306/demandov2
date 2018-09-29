@@ -11,6 +11,14 @@ class RegisterForClassrooms extends Component {
   componentDidMount() {
     this.props.showAllClassrooms();
   }
+
+  registerForClass(classroom) {
+    let classroomid = classroom._id;
+    let input_registeration_pin = window.prompt(
+      "Please enter the pin provided by your instructor"
+    );
+  }
+
   render() {
     const { classrooms, loading } = this.props.classrooms;
     let classroomArea;
