@@ -150,7 +150,7 @@ router.post(
  * @access  Private
  */
 router.post(
-  "/register",
+  "/register/:classid",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const { errors, isValid } = validateCourseRegisterationInput(req.body);
@@ -168,28 +168,39 @@ router.post(
           errors.nouser = "there is no user";
           return res.status(400).json(errors);
         }
-        Classroom.findOne({ cid: req.body.cid })
+        Classroom.findById(req.params.classid)
           .then(classroom => {
             // Find classroom
             if (!classroom) {
-              errors.noclass = "there is no classroom under that cid";
+              errors.noclass = "there is no classroom under that id";
               return res.status(400).json(errors);
             }
-            if (classroom.students.indexOf(user._id) > -1) {
-              errors.exists =
-                "there already is a user enrolled in this classroom";
-              return res.status(400).json(errors);
+            let key = Object.keys(req.body);
+            let input_registeration_pin = key[0];
+            // the pin they typed in is correct
+            if (classroom.registeration_pin === input_registeration_pin) {
+              //if the classroom contains the student
+              if (classroom.students.indexOf(user._id) > -1) {
+                errors.exists =
+                  "there already is a user enrolled in this classroom";
+                return res.status(400).json(errors);
+              } else {
+                classroom.students.unshift(user._id);
+                classroom.save();
+              }
+
+              // if the student is already enrolled in the course
+              if (user.classrooms.indexOf(classroom._id) > -1) {
+                errors.exists = "there already is a classroom under this user";
+                return res.status(400).json(errors);
+              } else {
+                user.classrooms.unshift(classroom._id);
+                user.save();
+                return res.status(200).json(classroom);
+              }
             }
             classroom.students.unshift(user._id);
             classroom.save();
-            if (user.classrooms.indexOf(classroom._id) > -1) {
-              errors.exists = "there already is a classroom under this user";
-              return res.status(400).json(errors);
-            } else {
-              user.classrooms.unshift(classroom._id);
-              user.save();
-              return res.status(200).json(classroom);
-            }
           })
           .catch(err => res.status(500).json(err));
       })
