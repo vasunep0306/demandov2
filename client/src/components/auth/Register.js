@@ -138,6 +138,17 @@ class Register extends Component {
                         <option value="teacher">Teacher</option>
                       </select>
                     </div>
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        name="secretKey"
+                        id="secretKey"
+                        value={this.state.secretKey}
+                        onChange={this.onChange}
+                        className="form-control input-sm"
+                        placeholder="Please Enter Secret Key, leave off if student"
+                      />
+                    </div>
                   </div>
 
                   <input
