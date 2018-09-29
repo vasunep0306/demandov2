@@ -20,6 +20,7 @@ class DisplayClasses extends Component {
       alert(
         `Successfully changed classpin to ${new_pin}. Please let your students know that the pin was changed`
       );
+      window.location.reload(true);
     }
   }
 
