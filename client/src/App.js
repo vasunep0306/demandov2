@@ -26,7 +26,7 @@ import CreateClass from "./components/classrooms/CreateClass";
 import DisplayClasses from "./components/classrooms/DisplayClasses";
 import DisplayQuestions from "./components/questions/DisplayQuestions";
 import CreateQuestion from "./components/questions/CreateQuestion";
-import RegisterForClassrooms from "./components/classrooms/RegisterForClassroom";
+import RegisterForClassrooms from "./components/classrooms/RegisterForClassrooms";
 import ShowStudentClassrooms from "./components/classrooms/ShowStudentClassrooms";
 import MyClassroom from "./components/classrooms/MyClassroom";
 import ClassList from "./components/classrooms/ClassList";

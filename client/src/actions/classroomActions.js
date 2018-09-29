@@ -20,7 +20,15 @@ export const createClassroom = (classroomData, history) => dispatch => {
       })
     );
 };
-
+export const showAllClassrooms = dispatch => {
+  dispatch(setClassLoading());
+  axios.get(`api/classrooms/`).then(res =>
+    dispatch({
+      type: GET_CLASSROOMS,
+      payload: res.data
+    })
+  );
+};
 export const showClassrooms = id => dispatch => {
   dispatch(setClassLoading());
   axios

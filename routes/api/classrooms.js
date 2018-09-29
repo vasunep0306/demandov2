@@ -39,7 +39,7 @@ router.get(
           errors.noClassrooms = "There are no classrooms";
           return res.status(404).json(errors);
         }
-        res.json(classrooms);
+        return res.json(classrooms);
       })
       .catch(err =>
         res.status(404).json({ classrooms: "There are no classrooms" })
