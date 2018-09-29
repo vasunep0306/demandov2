@@ -12,6 +12,7 @@ class CreateClass extends Component {
       classcode: "",
       cid: "",
       classtitle: "",
+      registeration_pin: "",
       errors: {}
     };
     this.onChange = this.onChange.bind(this);
@@ -65,6 +66,13 @@ class CreateClass extends Component {
             name="classtitle"
             placeholder="classtitle"
             value={this.state.classtitle}
+            onChange={this.onChange}
+          />
+          <input
+            type="text"
+            name="registeration_pin"
+            placeholder="Registeration Pin"
+            value={this.state.registeration_pin}
             onChange={this.onChange}
           />
           <br />
