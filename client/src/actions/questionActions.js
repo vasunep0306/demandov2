@@ -32,7 +32,7 @@ export const getQuestions = classroomid => dispatch => {
 };
 
 //Set question
-export const setQuestion = classroomid => questionid => dispatch => {
+export const setQuestion = (classroomid, questionid) => dispatch => {
   axios
     .post(`/api/classrooms/${classroomid}/setcurrentquestion/${questionid}`)
     .then(res => dispatch({ type: SET_CURRENT_QUESTION, payload: res.data }))

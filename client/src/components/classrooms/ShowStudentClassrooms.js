@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter, Link } from "react-router-dom";
 import { myClassrooms } from "../../actions/classroomActions";
+
 import { connect } from "react-redux";
 
 class ShowStudentClassrooms extends Component {
@@ -25,7 +26,9 @@ class ShowStudentClassrooms extends Component {
             <td>{classroom.classtitle}</td>
             <td>{classroom.cid}</td>
             <td>{classroom.classcode}</td>
-            <Link to={`/${classroom._id}/answers`}>Go To Classroom</Link>
+            <td>
+              <Link to={`/${classroom._id}/answers`}>Go To Classroom</Link>
+            </td>
           </tr>
         ));
       }

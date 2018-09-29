@@ -343,10 +343,13 @@ router.post(
   "/:classroomid/setcurrentquestion/:questionid",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+    console.log("reach");
     Question.findById(req.params.questionid).then(question => {
+      console.log("reach");
       Classroom.findById(req.params.classroomid).then(classroom => {
         classroom.currentQuestion = question;
         classroom.save();
+        console.log(classroom);
       });
     });
   }
@@ -360,15 +363,22 @@ router.post(
   "/:classroomid/unsetcurrentquestion",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Classroom.findById(req.params.classroomid).then(classroom => {
-      classroom.currentQuestion = {};
-    });
+    Classroom.findById(req.params.classroomid)
+      .populate("currentQuestion")
+      .then(classroom => {
+        classroom.currentQuestion = null;
+        classroom.save().then(classroom => {
+          return res
+            .status(200)
+            .json({ success: "Successfully unset Question" });
+        });
+      });
   }
 );
 
 // @route   GET api/classrooms/:classroomid/getcurrentquestion
 // @desc    Post a new question given a classroom
-// @access  Private: students will recieve their questions using this route
+// @access  Private: students will receive their questions using this route
 
 router.get(
   "/:classroomid/getcurrentquestion",
@@ -382,7 +392,8 @@ router.get(
             noCurrentQuestion: "No question is set"
           });
         }
-        res.status(200).json(classroom.currentQuestion);
+
+        return res.status(200).json(classroom.currentQuestion);
       });
   }
 );
