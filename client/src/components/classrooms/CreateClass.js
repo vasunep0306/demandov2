@@ -39,6 +39,7 @@ class CreateClass extends Component {
     this.props.createClassroom(newClass, this.props.history);
   }
   render() {
+    // change to class subject id number
     return (
       <div>
         <h1> Use this form to create a class </h1>
