@@ -32,7 +32,6 @@ class RegisterForClassrooms extends Component {
         classroomArea = classrooms.map(classroom => (
           <tr>
             <td>{classroom.classtitle}</td>
-            <td>{classroom.cid}</td>
             <td>
               <button
                 className="btn btn-info"

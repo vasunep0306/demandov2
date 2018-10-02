@@ -17,8 +17,7 @@ class TeacherDashboard extends Component {
           for a course class
         </p>
         <small>
-          The student will have a search bar where they can find a course by the
-          given cid.
+          The student will see a list of courses in a tabular format.
         </small>
         <p>
           Or go <Link to="/myClasses">here </Link> to see all of your classrooms

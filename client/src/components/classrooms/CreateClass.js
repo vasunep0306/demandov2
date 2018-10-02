@@ -3,14 +3,12 @@ import { createClassroom } from "../../actions/classroomActions";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import suggest_cid from "../../validation/generate_cid";
-const suggestion = suggest_cid();
+
 class CreateClass extends Component {
   constructor() {
     super();
     this.state = {
       classcode: "",
-      cid: "",
       classtitle: "",
       registeration_pin: "",
       errors: {}
@@ -32,7 +30,6 @@ class CreateClass extends Component {
     // console.log(this.state);
     const newClass = {
       classcode: this.state.classcode,
-      cid: this.state.cid,
       classtitle: this.state.classtitle,
       registeration_pin: this.state.registeration_pin
     };
