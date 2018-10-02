@@ -5,7 +5,6 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const detect = require("detect-csv");
 const validateClassroomInput = require("../../validation/classroom");
-const validateCourseRegisterationInput = require("../../validation/registerForCourse");
 const validateNewQuestion = require("../../validation/questions");
 const validateAnswer = require("../../validation/answer");
 const User = require("../../models/User"); // Load User model
