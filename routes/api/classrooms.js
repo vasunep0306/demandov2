@@ -76,20 +76,7 @@ router.get(
  * @desc    Get one classroom by cid
  * @access  Private but universal to both teachers and students
  */
-router.get(
-  "/:cid",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    const errors = {};
-    Classroom.findOne({ cid: req.params.cid }).then(classroom => {
-      if (!classroom) {
-        errors.noclass = "there is no classroom under that cid";
-        return res.status(400).json(errors);
-      }
-      res.json(classroom);
-    });
-  }
-);
+
 //END SECTION
 
 //SECTION FOR ADDING NEW CLASSROOMS AND REGISTERING STUDENTS
@@ -114,15 +101,14 @@ router.post(
     //Get fields
     const classData = {};
     classData.instructor = req.user._id;
-    classData.cid = req.body.cid;
     classData.classcode = req.body.classcode;
     classData.classtitle = req.body.classtitle;
     classData.registeration_pin = req.body.registeration_pin;
 
-    Classroom.findOne({ cid: req.body.cid }).then(classroom => {
+    Classroom.findOne({ classcode: req.body.classcode }).then(classroom => {
       if (classroom) {
         // Check if cid exists
-        errors.cid = "That cid already exists";
+        errors.cid = "That class already exists";
         return res.status(400).json(errors);
       }
       // Save classroom

@@ -53,15 +53,7 @@ class CreateClass extends Component {
             onChange={this.onChange}
           />
           <br />
-          <label htmlFor="cid">cid: </label>
-          <input
-            type="text"
-            name="cid"
-            placeholder={suggestion}
-            value={this.state.cid}
-            onChange={this.onChange}
-          />
-          <br />
+
           <label htmlFor="classtitle">Class Title: </label>
           <input
             type="text"

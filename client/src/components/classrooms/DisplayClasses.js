@@ -63,9 +63,9 @@ class DisplayClasses extends Component {
             <thead>
               <tr>
                 <th scope="col">Course Name</th>
-                <th scope="col">Course ID</th>
+                <th scope="col">Course Code</th>
                 <th scope="col">Course Questions</th>
-                <th scope="col">Course Pin</th>
+                <th scope="col">Course Registeration Password</th>
                 <th scope="col">Change Course Pin</th>
                 <th scope="col">Current Students</th>
               </tr>

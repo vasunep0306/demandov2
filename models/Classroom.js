@@ -12,10 +12,7 @@ const ClassroomSchema = new Schema({
     required: true
   },
   // doesn't have to be the real cid. the teacher just makes it up. students get this from teacher and they lookup course.
-  cid: {
-    type: String,
-    required: true
-  },
+
   classtitle: {
     type: String,
     required: true
