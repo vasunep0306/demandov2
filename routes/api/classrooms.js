@@ -72,11 +72,6 @@ router.get(
   }
 );
 
-/** @route   Get api/classrooms/:cid
- * @desc    Get one classroom by cid
- * @access  Private but universal to both teachers and students
- */
-
 //END SECTION
 
 //SECTION FOR ADDING NEW CLASSROOMS AND REGISTERING STUDENTS
