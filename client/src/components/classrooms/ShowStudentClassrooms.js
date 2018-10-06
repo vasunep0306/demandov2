@@ -38,7 +38,6 @@ class ShowStudentClassrooms extends Component {
             <thead>
               <tr>
                 <th scope="col">Course Name</th>
-                <th scope="col">Course ID</th>
                 <th scope="col">Class Code</th>
                 <th scope="col">Course Dashboard</th>
               </tr>

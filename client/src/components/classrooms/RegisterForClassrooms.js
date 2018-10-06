@@ -17,7 +17,11 @@ class RegisterForClassrooms extends Component {
     let input_registeration_pin = window.prompt(
       "Please enter the pin provided by your instructor"
     );
-    this.props.registerForClassroom(classroomid, input_registeration_pin);
+    this.props.registerForClassroom(
+      classroomid,
+      input_registeration_pin,
+      this.props.history
+    );
   }
 
   render() {
@@ -32,6 +36,7 @@ class RegisterForClassrooms extends Component {
         classroomArea = classrooms.map(classroom => (
           <tr>
             <td>{classroom.classtitle}</td>
+            <td>{classroom.classcode}</td>
             <td>
               <button
                 className="btn btn-info"
