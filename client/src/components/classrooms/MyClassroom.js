@@ -33,7 +33,18 @@ class MyClassroom extends Component {
     }
     */
     const response = {};
-    response.student = this.state.auth.email;
+    response.student = {
+      name: this.state.name,
+      email: this.state.email
+    };
+    response.body = this.state.responsebody;
+    if (question.questiontype === "multiple choice") {
+      // handle multiple choice logic
+      response.correctness = this.state.responsebody === question.correctanswer;
+    } else {
+      // handle textual response logic
+      response.correctness = false;
+    }
   }
   render() {
     try {
@@ -90,7 +101,9 @@ class MyClassroom extends Component {
           }
           finalClassroomArea = (
             <div>
-              <form onSubmit={this.onSubmit.bind(this)}>{classroomArea}</form>
+              <form onSubmit={this.onSubmit.bind(this, question)}>
+                {classroomArea}
+              </form>
             </div>
           );
         }
