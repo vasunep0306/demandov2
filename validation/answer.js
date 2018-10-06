@@ -3,10 +3,10 @@ const isEmpty = require("./isEmpty");
 
 module.exports = function validateAnswer(data) {
   let errors = {};
-  data.answer = !isEmpty(data.answer) ? data.answer : "";
+  data.responsebody = !isEmpty(data.responsebody) ? data.responsebody : "";
 
-  if (Validator.isEmpty(data.answer)) {
-    errors.answer = "Answer Cannot Be Empty";
+  if (Validator.isEmpty(data.responsebody)) {
+    errors.responsebody = "Answer Cannot Be Empty";
   }
 
   return {

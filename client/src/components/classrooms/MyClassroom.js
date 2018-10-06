@@ -1,50 +1,53 @@
 import React, { Component } from "react";
 import { getClass } from "../../actions/classroomActions";
-import { getQuestion } from "../../actions/questionActions";
+import { getQuestion, answerQuestion } from "../../actions/questionActions";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 class MyClassroom extends Component {
+  constructor() {
+    super();
+    this.state = {
+      student: {
+        name: "",
+        email: ""
+      },
+      responsebody: "",
+      correctness: false
+    };
+    this.onChange = this.onChange.bind(this);
+    this.onAnswerChange = this.onAnswerChange.bind(this);
+  }
   componentDidMount() {
     this.props.getClass(this.props.match.params.classroomid);
     this.props.getQuestion(this.props.match.params.classroomid);
   }
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+  onAnswerChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
   onSubmit(e) {
     e.preventDefault();
-    /*
-    {
-      student: {
-        name: {
-          type: String
-        },
-        email: {
-          type: String
-        }
-      },
-      responsebody: {
-        type: String,
-        required: true
-      },
-      correctness: {
-        type: Boolean,
-        default: false
-      }
-    }
-    */
-    const response = {};
-    response.student = {
-      name: this.state.name,
-      email: this.state.email
+    const { question } = this.props.questions;
+    const responsedata = {};
+    responsedata.student = {
+      name: this.props.auth.user.name,
+      email: this.props.auth.user.email
     };
-    response.body = this.state.responsebody;
+    responsedata.responsebody = this.state.responsebody;
     if (question.questiontype === "multiple choice") {
       // handle multiple choice logic
-      response.correctness = this.state.responsebody === question.correctanswer;
+      responsedata.correctness =
+        this.state.responsebody === question.correctanswer;
     } else {
       // handle textual response logic
-      response.correctness = false;
+      responsedata.correctness = false;
     }
+    this.props.answerQuestion(question._id, responsedata);
   }
   render() {
     try {
@@ -59,13 +62,13 @@ class MyClassroom extends Component {
       } else {
         if (question == null || questionsLoading) {
           classroomArea = <h1>Question is loading</h1>;
-        } else if (question.noCurrentQuestion) {
+        } else if (classroom.noCurrentQuestion) {
           classroomArea = (
             <div>
               <h1>
                 Welcome to <em>{classroom.classtitle}</em>
               </h1>
-              <p>{question.noCurrentQuestion}</p>
+              <p>{classroom.noCurrentQuestion}</p>
             </div>
           );
         } else {
@@ -76,7 +79,12 @@ class MyClassroom extends Component {
               <div>
                 {header}
                 <br />
-                <input type="text" name="responsebody" />
+                <input
+                  type="text"
+                  name="responsebody"
+                  value={this.state.responsebody}
+                  onChange={this.onChange}
+                />
                 <input type="submit" />
               </div>
             );
@@ -85,7 +93,13 @@ class MyClassroom extends Component {
             let choiceArray;
             choiceArray = choices.map(choice => (
               <div>
-                <input type="radio" name="responsebody" value={choice} />
+                <input
+                  type="radio"
+                  name="responsebody"
+                  value={choice}
+                  checked={choice === this.state.responsebody}
+                  onChange={this.onAnswerChange}
+                />
                 {choice}
                 <br />
               </div>
@@ -101,16 +115,14 @@ class MyClassroom extends Component {
           }
           finalClassroomArea = (
             <div>
-              <form onSubmit={this.onSubmit.bind(this, question)}>
-                {classroomArea}
-              </form>
+              <form onSubmit={this.onSubmit.bind(this)}>{classroomArea}</form>
             </div>
           );
         }
       }
-      return <div>{classroomArea}</div>;
+      return <div>{finalClassroomArea}</div>;
     } catch (err) {
-      alert(err);
+      this.props.history.push("/myClasses");
     }
   }
 }
@@ -119,7 +131,8 @@ MyClassroom.propTypes = {
   classrooms: PropTypes.object.isRequired,
   questions: PropTypes.object.isRequired,
   getClass: PropTypes.func.isRequired,
-  getQuestion: PropTypes.func.isRequired
+  getQuestion: PropTypes.func.isRequired,
+  answerQuestion: PropTypes.func.isRequired
 };
 const mapStateToProps = state => ({
   auth: state.auth,
@@ -129,5 +142,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getClass, getQuestion }
+  { getClass, getQuestion, answerQuestion }
 )(withRouter(MyClassroom));

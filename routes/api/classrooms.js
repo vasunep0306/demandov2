@@ -98,6 +98,7 @@ router.post(
     classData.classcode = req.body.classcode;
     classData.classtitle = req.body.classtitle;
     classData.registeration_pin = req.body.registeration_pin;
+    classData.currentQuestion = null;
 
     Classroom.findOne({ classcode: req.body.classcode }).then(classroom => {
       if (classroom) {
@@ -388,6 +389,7 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const { errors, isValid } = validateAnswer(req.body);
+
     // Check Validation
     if (!isValid) {
       // Return any errors with 400 status
@@ -397,17 +399,8 @@ router.post(
       if (!question) {
         return res.json({ noQuestion: "There is no question" });
       }
-      const responsedata = {
-        student: {
-          email: req.user.email,
-          name: req.user.name
-        },
-        responsebody: req.body.answer,
-        correctness: req.body.answer === question.correctanswer
-      };
 
-      responsedata.correctness = req.body.answer === question.correctanswer;
-      question.responses.unshift(responsedata);
+      question.responses.unshift(req.body);
       question
         .save()
         .then(question => res.json(question))
