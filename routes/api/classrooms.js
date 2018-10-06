@@ -366,16 +366,24 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Classroom.findById(req.params.classroomid)
-      .populate("currentQuestion")
       .then(classroom => {
-        if (!classroom.currentQuestion) {
+        if (classroom.currentQuestion == null) {
           return res.status(500).json({
             noCurrentQuestion: "No question is set"
           });
         }
-
-        return res.status(200).json(classroom.currentQuestion);
-      });
+        Question.findById(classroom.currentQuestion)
+          .then(question => {
+            if (!question) {
+              return res.status(404).json({
+                noCurrentQuestion: "No question found"
+              });
+            }
+            return res.status(200).json(question);
+          })
+          .catch(err => res.json(err));
+      })
+      .catch(err => res.json(err));
   }
 );
 
@@ -400,6 +408,14 @@ router.post(
         return res.json({ noQuestion: "There is no question" });
       }
 
+      // check to see if student has already answered question
+      question.responses.forEach(response => {
+        if (response.student.email === req.user.email) {
+          return res
+            .status(400)
+            .json({ alreadyAnswered: "student has already answered question" });
+        }
+      });
       question.responses.unshift(req.body);
       question
         .save()

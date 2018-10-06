@@ -9,12 +9,15 @@ class MyClassroom extends Component {
   constructor() {
     super();
     this.state = {
-      student: {
-        name: "",
-        email: ""
+      responsedata: {
+        student: {
+          name: "",
+          email: ""
+        },
+        responsebody: "",
+        correctness: false
       },
-      responsebody: "",
-      correctness: false
+      errors: {}
     };
     this.onChange = this.onChange.bind(this);
     this.onAnswerChange = this.onAnswerChange.bind(this);
@@ -24,6 +27,13 @@ class MyClassroom extends Component {
     this.props.getClass(this.props.match.params.classroomid);
     this.props.getQuestion(this.props.match.params.classroomid);
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -39,11 +49,12 @@ class MyClassroom extends Component {
       name: this.props.auth.user.name,
       email: this.props.auth.user.email
     };
-    responsedata.responsebody = this.state.responsebody;
+    responsedata.responsebody = this.state.responsedata.responsebody;
     if (question.questiontype === "multiple choice") {
       // handle multiple choice logic
-      responsedata.correctness =
-        this.state.responsebody.trim() === question.correctanswer.trim();
+      this.state.responsedata.correctness =
+        this.state.responsedata.responsebody.trim() ===
+        question.correctanswer.trim();
     } else {
       // handle textual response logic
       responsedata.correctness = false;
@@ -64,13 +75,13 @@ class MyClassroom extends Component {
       } else {
         if (question == null || questionsLoading) {
           classroomArea = <h1>Question is loading</h1>;
-        } else if (classroom.noCurrentQuestion) {
+        } else if (classroom.currentQuestion == null) {
           classroomArea = (
             <div>
               <h1>
                 Welcome to <em>{classroom.classtitle}</em>
               </h1>
-              <p>{classroom.noCurrentQuestion}</p>
+              <p>There are no questions yet</p>
             </div>
           );
         } else {
@@ -129,7 +140,6 @@ class MyClassroom extends Component {
   }
 }
 MyClassroom.propTypes = {
-  errors: PropTypes.object.isRequired,
   classrooms: PropTypes.object.isRequired,
   questions: PropTypes.object.isRequired,
   getClass: PropTypes.func.isRequired,
