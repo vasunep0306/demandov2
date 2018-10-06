@@ -37,6 +37,7 @@ class DisplayClasses extends Component {
         classroomArea = classrooms.map(classroom => (
           <tr>
             <td>{classroom.classtitle}</td>
+            <td>{classroom.classcode}</td>
             <td>
               <Link to={`/${classroom._id}/questions`}> Manage Questions </Link>
             </td>
