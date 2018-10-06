@@ -10,12 +10,15 @@ class MyClassroom extends Component {
     this.props.getClass(this.props.match.params.classroomid);
     this.props.getQuestion(this.props.match.params.classroomid);
   }
+  onSubmit(e) {
+    e.preventDefault();
+  }
   render() {
     try {
       const { classroom, loading } = this.props.classrooms;
       const { question } = this.props.questions;
       const questionsLoading = this.props.questions.loading;
-      let classroomArea;
+      let classroomArea, finalClassroomArea;
       if (classroom === null || loading) {
         classroomArea = <h1>Loading</h1>;
       } else if (classroom.noclassroom) {
@@ -63,6 +66,11 @@ class MyClassroom extends Component {
               </div>
             );
           }
+          finalClassroomArea = (
+            <div>
+              <form onSubmit={this.onSubmit.bind(this)}>{classroomArea}</form>
+            </div>
+          );
         }
       }
       return <div>{classroomArea}</div>;
