@@ -18,6 +18,7 @@ class MyClassroom extends Component {
     };
     this.onChange = this.onChange.bind(this);
     this.onAnswerChange = this.onAnswerChange.bind(this);
+    this.enabled = true;
   }
   componentDidMount() {
     this.props.getClass(this.props.match.params.classroomid);
@@ -42,12 +43,13 @@ class MyClassroom extends Component {
     if (question.questiontype === "multiple choice") {
       // handle multiple choice logic
       responsedata.correctness =
-        this.state.responsebody === question.correctanswer;
+        this.state.responsebody.trim() === question.correctanswer.trim();
     } else {
       // handle textual response logic
       responsedata.correctness = false;
     }
     this.props.answerQuestion(question._id, responsedata);
+    this.enabled = false;
   }
   render() {
     try {
@@ -85,7 +87,7 @@ class MyClassroom extends Component {
                   value={this.state.responsebody}
                   onChange={this.onChange}
                 />
-                <input type="submit" />
+                <input type="submit" disabled={!this.enabled} />
               </div>
             );
           } else {
@@ -109,7 +111,7 @@ class MyClassroom extends Component {
               <div>
                 {header}
                 {choiceArray}
-                <input type="submit" />
+                <input type="submit" disabled={!this.enabled} />
               </div>
             );
           }
