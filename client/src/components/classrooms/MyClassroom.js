@@ -9,16 +9,10 @@ class MyClassroom extends Component {
   constructor() {
     super();
     this.state = {
-      responsedata: {
-        student: {
-          name: "",
-          email: ""
-        },
-        responsebody: "",
-        correctness: false
-      },
+      responsebody: "",
       errors: {}
     };
+
     this.onChange = this.onChange.bind(this);
     this.onAnswerChange = this.onAnswerChange.bind(this);
     this.enabled = true;
@@ -49,12 +43,11 @@ class MyClassroom extends Component {
       name: this.props.auth.user.name,
       email: this.props.auth.user.email
     };
-    responsedata.responsebody = this.state.responsedata.responsebody;
+    responsedata.responsebody = this.state.responsebody;
     if (question.questiontype === "multiple choice") {
       // handle multiple choice logic
-      this.state.responsedata.correctness =
-        this.state.responsedata.responsebody.trim() ===
-        question.correctanswer.trim();
+      responsedata.correctness =
+        this.state.responsebody.trim() === question.correctanswer.trim();
     } else {
       // handle textual response logic
       responsedata.correctness = false;
@@ -75,13 +68,16 @@ class MyClassroom extends Component {
       } else {
         if (question == null || questionsLoading) {
           classroomArea = <h1>Question is loading</h1>;
-        } else if (classroom.currentQuestion == null) {
+        } else if (question.noCurrentQuestion) {
           classroomArea = (
             <div>
               <h1>
                 Welcome to <em>{classroom.classtitle}</em>
               </h1>
-              <p>There are no questions yet</p>
+              <h3>
+                {question.noCurrentQuestion}. Please check back with your
+                professor
+              </h3>
             </div>
           );
         } else {
@@ -126,12 +122,12 @@ class MyClassroom extends Component {
               </div>
             );
           }
-          finalClassroomArea = (
-            <div>
-              <form onSubmit={this.onSubmit.bind(this)}>{classroomArea}</form>
-            </div>
-          );
         }
+        finalClassroomArea = (
+          <div>
+            <form onSubmit={this.onSubmit.bind(this)}>{classroomArea}</form>
+          </div>
+        );
       }
       return <div>{finalClassroomArea}</div>;
     } catch (err) {

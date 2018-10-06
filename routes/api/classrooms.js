@@ -368,7 +368,7 @@ router.get(
     Classroom.findById(req.params.classroomid)
       .then(classroom => {
         if (classroom.currentQuestion == null) {
-          return res.status(500).json({
+          return res.status(400).json({
             noCurrentQuestion: "No question is set"
           });
         }
