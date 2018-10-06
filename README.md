@@ -1,4 +1,4 @@
 Push to brahe
-#on redesignQuestions
+#on frontEnd26
 
-Going to restyle the questions page to look more professional. For this, I will be using bootstrap
+I am not sure, I need to redesign the page. Will find something soon because bootstrap makes it painful to do.
