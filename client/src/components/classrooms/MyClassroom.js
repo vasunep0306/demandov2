@@ -43,7 +43,7 @@ class MyClassroom extends Component {
               <div>
                 {header}
                 <br />
-                <textarea />
+                <input type="text" name="responsebody" />
                 <input type="submit" />
               </div>
             );
@@ -52,7 +52,7 @@ class MyClassroom extends Component {
             let choiceArray;
             choiceArray = choices.map(choice => (
               <div>
-                <input type="radio" name="answerchoice" value={choice} />
+                <input type="radio" name="responsebody" value={choice} />
                 {choice}
                 <br />
               </div>
