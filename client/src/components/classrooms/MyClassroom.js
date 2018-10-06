@@ -12,6 +12,28 @@ class MyClassroom extends Component {
   }
   onSubmit(e) {
     e.preventDefault();
+    /*
+    {
+      student: {
+        name: {
+          type: String
+        },
+        email: {
+          type: String
+        }
+      },
+      responsebody: {
+        type: String,
+        required: true
+      },
+      correctness: {
+        type: Boolean,
+        default: false
+      }
+    }
+    */
+    const response = {};
+    response.student = this.state.auth.email;
   }
   render() {
     try {
