@@ -75,6 +75,23 @@ export const getResponseData = questionid => dispatch => {
       dispatch({ type: "GET_RESPONSES", payload: err.response.data })
     );
 };
+//Delete Question: "/:classroomid/questions/:questionid",
+export const deleteQuestion = (classroomid, questionid) => dispatch => {
+  axios
+    .delete(`/${classroomid}/questions/${questionid}`)
+    .then(res =>
+      dispatch({
+        type: "DELETE_QUESTION",
+        payload: res.data
+      })
+    )
+    .catch(err => {
+      dispatch({
+        type: "DELETE_QUESTION",
+        payload: err.response.data
+      });
+    });
+};
 // Set loading state
 export const setQuestionLoading = () => {
   return {

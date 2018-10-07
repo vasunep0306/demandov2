@@ -3,7 +3,8 @@ import {
   getQuestions,
   getQuestion,
   setQuestion,
-  unsetQuestion
+  unsetQuestion,
+  deleteQuestion
 } from "../../actions/questionActions";
 import PropTypes from "prop-types";
 import { withRouter, Link } from "react-router-dom";
@@ -23,6 +24,19 @@ class DisplayQuestions extends Component {
   hideQuestion() {
     this.props.unsetQuestion(this.props.match.params.classroomid);
     alert("successfully hid question from students");
+  }
+  deleteQuestion(question) {
+    let classroomid = this.props.match.params.classroomid;
+    let questionid = question._id;
+    let finalconfirmation = prompt(
+      "Are you sure you want to delete this question? The process is irreversabe"
+    );
+    if (finalconfirmation) {
+      this.props.deleteQuestion(classroomid, questionid);
+      alert("Your question has been deleted");
+    } else {
+      alert("you decided to keep your question");
+    }
   }
 
   render() {
@@ -70,6 +84,13 @@ class DisplayQuestions extends Component {
           >
             Hide Question
           </button>
+          <br />
+          <button
+            className="card-link hideQuestionBtn btn btn-danger"
+            onClick={this.deleteQuestion.bind(this, question)}
+          >
+            Delete Question
+          </button>
           <Link
             to={`/${this.props.match.params.classroomid}/questions/${
               question._id
@@ -101,6 +122,7 @@ DisplayQuestions.propTypes = {
   getQuestions: PropTypes.func.isRequired,
   getQuestion: PropTypes.func.isRequired,
   unsetQuestion: PropTypes.func.isRequired,
+  deleteQuestion: PropTypes.func.isRequired,
   questions: PropTypes.array.isRequired
 };
 
@@ -111,5 +133,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getQuestions, getQuestion, setQuestion, unsetQuestion }
+  { getQuestions, getQuestion, setQuestion, unsetQuestion, deleteQuestion }
 )(withRouter(DisplayQuestions));
