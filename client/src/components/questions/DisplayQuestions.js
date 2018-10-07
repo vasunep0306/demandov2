@@ -71,9 +71,9 @@ class DisplayQuestions extends Component {
             Hide Question
           </button>
           <Link
-            to={`/${this.props.match.params.classroomid}/${
+            to={`/${this.props.match.params.classroomid}/questions/${
               question._id
-            }/getresponses"`}
+            }/getresponses`}
           >
             Get Responses
           </Link>

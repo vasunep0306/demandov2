@@ -5,19 +5,18 @@ import PropTypes from "prop-types";
 import { getResponseData } from "../../actions/questionActions";
 
 class GetResponses extends Component {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
     this.props.getResponseData(this.props.match.params.questionid);
   }
   render() {
-    const { responsedata, loading } = this.props.questions;
+    console.log(this.props);
+    const { responsedata, loading } = this.props;
     let responseField;
+
     if (loading || responsedata === null) {
       responseField = <h1> Loading </h1>;
-    } else if (!loading && responsedata === null) {
-      responseField = <h1> Question probably not published </h1>;
+    } else if (responsedata.noResponses) {
+      responseField = <h1>{responsedata.noResponses}</h1>;
     } else {
       responseField = responsedata.map(response => {
         <tr>
@@ -41,6 +40,9 @@ class GetResponses extends Component {
           </thead>
           <tbody>{responseField}</tbody>
         </table>
+        <Link to={`/${this.props.match.params.questionid}/questions`}>
+          Go back to questions list
+        </Link>
       </div>
     );
   }
@@ -55,7 +57,7 @@ GetResponses.propTypes = {
 //TODO: Insert mapStateToProps here
 const mapStateToProps = state => ({
   auth: state.auth,
-  responsedata: state.responsedata
+  responsedata: state.questions.responsedata
 });
 
 export default connect(

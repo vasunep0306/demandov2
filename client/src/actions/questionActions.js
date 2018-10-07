@@ -71,7 +71,9 @@ export const getResponseData = questionid => dispatch => {
   axios
     .get(`/api/classrooms/${questionid}/getresponses`)
     .then(res => dispatch({ type: "GET_RESPONSES", payload: res.data }))
-    .catch({ type: "GET_RESPONSES", payload: null });
+    .catch(err =>
+      dispatch({ type: "GET_RESPONSES", payload: err.response.data })
+    );
 };
 // Set loading state
 export const setQuestionLoading = () => {
