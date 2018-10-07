@@ -425,6 +425,12 @@ router.post(
   }
 );
 
+/** @route   GET api/classrooms/:questionid/getresponses
+ * @desc    Gives the teacher feedback if they ever want to reward
+ * the first question answered successfully
+ * @access  Private: teachers will use this to see the respones.
+ */
+
 /** @route   POST api/classrooms/:classroomid/removeStudent
  * @desc    Remove a student from a given classroom.
  * @access  Private: Teachers use this route to delete a given student from the classroom
