@@ -431,6 +431,20 @@ router.post(
  * @access  Private: teachers will use this to see the respones.
  */
 
+router.post(
+  "/:questionid/getresponses",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Question.findById(req.params.questionid)
+      .then(question => {
+        if (!question) {
+          return res.status(400).json({ noQuestion: "There is no question" });
+        }
+      })
+      .catch(err => res.json(err));
+  }
+);
+
 /** @route   POST api/classrooms/:classroomid/removeStudent
  * @desc    Remove a student from a given classroom.
  * @access  Private: Teachers use this route to delete a given student from the classroom
