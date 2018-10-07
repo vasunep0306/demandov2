@@ -440,7 +440,7 @@ router.get(
         if (!question) {
           return res.status(400).json({ noQuestion: "There is no question" });
         }
-        return res.status(200).json(responses);
+        return res.status(200).json(question.responses);
       })
       .catch(err => res.json(err));
   }

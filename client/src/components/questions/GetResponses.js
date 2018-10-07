@@ -17,8 +17,16 @@ class GetResponses extends Component {
     if (loading || responsedata === null) {
       responseField = <h1> Loading </h1>;
     } else if (!loading && responsedata === null) {
-      responseField = <h1> Please publish question </h1>;
+      responseField = <h1> Question probably not published </h1>;
     } else {
+      responseField = responsedata.map(response => {
+        <tr>
+          <td>{response.student.name}</td>
+          <td>{response.student.email}</td>
+          <td>{response.responsebody}</td>
+          <td>{response.correctness}</td>
+        </tr>;
+      });
     }
     return (
       <div>
@@ -31,6 +39,7 @@ class GetResponses extends Component {
               <th scope="col">Correctness</th>
             </tr>
           </thead>
+          <tbody>{responseField}</tbody>
         </table>
       </div>
     );
