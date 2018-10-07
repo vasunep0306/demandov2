@@ -1,4 +1,6 @@
-Push to brahe
-#on deleteQuestion
+Merge to master and push to brahe
+#on mergeBranch
 
-Teachers can now delete questions
+this branch is going to be responsible for the final merge
+any other development will be done on my local machine because
+redux won't work on brahe
