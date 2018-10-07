@@ -26,6 +26,7 @@ import CreateClass from "./components/classrooms/CreateClass";
 import DisplayClasses from "./components/classrooms/DisplayClasses";
 import DisplayQuestions from "./components/questions/DisplayQuestions";
 import CreateQuestion from "./components/questions/CreateQuestion";
+import GetResponses from "./components/questions/GetResponses";
 import RegisterForClassrooms from "./components/classrooms/RegisterForClassrooms";
 import ShowStudentClassrooms from "./components/classrooms/ShowStudentClassrooms";
 import MyClassroom from "./components/classrooms/MyClassroom";
@@ -114,6 +115,15 @@ class App extends Component {
                 exact
                 path="/:classroomid/answers"
                 component={MyClassroom}
+              />
+            </Switch>
+
+            {/* Teacher route for viewing responses */}
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/:questionid/getresponses"
+                component={GetResponses}
               />
             </Switch>
 

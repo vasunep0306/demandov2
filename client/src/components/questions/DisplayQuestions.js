@@ -70,6 +70,7 @@ class DisplayQuestions extends Component {
           >
             Hide Question
           </button>
+          <Link to={`/${question._id}/getresponses"`}>Get Responses</Link>
         </div>
       ));
     }
