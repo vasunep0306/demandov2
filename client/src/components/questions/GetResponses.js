@@ -9,23 +9,47 @@ class GetResponses extends Component {
     this.props.getResponseData(this.props.match.params.questionid);
   }
   render() {
-    console.log(this.props);
-    const { responsedata, loading } = this.props;
+    const { responsedata, loading } = this.props.questions;
+    console.log(responsedata, loading);
     let responseField;
 
-    if (loading || responsedata === null) {
-      responseField = <h1> Loading </h1>;
+    if (loading || !responsedata) {
+      console.log(17);
+      responseField = (
+        <div>
+          <h1> Loading </h1>
+        </div>
+      );
+    } else if (!loading && !responsedata) {
+      console.log(24);
+      responseField = (
+        <div>
+          <h1> Loading </h1>
+        </div>
+      );
     } else if (responsedata.noResponses) {
-      responseField = <h1>{responsedata.noResponses}</h1>;
+      responseField = (
+        <div>
+          <h1>{responsedata.noResponses}</h1>
+        </div>
+      );
     } else {
-      responseField = responsedata.map(response => {
+      console.log(37);
+      responseField = responsedata.map(response => (
         <tr>
+          {console.log(response.student.name)}
           <td>{response.student.name}</td>
           <td>{response.student.email}</td>
           <td>{response.responsebody}</td>
-          <td>{response.correctness}</td>
-        </tr>;
-      });
+          <td>
+            {response.correctness ? (
+              <span>Correct</span>
+            ) : (
+              <span>Incorrect</span>
+            )}
+          </td>
+        </tr>
+      ));
     }
     return (
       <div>
@@ -40,7 +64,7 @@ class GetResponses extends Component {
           </thead>
           <tbody>{responseField}</tbody>
         </table>
-        <Link to={`/${this.props.match.params.questionid}/questions`}>
+        <Link to={`/${this.props.match.params.classroomid}/questions`}>
           Go back to questions list
         </Link>
       </div>
@@ -51,12 +75,13 @@ class GetResponses extends Component {
 //TODO: Insert PropTypes here
 GetResponses.propTypes = {
   getResponseData: PropTypes.func.isRequired,
-  responsedata: PropTypes.array.isRequired
+  questions: PropTypes.object.isRequired
 };
 
 //TODO: Insert mapStateToProps here
 const mapStateToProps = state => ({
   auth: state.auth,
+  questions: state.questions,
   responsedata: state.questions.responsedata
 });
 
