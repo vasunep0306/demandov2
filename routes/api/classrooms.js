@@ -454,6 +454,29 @@ router.get(
  * @access  Private: Teachers use this route to delete a given student from the classroom
  */
 
+/** @route   DELETE api/classrooms/:classroomid/:questionid/deleteQuestion
+ * @desc    delete a given question
+ * @access  Private: Teachers can only use this route to delete a question
+ */
+
+router.delete(
+  "/:classroomid/questions/:questionid",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Classroom.findById(req.params.classroomid)
+      .then(classroom => {
+        const questionid = req.params.questionid;
+        const questionindex = classroom.questions.indexOf(questionid);
+        classroom.questions.splice(questionindex, 1);
+        classroom.save().then(classroom => res.json(classroom));
+        Question.findByIdAndRemove(req.params.questionid).then(() => {
+          return res.json({ success: true });
+        });
+      })
+      .catch(err => res.status(404).json(err));
+  }
+);
+
 router.post(
   "/:classroomid/:studentid/removestudent",
   passport.authenticate("jwt", { session: false }),
