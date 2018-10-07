@@ -9,6 +9,7 @@ import {
 const initialState = {
   questions: null,
   question: null,
+  responsedata: null,
   loading: false
 };
 
@@ -35,6 +36,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         question: action.payload,
+        loading: false
+      };
+    case "GET_RESPONSES":
+      return {
+        ...state,
+        responsedata: action.payload,
         loading: false
       };
     default:

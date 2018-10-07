@@ -431,7 +431,7 @@ router.post(
  * @access  Private: teachers will use this to see the respones.
  */
 
-router.post(
+router.get(
   "/:questionid/getresponses",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {

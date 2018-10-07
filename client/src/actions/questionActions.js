@@ -65,6 +65,14 @@ export const answerQuestion = (questionid, responsedata) => dispatch => {
       dispatch({ type: "ANSWER_QUESTION", payload: err.response.data })
     );
 };
+
+//Get response data
+export const getResponseData = questionid => dispatch => {
+  axios
+    .get(`/api/classrooms/${questionid}/getresponses`)
+    .then(res => dispatch({ type: "GET_RESPONSES", payload: res.data }))
+    .catch({ type: "GET_RESPONSES", payload: null });
+};
 // Set loading state
 export const setQuestionLoading = () => {
   return {
