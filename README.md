@@ -1,4 +1,4 @@
 Push to brahe
-#on frontEnd26
+#on answerTable
 
-I am not sure, I need to redesign the page. Will find something soon because bootstrap makes it painful to do.
+I will create a page where the teacher can see the responses populate into a table in real time.
