@@ -1,4 +1,4 @@
 Push to brahe
-#on answerTable
+#on deleteQuestion
 
-I will create a page where the teacher can see the responses populate into a table in real time.
+Teachers can now delete questions
