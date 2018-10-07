@@ -122,7 +122,7 @@ class App extends Component {
             <Switch>
               <PrivateRoute
                 exact
-                path="/:questionid/getresponses"
+                path=":/classroomid/:questionid/getresponses"
                 component={GetResponses}
               />
             </Switch>
