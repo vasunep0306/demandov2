@@ -28,12 +28,13 @@ class DisplayQuestions extends Component {
   deleteQuestion(question) {
     let classroomid = this.props.match.params.classroomid;
     let questionid = question._id;
-    let finalconfirmation = prompt(
+    let finalconfirmation = window.confirm(
       "Are you sure you want to delete this question? The process is irreversabe"
     );
     if (finalconfirmation) {
       this.props.deleteQuestion(classroomid, questionid);
       alert("Your question has been deleted");
+      window.location.reload(true);
     } else {
       alert("you decided to keep your question");
     }

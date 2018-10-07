@@ -78,7 +78,7 @@ export const getResponseData = questionid => dispatch => {
 //Delete Question: "/:classroomid/questions/:questionid",
 export const deleteQuestion = (classroomid, questionid) => dispatch => {
   axios
-    .delete(`/${classroomid}/questions/${questionid}`)
+    .delete(`/api/classrooms/${classroomid}/questions/${questionid}`)
     .then(res =>
       dispatch({
         type: "DELETE_QUESTION",
