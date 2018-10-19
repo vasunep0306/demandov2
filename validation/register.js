@@ -1,6 +1,7 @@
 const Validator = require("validator");
 const isEmpty = require("./isEmpty");
-
+("a stack");
+("a queue,a stack");
 module.exports = function validateRegisterInput(data) {
   let errors = {};
   let secretKey = "8123925555662211";
