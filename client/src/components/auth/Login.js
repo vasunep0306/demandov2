@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
+import isEmpty from "../../validation/is-empty";
 
 class Login extends Component {
   constructor() {
@@ -56,7 +57,8 @@ class Login extends Component {
 
   render() {
     const { errors } = this.state;
-
+    let email = !isEmpty(errors.email) ? errors.email : "",
+      password = !isEmpty(errors.password) ? errors.password : "";
     return (
       <div className="login">
         <div className="box">
@@ -69,8 +71,10 @@ class Login extends Component {
               name="email"
               value={this.state.email}
               onChange={this.onChange}
-              error={errors.email}
             />
+            <br />
+            <span className="errorMsg">{email}</span>
+            <br />
             <label for="password">Password: </label>
             <input
               className="password"
@@ -78,8 +82,8 @@ class Login extends Component {
               name="password"
               value={this.state.password}
               onChange={this.onChange}
-              error={errors.password}
             />
+            <span className="errorMsg">{password}</span>
             <br />
             <br />
             <input type="submit" />
