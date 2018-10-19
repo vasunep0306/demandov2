@@ -7,6 +7,7 @@ const detect = require("detect-csv");
 const validateClassroomInput = require("../../validation/classroom");
 const validateNewQuestion = require("../../validation/questions");
 const validateAnswer = require("../../validation/answer");
+const similar = require("../../validation/similar");
 const User = require("../../models/User"); // Load User model
 const Classroom = require("../../models/Classroom"); // Load Classroom model
 const Question = require("../../models/Question"); // Load Question model
@@ -416,6 +417,19 @@ router.post(
             .json({ alreadyAnswered: "student has already answered question" });
         }
       });
+      // if the questiontype is a textual response question, grade each question
+      if (question.questiontype === "textual response") {
+        question.responses.forEach(response => {
+          if (
+            similar(question.correctanswer, response.responsebody).trim() ===
+            "50%"
+          ) {
+            response.correctness = true;
+            response.save();
+            question.save();
+          }
+        });
+      }
       question.responses.push(req.body);
       question
         .save()
