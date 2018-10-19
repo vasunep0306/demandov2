@@ -3,6 +3,7 @@ import { createClassroom } from "../../actions/classroomActions";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import isEmpty from "../../validation/is-empty";
 
 class CreateClass extends Component {
   constructor() {
@@ -39,7 +40,9 @@ class CreateClass extends Component {
     let errors = this.state.errors;
     let classcode = !isEmpty(errors.classcode) ? errors.classcode : "",
       classtitle = !isEmpty(errors.classtitle) ? errors.classtitle : "",
-      registeration_pin = !isEmpty(errors.registeration_pin) ? errors.registeration_pin : "",
+      registeration_pin = !isEmpty(errors.registeration_pin)
+        ? errors.registeration_pin
+        : "";
 
     return (
       <div>
