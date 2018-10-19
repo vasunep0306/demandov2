@@ -30,14 +30,6 @@ class Login extends Component {
 
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
-      const noEmail = nextProps.errors.email;
-      const noPassword = nextProps.errors.password;
-      const message = `${noEmail} or ${noPassword}`;
-      if (noEmail) {
-        alert(message);
-      } else if (noPassword) {
-        alert(message);
-      }
     }
   }
 

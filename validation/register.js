@@ -4,7 +4,7 @@ const isEmpty = require("./isEmpty");
 ("a queue,a stack");
 module.exports = function validateRegisterInput(data) {
   let errors = {};
-  let secretKey = "8123925555662211";
+  let secretKey = "1234";
   data.name = !isEmpty(data.name) ? data.name : "";
   data.email = !isEmpty(data.email) ? data.email : "";
   data.password = !isEmpty(data.password) ? data.password : "";
