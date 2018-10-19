@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
+import { isEmpty } from "../../validation/is-empty";
 
 class Register extends Component {
   constructor() {
@@ -56,6 +57,12 @@ class Register extends Component {
 
   render() {
     let { errors } = this.state;
+    let name = !isEmpty(errors.name) ? errors.name : "",
+      email = !isEmpty(errors.email) ? errors.email : "",
+      password = !isEmpty(errors.password) ? errors.password : "",
+      password2 = !isEmpty(errors.password2) ? errors.password2 : "",
+      userType = !isEmpty(errors.userType) ? errors.userType : "",
+      secretKey = !isEmpty(errors.secretKey) ? errors.secretKey : "";
 
     return (
       <div className="container">
@@ -80,11 +87,7 @@ class Register extends Component {
                         className="form-control input-sm"
                         placeholder="Full Name"
                       />
-                      {() => {
-                        if (errors.name) {
-                          alert(errors.name);
-                        }
-                      }}
+                      <span>{name}</span>
                     </div>
                   </div>
                   <div className="row">
@@ -98,11 +101,7 @@ class Register extends Component {
                         className="form-control input-sm"
                         placeholder="Email Address"
                       />
-                      {() => {
-                        if (errors.email) {
-                          alert(errors.email);
-                        }
-                      }}
+                      <span>{email}</span>
                     </div>
                   </div>
                   <div className="row">
@@ -116,14 +115,10 @@ class Register extends Component {
                         className="form-control input-sm"
                         placeholder="Password"
                       />
-                      {() => {
-                        if (errors.password) {
-                          alert(errors.password);
-                        }
-                      }}
+                      <span>{password}</span>
                     </div>
 
-                    <div class="form-group">
+                    <div className="form-group">
                       <input
                         type="password"
                         name="password2"
@@ -133,13 +128,9 @@ class Register extends Component {
                         className="form-control input-sm"
                         placeholder="Confirm Password"
                       />
-                      {() => {
-                        if (errors.password2) {
-                          alert(errors.password2);
-                        }
-                      }}
+                      <span>{password2}</span>
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                       <select
                         name="userType"
                         value={this.state.userType}
@@ -149,13 +140,9 @@ class Register extends Component {
                         <option value="student">Student</option>
                         <option value="teacher">Teacher</option>
                       </select>
-                      {() => {
-                        if (errors.userType) {
-                          alert(errors.userType);
-                        }
-                      }}
+                      <span>{userType}</span>
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                       <input
                         type="text"
                         name="secretKey"
@@ -165,11 +152,7 @@ class Register extends Component {
                         className="form-control input-sm"
                         placeholder="Please Enter Secret Key, leave off if student"
                       />
-                      {() => {
-                        if (errors.secretKey) {
-                          alert(errors.secretKey);
-                        }
-                      }}
+                      <span>{secretKey}</span>
                     </div>
                   </div>
 
