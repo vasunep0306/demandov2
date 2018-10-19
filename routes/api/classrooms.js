@@ -416,7 +416,7 @@ router.post(
             .json({ alreadyAnswered: "student has already answered question" });
         }
       });
-      question.responses.unshift(req.body);
+      question.responses.push(req.body);
       question
         .save()
         .then(question => res.json(question))
