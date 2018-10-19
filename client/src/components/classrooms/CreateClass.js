@@ -36,7 +36,11 @@ class CreateClass extends Component {
     this.props.createClassroom(newClass, this.props.history);
   }
   render() {
-    // change to class subject id number
+    let errors = this.state.errors;
+    let classcode = !isEmpty(errors.classcode) ? errors.classcode : "",
+      classtitle = !isEmpty(errors.classtitle) ? errors.classtitle : "",
+      registeration_pin = !isEmpty(errors.registeration_pin) ? errors.registeration_pin : "",
+
     return (
       <div>
         <h1> Use this form to create a class </h1>
@@ -50,6 +54,8 @@ class CreateClass extends Component {
             onChange={this.onChange}
           />
           <br />
+          <span className="errorMsg">{classcode}</span>
+          <br />
 
           <label htmlFor="classtitle">Class Title: </label>
           <input
@@ -60,6 +66,9 @@ class CreateClass extends Component {
             onChange={this.onChange}
           />
           <br />
+          <span className="errorMsg">{classtitle}</span>
+          <br />
+
           <label htmlFor="registeration_pin">Registeration Pin: </label>
           <input
             type="text"
@@ -68,6 +77,8 @@ class CreateClass extends Component {
             value={this.state.registeration_pin}
             onChange={this.onChange}
           />
+          <br />
+          <span className="errorMsg">{registeration_pin}</span>
           <br />
           <input type="submit" />
         </form>
