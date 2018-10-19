@@ -1,6 +1,4 @@
-function similar(a, b) {
-  let lengthA = a.length;
-  let lengthB = b.length;
+module.exports = function similar(a, b) {
   let equivalency = 0;
   let minLength = a.length > b.length ? b.length : a.length;
   let maxLength = a.length < b.length ? b.length : a.length;
@@ -12,4 +10,4 @@ function similar(a, b) {
 
   let weight = equivalency / maxLength;
   return weight * 100 + "%";
-}
+};
