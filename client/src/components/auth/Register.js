@@ -48,11 +48,6 @@ class Register extends Component {
       secretKey: this.state.secretKey
     };
     this.props.registerUser(newUser, this.props.history);
-    // if (!(Object.keys(this.state.errors).length === 0)) {
-    //   alert(JSON.stringify(this.state.errors));
-    // } else if (Object.keys(this.state.errors).length === 0) {
-    //   alert(`Successfully created new ${newUser.userType} ${newUser.name}`);
-    // }
   }
 
   render() {
@@ -87,7 +82,7 @@ class Register extends Component {
                         className="form-control input-sm"
                         placeholder="Full Name"
                       />
-                      <span>{name}</span>
+                      <span className="errorMsg">{name}</span>
                     </div>
                   </div>
                   <div className="row">
@@ -101,7 +96,7 @@ class Register extends Component {
                         className="form-control input-sm"
                         placeholder="Email Address"
                       />
-                      <span>{email}</span>
+                      <span className="errorMsg">{email}</span>
                     </div>
                   </div>
                   <div className="row">
@@ -115,7 +110,7 @@ class Register extends Component {
                         className="form-control input-sm"
                         placeholder="Password"
                       />
-                      <span>{password}</span>
+                      <span className="errorMsg">{password}</span>
                     </div>
 
                     <div className="form-group">
@@ -128,7 +123,7 @@ class Register extends Component {
                         className="form-control input-sm"
                         placeholder="Confirm Password"
                       />
-                      <span>{password2}</span>
+                      <span className="errorMsg">{password2}</span>
                     </div>
                     <div className="form-group">
                       <select
@@ -140,7 +135,7 @@ class Register extends Component {
                         <option value="student">Student</option>
                         <option value="teacher">Teacher</option>
                       </select>
-                      <span>{userType}</span>
+                      <span className="errorMsg">{userType}</span>
                     </div>
                     <div className="form-group">
                       <input
@@ -152,7 +147,7 @@ class Register extends Component {
                         className="form-control input-sm"
                         placeholder="Please Enter Secret Key, leave off if student"
                       />
-                      <span>{secretKey}</span>
+                      <span className="errorMsg">{secretKey}</span>
                     </div>
                   </div>
 
