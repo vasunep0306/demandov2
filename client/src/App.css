@@ -37,6 +37,9 @@ li {
   color: blue;
   font-size: 120px;
 }
+.errorMsg {
+  color: red;
+}
 
 li a {
   display: block;
