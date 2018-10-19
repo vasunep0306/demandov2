@@ -47,15 +47,16 @@ class Register extends Component {
       secretKey: this.state.secretKey
     };
     this.props.registerUser(newUser, this.props.history);
-    if (!(Object.keys(this.state.errors).length === 0)) {
-      alert(JSON.stringify(this.state.errors));
-      this.setState({ errors: {} });
-    } else if (Object.keys(this.state.errors).length === 0) {
-      alert(`Successfully created new ${newUser.userType} ${newUser.name}`);
-    }
+    // if (!(Object.keys(this.state.errors).length === 0)) {
+    //   alert(JSON.stringify(this.state.errors));
+    // } else if (Object.keys(this.state.errors).length === 0) {
+    //   alert(`Successfully created new ${newUser.userType} ${newUser.name}`);
+    // }
   }
 
   render() {
+    let { errors } = this.state;
+
     return (
       <div className="container">
         <div className="row centered-form">
@@ -79,6 +80,11 @@ class Register extends Component {
                         className="form-control input-sm"
                         placeholder="Full Name"
                       />
+                      {() => {
+                        if (errors.name) {
+                          alert(errors.name);
+                        }
+                      }}
                     </div>
                   </div>
                   <div className="row">
@@ -92,6 +98,11 @@ class Register extends Component {
                         className="form-control input-sm"
                         placeholder="Email Address"
                       />
+                      {() => {
+                        if (errors.email) {
+                          alert(errors.email);
+                        }
+                      }}
                     </div>
                   </div>
                   <div className="row">
@@ -105,6 +116,11 @@ class Register extends Component {
                         className="form-control input-sm"
                         placeholder="Password"
                       />
+                      {() => {
+                        if (errors.password) {
+                          alert(errors.password);
+                        }
+                      }}
                     </div>
 
                     <div class="form-group">
@@ -117,6 +133,11 @@ class Register extends Component {
                         className="form-control input-sm"
                         placeholder="Confirm Password"
                       />
+                      {() => {
+                        if (errors.password2) {
+                          alert(errors.password2);
+                        }
+                      }}
                     </div>
                     <div class="form-group">
                       <select
@@ -128,6 +149,11 @@ class Register extends Component {
                         <option value="student">Student</option>
                         <option value="teacher">Teacher</option>
                       </select>
+                      {() => {
+                        if (errors.userType) {
+                          alert(errors.userType);
+                        }
+                      }}
                     </div>
                     <div class="form-group">
                       <input
@@ -139,6 +165,11 @@ class Register extends Component {
                         className="form-control input-sm"
                         placeholder="Please Enter Secret Key, leave off if student"
                       />
+                      {() => {
+                        if (errors.secretKey) {
+                          alert(errors.secretKey);
+                        }
+                      }}
                     </div>
                   </div>
 
