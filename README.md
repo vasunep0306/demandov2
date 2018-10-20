@@ -1,6 +1,6 @@
 Merge to master and push to brahe
-#on correct_response_branch
+#on master
 
-this branch is going to implement the levenshien algorithm.
+this branch is the main master branch which features updates
 
 Need to create separate branch on brahe because of the whole redux thing
