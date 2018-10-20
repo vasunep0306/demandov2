@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { addQuestion } from "../../actions/questionActions";
 import { withRouter, Link } from "react-router-dom";
+import isEmpty from "../../validation/is-empty";
 
 class CreateQuestion extends Component {
   constructor() {
@@ -25,9 +26,6 @@ class CreateQuestion extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
-      for (let key in nextProps.errors) {
-        alert(key + " -> " + nextProps.errors[key]);
-      }
     }
   }
 
@@ -47,6 +45,15 @@ class CreateQuestion extends Component {
     this.props.addQuestion(classroomid, newQuestion, this.props.history);
   }
   render() {
+    let { errors } = this.state;
+    let questiontype = !isEmpty(errors.questiontype) ? errors.questiontype : "",
+      questionbody = !isEmpty(errors.questionbody) ? errors.questionbody : "",
+      correctanswer = !isEmpty(errors.correctanswer)
+        ? errors.correctanswer
+        : "",
+      answerchoices = !isEmpty(errors.answerchoices)
+        ? errors.answerchoices
+        : "";
     return (
       <div>
         <Link to={`/${this.props.match.params.classroomid}/questions`}>
