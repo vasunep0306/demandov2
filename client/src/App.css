@@ -110,3 +110,7 @@ th {
 td {
   width: 29%;
 }
+
+.currentquestion {
+  color: green;
+}

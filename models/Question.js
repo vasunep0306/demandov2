@@ -25,6 +25,10 @@ const QuestionSchema = new Schema({
     type: Array,
     required: this.isMultipleChoice
   },
+  isCurrentQuestion: {
+    type: Boolean,
+    default: false
+  },
 
   // responses coming from student
   responses: [

@@ -325,11 +325,36 @@ router.post(
   "/:classroomid/setcurrentquestion/:questionid",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Question.findById(req.params.questionid).then(question => {
-      Classroom.findById(req.params.classroomid).then(classroom => {
-        classroom.currentQuestion = question;
-        classroom.save();
-      });
+    Question.findById(req.params.questionid).then(questionToSet => {
+      Classroom.findById(req.params.classroomid)
+        .then(classroom => {
+          // we need to find the current classroom question
+          Question.findById(classroom.currentQuestion)
+            .then(oldquestion => {
+              if (!oldquestion) {
+                console.log("line 335 run");
+                classroom.currentQuestion = questionToSet._id;
+                questionToSet.isCurrentQuestion = true;
+                questionToSet.save();
+                classroom.save();
+              } else {
+                console.log("line 341 run");
+                oldquestion.isCurrentQuestion = false;
+                console.log(oldquestion);
+                oldquestion
+                  .save()
+                  .then(oldquestion => {
+                    questionToSet.isCurrentQuestion = true;
+                    classroom.currentQuestion = questionToSet._id;
+                    questionToSet.save();
+                    classroom.save();
+                  })
+                  .catch(err => res.status(500).json(err));
+              }
+            })
+            .catch(err => res.status(500).json(err));
+        })
+        .catch(err => res.status(500).json(err));
     });
   }
 );
@@ -339,17 +364,22 @@ router.post(
  * @access  Private: only teachers can use it.
  */
 router.post(
-  "/:classroomid/unsetcurrentquestion",
+  "/:classroomid/unsetcurrentquestion/:questionid",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Classroom.findById(req.params.classroomid)
       .populate("currentQuestion")
       .then(classroom => {
-        classroom.currentQuestion = null;
-        classroom.save().then(classroom => {
-          return res
-            .status(200)
-            .json({ success: "Successfully unset Question" });
+        Question.findById(req.params.questionid).then(currquestion => {
+          currquestion.isCurrentQuestion = false;
+          currquestion.save().then(question => {
+            classroom.currentQuestion = null;
+            classroom.save().then(classroom => {
+              return res
+                .status(200)
+                .json({ success: "Successfully unset Question" });
+            });
+          });
         });
       });
   }

@@ -50,9 +50,9 @@ export const getQuestion = classroomid => dispatch => {
 };
 
 //Unset question
-export const unsetQuestion = classroomid => dispatch => {
+export const unsetQuestion = (classroomid, questionid) => dispatch => {
   axios
-    .post(`/api/classrooms/${classroomid}/unsetcurrentquestion`)
+    .post(`/api/classrooms/${classroomid}/unsetcurrentquestion/${questionid}`)
     .then(res => dispatch({ type: UNSET_CURRENT_QUESTION, payload: res.data }));
 };
 

@@ -21,8 +21,8 @@ class DisplayQuestions extends Component {
     this.props.setQuestion(this.props.match.params.classroomid, question._id);
     alert("successfully set question");
   }
-  hideQuestion() {
-    this.props.unsetQuestion(this.props.match.params.classroomid);
+  hideQuestion(question) {
+    this.props.unsetQuestion(this.props.match.params.classroomid, question._id);
     alert("successfully hid question from students");
   }
   deleteQuestion(question) {
@@ -46,7 +46,8 @@ class DisplayQuestions extends Component {
       width: "18rem"
     };
 
-    let questionsField;
+    let questionsField, currQuestionMarker;
+    currQuestionMarker = "";
     if (loading || questions === null) {
       questionsField = <h1> Loading </h1>;
     } else if (!loading && questions === null) {
@@ -54,6 +55,17 @@ class DisplayQuestions extends Component {
     } else {
       questionsField = questions.map(question => (
         <div key={question._id} className="card" style={{ cardStyle }}>
+          {(() => {
+            if (question.isCurrentQuestion) {
+              currQuestionMarker = (
+                <span className="currentquestion">Current Question</span>
+              );
+            } else {
+              currQuestionMarker = "";
+            }
+            return currQuestionMarker;
+          })()}
+
           <p>{question.questionbody}</p>
           {(() => {
             let field;
@@ -81,7 +93,7 @@ class DisplayQuestions extends Component {
           <br />
           <button
             className="card-link hideQuestionBtn"
-            onClick={this.hideQuestion.bind(this)}
+            onClick={this.hideQuestion.bind(this, question)}
           >
             Hide Question
           </button>
@@ -104,7 +116,7 @@ class DisplayQuestions extends Component {
     }
 
     return (
-      <div class="card">
+      <div className="card">
         {questionsField}
         <Link
           to={`/${
