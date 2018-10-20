@@ -37,7 +37,7 @@ class CreateClass extends Component {
     this.props.createClassroom(newClass, this.props.history);
   }
   render() {
-    let errors = this.state.errors;
+    let { errors } = this.state;
     let classcode = !isEmpty(errors.classcode) ? errors.classcode : "",
       classtitle = !isEmpty(errors.classtitle) ? errors.classtitle : "",
       registeration_pin = !isEmpty(errors.registeration_pin)
