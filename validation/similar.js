@@ -9,5 +9,5 @@ module.exports = function similar(a, b) {
   }
 
   let weight = equivalency / maxLength;
-  return weight * 100 + "%";
+  return weight * 100;
 };

@@ -4,6 +4,7 @@ import { getQuestion, answerQuestion } from "../../actions/questionActions";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import isEmpty from "../../validation/is-empty";
 
 class MyClassroom extends Component {
   constructor() {
@@ -48,9 +49,6 @@ class MyClassroom extends Component {
       // handle multiple choice logic
       responsedata.correctness =
         this.state.responsebody.trim() === question.correctanswer.trim();
-    } else {
-      // handle textual response logic
-      responsedata.correctness = false;
     }
     this.props.answerQuestion(question._id, responsedata);
     this.enabled = false;
@@ -61,6 +59,10 @@ class MyClassroom extends Component {
       const { question } = this.props.questions;
       const questionsLoading = this.props.questions.loading;
       let classroomArea, finalClassroomArea;
+      let errors = this.state.errors;
+      if (!isEmpty(errors.alreadyAnswered)) {
+        alert(errors.alreadyAnswered);
+      }
       if (classroom === null || loading) {
         classroomArea = <h1>Loading</h1>;
       } else if (classroom.noclassroom) {

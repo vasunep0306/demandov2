@@ -71,6 +71,8 @@ class CreateQuestion extends Component {
             <option value="textual response"> Textual Response </option>
           </select>
           <br />
+          <span className="errorMsg">{questiontype}</span>
+          <br />
           <label for="questionbody">Question Body: </label>
           <input
             type="text"
@@ -78,6 +80,8 @@ class CreateQuestion extends Component {
             value={this.state.questionbody}
             onChange={this.onChange}
           />
+          <br />
+          <span className="errorMsg">{questionbody}</span>
           <br />
           <label for="correctanswer">Expected Answer: </label>
           <input
@@ -87,6 +91,8 @@ class CreateQuestion extends Component {
             onChange={this.onChange}
           />
           <br />
+          <span className="errorMsg">{correctanswer}</span>
+          <br />
           <label for="answerchoices">Answer Choices: </label>
           <input
             type="text"
@@ -95,6 +101,8 @@ class CreateQuestion extends Component {
             onChange={this.onChange}
           />
           <span> Leave blank if your question is extended response </span>
+          <br />
+          <span className="errorMsg">{answerchoices}</span>
           <br />
           <input type="submit" value="Create Question" />
         </form>

@@ -325,13 +325,10 @@ router.post(
   "/:classroomid/setcurrentquestion/:questionid",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    console.log("reach");
     Question.findById(req.params.questionid).then(question => {
-      console.log("reach");
       Classroom.findById(req.params.classroomid).then(classroom => {
         classroom.currentQuestion = question;
         classroom.save();
-        console.log(classroom);
       });
     });
   }
@@ -404,38 +401,48 @@ router.post(
       // Return any errors with 400 status
       return res.status(400).json(errors);
     }
-    Question.findById(req.params.questionid).then(question => {
-      if (!question) {
-        return res.json({ noQuestion: "There is no question" });
-      }
-
-      // check to see if student has already answered question
-      question.responses.forEach(response => {
-        if (response.student.email === req.user.email) {
-          return res
-            .status(400)
-            .json({ alreadyAnswered: "student has already answered question" });
+    Question.findById(req.params.questionid)
+      .then(question => {
+        const ACCEPTED_VALUE = 50;
+        if (!question) {
+          return res.json({ noQuestion: "There is no question" });
         }
-      });
-      // if the questiontype is a textual response question, grade each question
-      if (question.questiontype === "textual response") {
-        question.responses.forEach(response => {
+
+        // check to see if student has already answered question
+        for (let single_response of question.responses) {
+          if (single_response.student.email === req.user.email) {
+            return res.status(400).json({
+              alreadyAnswered: "you have already answered this question"
+            });
+          }
+        }
+        // create the response object
+        const response = {
+          student: {
+            name: req.body.student.name,
+            email: req.body.student.email
+          },
+          responsebody: req.body.responsebody
+        };
+
+        // if the questiontype is a textual response question, grade each question
+        if (question.questiontype === "textual response") {
           if (
-            similar(question.correctanswer, response.responsebody).trim() ===
-            "50%"
+            similar(req.body.responsebody, question.correctanswer) >=
+            ACCEPTED_VALUE
           ) {
             response.correctness = true;
-            response.save();
-            question.save();
+          } else {
+            response.correctness = false;
           }
-        });
-      }
-      question.responses.push(req.body);
-      question
-        .save()
-        .then(question => res.json(question))
-        .catch(err => res.json(err));
-    });
+        }
+        question.responses.push(response);
+        question
+          .save()
+          .then(question => res.json(question))
+          .catch(err => res.json(err));
+      })
+      .catch(err => res.json(err));
   }
 );
 
