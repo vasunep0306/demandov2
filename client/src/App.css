@@ -114,3 +114,7 @@ td {
 .currentquestion {
   color: green;
 }
+
+.sanesize {
+  width: 150px;
+}
