@@ -48,7 +48,8 @@ class MyClassroom extends Component {
     if (question.questiontype === "multiple choice") {
       // handle multiple choice logic
       responsedata.correctness =
-        this.state.responsebody.trim() === question.correctanswer.trim();
+        this.state.responsebody.trim() == question.correctanswer.trim();
+      alert(responsedata.correctness);
     }
     this.props.answerQuestion(question._id, responsedata);
     this.enabled = false;

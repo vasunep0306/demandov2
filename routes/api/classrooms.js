@@ -456,6 +456,7 @@ router.post(
         };
 
         // if the questiontype is a textual response question, grade each question
+
         if (question.questiontype === "textual response") {
           if (
             similar(req.body.responsebody, question.correctanswer) >=
@@ -465,6 +466,8 @@ router.post(
           } else {
             response.correctness = false;
           }
+        } else {
+          response.correctness = req.body.correctness;
         }
         question.responses.push(response);
         question
