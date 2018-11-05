@@ -458,7 +458,9 @@ router.post(
         // if the questiontype is a textual response question, grade each question
 
         if (question.questiontype === "textual response") {
-          // handle textual response. The similar function will return true or false based on the simple string contains algorithm.
+          if (similar(question.correctanswer, response.responsebody)) {
+            response.correctness = true;
+          }
         } else {
           response.correctness = req.body.correctness;
         }

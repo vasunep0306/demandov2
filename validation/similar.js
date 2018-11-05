@@ -7,4 +7,10 @@ module.exports = function similar(correctAnswer, studentResponse) {
     .toLowerCase()
     .split(" ")
     .join("");
+
+  let evaluatedResult =
+    condensedCorrectAnswer.includes(condensedStudentResponse) ||
+    condensedStudentResponse.includes(condensedCorrectAnswer);
+
+  return evaluatedResult;
 };
