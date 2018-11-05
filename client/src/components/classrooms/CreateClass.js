@@ -46,45 +46,51 @@ class CreateClass extends Component {
 
     return (
       <div>
-        <h1> Use this form to create a class </h1>
-        <form onSubmit={this.onSubmit}>
-          <label htmlFor="classcode">Class code: </label>
-          <input
-            type="text"
-            name="classcode"
-            placeholder="classcode"
-            value={this.state.classcode}
-            onChange={this.onChange}
-          />
-          <br />
-          <span className="errorMsg">{classcode}</span>
-          <br />
+        <h1 className="createclassinfotext">
+          Use this form to create a class{" "}
+        </h1>
+        <div className="createclassformdiv">
+          <form className="createclassform" onSubmit={this.onSubmit}>
+            <div className="form-group">
+              <label htmlFor="classcode">Class code: </label>
+              <input
+                type="text"
+                name="classcode"
+                className="form-control classcode"
+                placeholder="classcode"
+                value={this.state.classcode}
+                onChange={this.onChange}
+              />
+              <span className="errorMsg">{classcode}</span>
+            </div>
 
-          <label htmlFor="classtitle">Class Title: </label>
-          <input
-            type="text"
-            name="classtitle"
-            placeholder="classtitle"
-            value={this.state.classtitle}
-            onChange={this.onChange}
-          />
-          <br />
-          <span className="errorMsg">{classtitle}</span>
-          <br />
-
-          <label htmlFor="registeration_pin">Registeration Pin: </label>
-          <input
-            type="text"
-            name="registeration_pin"
-            placeholder="Registeration Pin"
-            value={this.state.registeration_pin}
-            onChange={this.onChange}
-          />
-          <br />
-          <span className="errorMsg">{registeration_pin}</span>
-          <br />
-          <input type="submit" />
-        </form>
+            <div className="form-group">
+              <label htmlFor="classtitle">Class Title: </label>
+              <input
+                type="text"
+                name="classtitle"
+                className="form-control classtitle"
+                placeholder="classtitle"
+                value={this.state.classtitle}
+                onChange={this.onChange}
+              />
+              <span className="errorMsg">{classtitle}</span>
+            </div>
+            <div className="form-group">
+              <label htmlFor="registeration_pin">Registeration Pin: </label>
+              <input
+                type="text"
+                name="registeration_pin"
+                className="form-control registeration_pin"
+                placeholder="Registeration Pin"
+                value={this.state.registeration_pin}
+                onChange={this.onChange}
+              />
+              <span className="errorMsg">{registeration_pin}</span>
+            </div>
+            <input type="submit" className="btn btn-primary" />
+          </form>
+        </div>
       </div>
     );
   }

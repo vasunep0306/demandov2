@@ -124,3 +124,28 @@ td {
 .classinputy {
   width: 300px;
 }
+
+.classcode {
+  width: 300px;
+}
+
+.classtitle {
+  width: 300px;
+}
+
+.registeration_pin {
+  width: 300px;
+}
+.createclassinfotext {
+  text-align: center;
+}
+.createclassformdiv {
+  display: block;
+  text-align: center;
+}
+.createclassform {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
