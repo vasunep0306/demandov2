@@ -72,7 +72,9 @@ class DisplayClasses extends Component {
             </thead>
             <tbody>{classroomArea}</tbody>
           </table>
-          <Link to={`/createClass`}>Create a new course</Link>
+          <Link to={`/createClass`} className="btn btn-info">
+            Create a new course
+          </Link>
         </div>
       );
     } catch (err) {
