@@ -46,9 +46,7 @@ class CreateClass extends Component {
 
     return (
       <div>
-        <h1 className="createclassinfotext">
-          Use this form to create a class{" "}
-        </h1>
+        <h1 className="createclassinfotext">Use this form to create a class</h1>
         <div className="createclassformdiv">
           <form className="createclassform" onSubmit={this.onSubmit}>
             <div className="form-group">

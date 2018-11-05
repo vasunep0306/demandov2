@@ -98,20 +98,21 @@ class CreateQuestion extends Component {
             />
             <span className="errorMsg">{correctanswer}</span>
           </div>
-
-          <div className="form-group">
-            <label for="answerchoices">Answer Choices: </label>
-            <input
-              type="text"
-              name="answerchoices"
-              className="classinputx form-control"
-              value={this.state.answerchoices}
-              onChange={this.onChange}
-            />
-            <span> Leave blank if your question is extended response </span>
-            <span className="errorMsg">{answerchoices}</span>
-          </div>
-          <br />
+          {this.state.questiontype === "multiple choice" ? (
+            <div className="form-group">
+              <label for="answerchoices">Remaining choices: </label>
+              <input
+                type="text"
+                name="answerchoices"
+                className="classinputx form-control"
+                value={this.state.answerchoices}
+                onChange={this.onChange}
+              />
+              <span className="errorMsg">{answerchoices}</span>
+            </div>
+          ) : (
+            <p />
+          )}
           <input
             className="btn btn-success"
             type="submit"

@@ -8,6 +8,7 @@ const validateClassroomInput = require("../../validation/classroom");
 const validateNewQuestion = require("../../validation/questions");
 const validateAnswer = require("../../validation/answer");
 const similar = require("../../validation/similar");
+const shuffle = require("../../validation/shuffle");
 const User = require("../../models/User"); // Load User model
 const Classroom = require("../../models/Classroom"); // Load Classroom model
 const Question = require("../../models/Question"); // Load Question model
@@ -304,6 +305,12 @@ router.post(
           };
           if (req.body.answerchoices) {
             newquestion.answerchoices = req.body.answerchoices.split(",");
+            if (
+              !newquestion.answerchoices.includes(newquestion.correctanswer)
+            ) {
+              newquestion.answerchoices.push(newquestion.correctanswer);
+            }
+            newquestion.answerchoices = shuffle(newquestion.answerchoices);
           }
           // save new question
           new Question(newquestion).save().then(question => {
