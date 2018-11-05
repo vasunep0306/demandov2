@@ -112,7 +112,11 @@ class CreateQuestion extends Component {
             <span className="errorMsg">{answerchoices}</span>
           </div>
           <br />
-          <input type="submit" value="Create Question" />
+          <input
+            className="btn btn-success"
+            type="submit"
+            value="Create Question"
+          />
         </form>
       </div>
     );
