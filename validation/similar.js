@@ -1,13 +1,10 @@
-module.exports = function similar(a, b) {
-  let equivalency = 0;
-  let minLength = a.length > b.length ? b.length : a.length;
-  let maxLength = a.length < b.length ? b.length : a.length;
-  for (let i = 0; i < minLength; i++) {
-    if (a[i] == b[i]) {
-      equivalency++;
-    }
-  }
-
-  let weight = equivalency / maxLength;
-  return weight * 100;
+module.exports = function similar(correctAnswer, studentResponse) {
+  let condensedCorrectAnswer = correctAnswer
+    .toLowerCase()
+    .split(" ")
+    .join("");
+  let condensedStudentResponse = studentResponse
+    .toLowerCase()
+    .split(" ")
+    .join("");
 };
