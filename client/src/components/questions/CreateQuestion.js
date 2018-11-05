@@ -60,53 +60,57 @@ class CreateQuestion extends Component {
           Go Back To List
         </Link>
         <form onSubmit={this.onSubmit}>
-          <label for="questiontype">Question Type: </label>
-          <select
-            name="questiontype"
-            value={this.state.questiontype}
-            onChange={this.onChange}
-          >
-            <option>*Please select question type</option>
-            <option value="multiple choice"> Multiple Choice </option>
-            <option value="textual response"> Textual Response </option>
-          </select>
-          <br />
-          <span className="errorMsg">{questiontype}</span>
-          <br />
-          <label for="questionbody">Question Body: </label>
-          <input
-            type="text"
-            className="classinputx"
-            name="questionbody"
-            value={this.state.questionbody}
-            onChange={this.onChange}
-          />
-          <br />
-          <span className="errorMsg">{questionbody}</span>
-          <br />
-          <label for="correctanswer">Expected Answer: </label>
-          <input
-            type="text"
-            className="classinputy"
-            name="correctanswer"
-            value={this.state.correctanswer}
-            onChange={this.onChange}
-          />
-          <br />
-          <span className="errorMsg">{correctanswer}</span>
-          <br />
-          <label for="answerchoices">Answer Choices: </label>
-          <input
-            type="text"
-            name="answerchoices"
-            className="classinputx"
-            value={this.state.answerchoices}
-            onChange={this.onChange}
-          />
-          <br />
-          <span> Leave blank if your question is extended response </span>
-          <br />
-          <span className="errorMsg">{answerchoices}</span>
+          <div className="form-group">
+            <label for="questiontype">Question Type: </label>
+            <select
+              name="questiontype"
+              className="form-control"
+              value={this.state.questiontype}
+              onChange={this.onChange}
+            >
+              <option>*Please select question type</option>
+              <option value="multiple choice"> Multiple Choice </option>
+              <option value="textual response"> Textual Response </option>
+            </select>
+            <span className="errorMsg">{questiontype}</span>
+          </div>
+
+          <div className="form-group">
+            <label for="questionbody">Question Body: </label>
+            <input
+              type="text"
+              className="classinputx form-control"
+              name="questionbody"
+              value={this.state.questionbody}
+              onChange={this.onChange}
+            />
+            <span className="errorMsg">{questionbody}</span>
+          </div>
+
+          <div className="form-group">
+            <label for="correctanswer">Expected Answer: </label>
+            <input
+              type="text"
+              className="classinputy form-control"
+              name="correctanswer"
+              value={this.state.correctanswer}
+              onChange={this.onChange}
+            />
+            <span className="errorMsg">{correctanswer}</span>
+          </div>
+
+          <div className="form-group">
+            <label for="answerchoices">Answer Choices: </label>
+            <input
+              type="text"
+              name="answerchoices"
+              className="classinputx form-control"
+              value={this.state.answerchoices}
+              onChange={this.onChange}
+            />
+            <span> Leave blank if your question is extended response </span>
+            <span className="errorMsg">{answerchoices}</span>
+          </div>
           <br />
           <input type="submit" value="Create Question" />
         </form>
