@@ -76,6 +76,7 @@ class CreateQuestion extends Component {
           <label for="questionbody">Question Body: </label>
           <input
             type="text"
+            className="classinputx"
             name="questionbody"
             value={this.state.questionbody}
             onChange={this.onChange}
@@ -86,6 +87,7 @@ class CreateQuestion extends Component {
           <label for="correctanswer">Expected Answer: </label>
           <input
             type="text"
+            className="classinputy"
             name="correctanswer"
             value={this.state.correctanswer}
             onChange={this.onChange}
@@ -97,9 +99,11 @@ class CreateQuestion extends Component {
           <input
             type="text"
             name="answerchoices"
+            className="classinputx"
             value={this.state.answerchoices}
             onChange={this.onChange}
           />
+          <br />
           <span> Leave blank if your question is extended response </span>
           <br />
           <span className="errorMsg">{answerchoices}</span>

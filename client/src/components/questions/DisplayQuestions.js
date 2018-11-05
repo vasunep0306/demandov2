@@ -85,14 +85,14 @@ class DisplayQuestions extends Component {
             }
           })()}
           <button
-            className="setQuestionBtn sanesize"
+            className="setQuestionBtn sanesize btn btn-info"
             onClick={this.setQuestion.bind(this, question)}
           >
             Publish Question
           </button>
           <br />
           <button
-            className="card-link hideQuestionBtn sanesize"
+            className="card-link hideQuestionBtn sanesize btn btn-success"
             onClick={this.hideQuestion.bind(this, question)}
           >
             Hide Question
