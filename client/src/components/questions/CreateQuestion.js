@@ -100,7 +100,9 @@ class CreateQuestion extends Component {
           </div>
           {this.state.questiontype === "multiple choice" ? (
             <div className="form-group">
-              <label for="answerchoices">Remaining choices: </label>
+              <label for="answerchoices">
+                Remaining choices(comma separated list of strings):
+              </label>
               <input
                 type="text"
                 name="answerchoices"
