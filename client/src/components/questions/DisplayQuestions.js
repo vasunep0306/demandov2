@@ -128,6 +128,13 @@ class DisplayQuestions extends Component {
           >
             Get Responses
           </Link>
+          <Link
+            to={`/${this.props.match.params.classroomid}/${
+              question._id
+            }/editQuestion`}
+          >
+            Edit Question
+          </Link>
         </div>
       ));
     }

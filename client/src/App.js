@@ -26,6 +26,7 @@ import CreateClass from "./components/classrooms/CreateClass";
 import DisplayClasses from "./components/classrooms/DisplayClasses";
 import DisplayQuestions from "./components/questions/DisplayQuestions";
 import CreateQuestion from "./components/questions/CreateQuestion";
+import EditQuestion from "./components/questions/EditQuestion";
 import GetResponses from "./components/questions/GetResponses";
 import RegisterForClassrooms from "./components/classrooms/RegisterForClassrooms";
 import ShowStudentClassrooms from "./components/classrooms/ShowStudentClassrooms";
@@ -98,6 +99,14 @@ class App extends Component {
                 exact
                 path="/:classroomid/questions/createQuestion"
                 component={CreateQuestion}
+              />
+            </Switch>
+            {/* Teacher route for editing a question */}
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/:classroomid/:questionid/editQuestion"
+                component={EditQuestion}
               />
             </Switch>
             {/* Student route for showing his/her registered courses */}
