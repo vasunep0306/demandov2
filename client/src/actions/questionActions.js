@@ -92,6 +92,24 @@ export const deleteQuestion = (classroomid, questionid) => dispatch => {
       });
     });
 };
+
+export const clearResponses = questionid => dispatch => {
+  axios
+    .post(`/api/classrooms/${questionid}/clearResponses`)
+    .then(res => {
+      dispatch({
+        type: "TRUNCATE_RESPONSES",
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: "TRUNCATE_RESPONSES",
+        payload: err.response.data
+      });
+    });
+};
+
 // Set loading state
 export const setQuestionLoading = () => {
   return {

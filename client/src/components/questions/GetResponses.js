@@ -10,7 +10,6 @@ class GetResponses extends Component {
   }
   render() {
     const { responsedata, loading } = this.props.questions;
-    console.log(responsedata, loading);
     let responseField;
 
     if (loading || !responsedata) {
@@ -21,7 +20,6 @@ class GetResponses extends Component {
         </div>
       );
     } else if (!loading && !responsedata) {
-      console.log(24);
       responseField = (
         <div>
           <h1> Loading </h1>

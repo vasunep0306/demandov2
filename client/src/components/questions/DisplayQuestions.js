@@ -4,7 +4,8 @@ import {
   getQuestion,
   setQuestion,
   unsetQuestion,
-  deleteQuestion
+  deleteQuestion,
+  clearResponses
 } from "../../actions/questionActions";
 import PropTypes from "prop-types";
 import { withRouter, Link } from "react-router-dom";
@@ -37,6 +38,15 @@ class DisplayQuestions extends Component {
       window.location.reload(true);
     } else {
       alert("you decided to keep your question");
+    }
+  }
+
+  clearAllResponses(question) {
+    let finalconfirmation = window.confirm(
+      "Are you sure you want to clear all responses? This action is irreversable"
+    );
+    if (finalconfirmation) {
+      this.props.clearResponses(question._id);
     }
   }
 
@@ -104,6 +114,13 @@ class DisplayQuestions extends Component {
           >
             Delete Question
           </button>
+          <br />
+          <button
+            onClick={this.clearAllResponses.bind(this, question)}
+            className="btn btn-danger"
+          >
+            Clear Responses
+          </button>
           <Link
             to={`/${this.props.match.params.classroomid}/questions/${
               question._id
@@ -136,6 +153,7 @@ DisplayQuestions.propTypes = {
   getQuestion: PropTypes.func.isRequired,
   unsetQuestion: PropTypes.func.isRequired,
   deleteQuestion: PropTypes.func.isRequired,
+  clearResponses: PropTypes.func.isRequired,
   questions: PropTypes.array.isRequired
 };
 
@@ -146,5 +164,12 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getQuestions, getQuestion, setQuestion, unsetQuestion, deleteQuestion }
+  {
+    getQuestions,
+    getQuestion,
+    setQuestion,
+    unsetQuestion,
+    deleteQuestion,
+    clearResponses
+  }
 )(withRouter(DisplayQuestions));

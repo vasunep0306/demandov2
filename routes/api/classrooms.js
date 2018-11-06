@@ -505,10 +505,32 @@ router.get(
   }
 );
 
-/** @route   POST api/classrooms/:classroomid/removeStudent
+/** @route   POST api/classrooms/:questionid/clearResponses
  * @desc    Remove a student from a given classroom.
- * @access  Private: Teachers use this route to delete a given student from the classroom
+ * @access  Private: Teachers use this route to clear the current student responses.
  */
+
+router.post(
+  "/:questionid/clearResponses",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Question.findById(req.params.questionid).then(question => {
+      if (!question) {
+        return res.status(400).json({ noquestion: "there is no question" });
+      }
+      for (let i = 0; i < question.responses.length; i++) {
+        question.responses.splice(i);
+        question.save();
+      }
+      question
+        .save()
+        .then(question => {
+          return res.json(question);
+        })
+        .catch(err => res.json(err));
+    });
+  }
+);
 
 /** @route   DELETE api/classrooms/:classroomid/:questionid/deleteQuestion
  * @desc    delete a given question
@@ -532,6 +554,11 @@ router.delete(
       .catch(err => res.status(404).json(err));
   }
 );
+
+/** @route   POST api/classrooms/:classroomid/removeStudent
+ * @desc    Remove a student from a given classroom.
+ * @access  Private: Teachers use this route to delete a given student from the classroom
+ */
 
 router.post(
   "/:classroomid/:studentid/removestudent",
