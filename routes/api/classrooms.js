@@ -564,7 +564,7 @@ router.post(
   "/:questionid/editQuestion",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Question.findById(req.params.id).then(question => {
+    Question.findById(req.params.questionid).then(question => {
       if (question) {
         const newquestion = {
           questionbody: req.body.questionbody,

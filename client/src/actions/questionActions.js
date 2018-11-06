@@ -31,6 +31,17 @@ export const getQuestionById = questionid => dispatch => {
     .catch(err => dispatch({ type: "GET_QUESTION", payload: null }));
 };
 
+export const editQuestion = (questionid, newQuestion, history) => dispatch => {
+  dispatch(setQuestionLoading());
+  axios
+    .post(`/api/classrooms/${questionid}/editQuestion`, newQuestion)
+    .then(res => {
+      alert("successfully updated question");
+      history.goBack();
+    })
+    .catch(err => dispatch({ type: "EDIT_QUESTION", payload: null }));
+};
+
 export const getQuestions = classroomid => dispatch => {
   dispatch(setQuestionLoading());
   axios

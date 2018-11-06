@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getQuestionById } from "../../actions/questionActions";
+import { getQuestionById, editQuestion } from "../../actions/questionActions";
 import { withRouter, Link } from "react-router-dom";
 import isEmpty from "../../validation/is-empty";
 
@@ -29,25 +29,36 @@ class EditQuestion extends Component {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
-    if (nextProps.question.question) {
-      const question = nextProps.question.question;
+    if (nextProps.question) {
+      const question = nextProps.question;
+      this.setState({
+        questiontype: question.questiontype,
+        questionbody: question.questionbody,
+        correctanswer: question.correctanswer
+      });
+      if (question.questiontype === "multiple choice") {
+        this.setState({
+          answerchoices: question.answerchoices
+        });
+      }
     }
   }
 
   onSubmit(e) {
     e.preventDefault();
-    const classroomid = this.props.match.params.classroomid;
+    const questionid = this.props.match.params.questionid;
     const newQuestion = {
       questiontype: this.state.questiontype,
       questionbody: this.state.questionbody,
-      correctanswer: this.state.correctanswer
+      correctanswer: this.state.correctanswer,
+      classroom: this.props.match.params.classroomid
     };
     if (this.state.questiontype === "textual response") {
       newQuestion.answerchoices = "Not Applicable";
     } else {
       newQuestion.answerchoices = this.state.answerchoices;
     }
-    this.props.addQuestion(classroomid, newQuestion, this.props.history);
+    this.props.editQuestion(questionid, newQuestion, this.props.history);
   }
   render() {
     let { errors } = this.state;
@@ -131,16 +142,19 @@ class EditQuestion extends Component {
 
 EditQuestion.propTypes = {
   getQuestionById: PropTypes.func.isRequired,
+  editQuestion: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
+  question: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  errors: state.errors
+  errors: state.errors,
+  question: state.questions.question
 });
 
 export default connect(
   mapStateToProps,
-  { getQuestionById }
+  { getQuestionById, editQuestion }
 )(withRouter(EditQuestion));
