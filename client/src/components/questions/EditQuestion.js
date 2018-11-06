@@ -38,7 +38,7 @@ class EditQuestion extends Component {
       });
       if (question.questiontype === "multiple choice") {
         this.setState({
-          answerchoices: question.answerchoices
+          answerchoices: question.answerchoices.join()
         });
       }
     }
