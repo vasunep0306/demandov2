@@ -573,6 +573,13 @@ router.post(
           classroom: question.classroom,
           classtitle: question.classtitle
         };
+        if (req.body.answerchoices) {
+          newquestion.answerchoices = req.body.answerchoices.split(",");
+          if (!newquestion.answerchoices.includes(newquestion.correctanswer)) {
+            newquestion.answerchoices.push(newquestion.correctanswer);
+          }
+          newquestion.answerchoices = shuffle(newquestion.answerchoices);
+        }
         Question.findByIdAndUpdate(
           question._id,
           { $set: newquestion },
