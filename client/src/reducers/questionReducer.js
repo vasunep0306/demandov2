@@ -32,6 +32,12 @@ export default function(state = initialState, action) {
         question: action.payload,
         loading: false
       };
+    case "GET_QUESTION":
+      return {
+        ...state,
+        question: action.payload,
+        loading: false
+      };
     case SET_CURRENT_QUESTION:
       return {
         ...state,

@@ -421,6 +421,30 @@ router.get(
       .catch(err => res.json(err));
   }
 );
+/** @route   GET api/classrooms/:questionid
+ * @desc    Get the question specified by the id
+ * @access  Private: teacher will use this route to get the current question
+ */
+
+router.get(
+  "/:questionid",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Question.findById(req.params.questionid)
+      .then(question => {
+        if (!question) {
+          return res
+            .status(400)
+            .json({ noquestion: "there is no question given that id" });
+        } else {
+          return res.status(200).json(question);
+        }
+      })
+      .catch(err => {
+        return res.status(400).json(err);
+      });
+  }
+);
 
 /** @route   GET api/classrooms/:questionid/answerquestion
  * @desc    Post a new question given a classroom
@@ -528,6 +552,35 @@ router.post(
           return res.json(question);
         })
         .catch(err => res.json(err));
+    });
+  }
+);
+
+/** @route   POST api/classrooms/:questionid/editQuestion
+ * @desc    Remove a student from a given classroom.
+ * @access  Private: Teachers use this route to delete a given student from the classroom
+ */
+router.post(
+  "/:questionid/editQuestion",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Question.findById(req.params.id).then(question => {
+      if (question) {
+        const newquestion = {
+          questionbody: req.body.questionbody,
+          questiontype: req.body.questiontype,
+          correctanswer: req.body.correctanswer,
+          classroom: question.classroom,
+          classtitle: question.classtitle
+        };
+        Question.findByIdAndUpdate(
+          question._id,
+          { $set: newquestion },
+          { new: true }
+        ).then(question => res.json(question));
+      } else {
+        return res.status(400).json({ noquestion: "There is no question" });
+      }
     });
   }
 );

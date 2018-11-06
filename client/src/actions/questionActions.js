@@ -23,6 +23,14 @@ export const addQuestion = (classroomid, newQuestion, history) => dispatch => {
     );
 };
 
+export const getQuestionById = questionid => dispatch => {
+  dispatch(setQuestionLoading());
+  axios
+    .get(`/api/classrooms/${questionid}`)
+    .then(res => dispatch({ type: "GET_QUESTION", payload: res.data }))
+    .catch(err => dispatch({ type: "GET_QUESTION", payload: null }));
+};
+
 export const getQuestions = classroomid => dispatch => {
   dispatch(setQuestionLoading());
   axios
