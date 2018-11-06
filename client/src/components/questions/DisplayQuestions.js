@@ -117,7 +117,7 @@ class DisplayQuestions extends Component {
           <br />
           <button
             onClick={this.clearAllResponses.bind(this, question)}
-            className="btn btn-danger"
+            className="btn btn-danger sanesize clearResponseBtn"
           >
             Clear Responses
           </button>
