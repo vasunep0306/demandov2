@@ -53,6 +53,9 @@ class DisplayClasses extends Component {
             <td>
               <Link to={`/${classroom._id}/students`}> See Classlist </Link>
             </td>
+            <td>
+              <Link>Go to whiteboard</Link>
+            </td>
           </tr>
         ));
       }
@@ -68,6 +71,7 @@ class DisplayClasses extends Component {
                 <th scope="col">Course Registeration Password</th>
                 <th scope="col">Change Course Pin</th>
                 <th scope="col">Current Students</th>
+                <th scope="col">Dynamic Whiteboard</th>
               </tr>
             </thead>
             <tbody>{classroomArea}</tbody>
