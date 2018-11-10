@@ -9,7 +9,7 @@ class Landing extends Component {
             <div className="row">
               <div className="col-md-12 text-center">
                 <h1 className="display-3 mb-4 title">Demando</h1>
-                <p className="lead"> Demand Students To Participate</p>
+                <p className="lead"> Encourage Students To Participate</p>
               </div>
             </div>
           </div>
