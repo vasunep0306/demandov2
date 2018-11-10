@@ -1,5 +1,5 @@
 Merge to master and push to brahe
-#on refactorfrontend
+#on dynamicWhiteboardComponent
 
 this branch is the main master branch which features updates
 
