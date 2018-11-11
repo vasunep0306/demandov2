@@ -2,19 +2,31 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import DrawableCanvas from "react-drawable-canvas";
+import assign from "object-assign";
 
 //https://codepen.io/HarryGateaux/pen/BApxl
 class Whiteboard extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      brushColor: "#800909",
-      lineWidth: 4,
-      canvasStyle: {
-        backgroundColor: "#000000"
-      },
-      clear: false
-    };
+    if (this.props.auth.user.userType === "teacher") {
+      this.state = {
+        brushColor: "#800909",
+        lineWidth: 0,
+        canvasStyle: {
+          backgroundColor: "#000000"
+        },
+        clear: false
+      };
+    } else {
+      this.state = {
+        brushColor: "#800909",
+        lineWidth: 4,
+        canvasStyle: {
+          backgroundColor: "#000000"
+        },
+        clear: false
+      };
+    }
   }
 
   handleOnClickClear() {
@@ -37,20 +49,32 @@ class Whiteboard extends Component {
   }
 
   render() {
+    let finalWhiteboard;
+    const teacherWhiteboard = (
+      <div>
+        <DrawableCanvas {...this.state} />
+        <button onClick={this.handleOnClickClear.bind(this)}>Clear all</button>
+        <button onClick={this.handleOnClickChangeColorYellow.bind(this)}>
+          Set color to Yellow
+        </button>
+        <button onClick={this.handleOnClickChangeColorRed.bind(this)}>
+          Set color to Red
+        </button>
+      </div>
+    );
+    const studentWhiteboard = (
+      <div>
+        <DrawableCanvas {...this.state} />
+      </div>
+    );
+    if (this.props.auth.user.userType === "student") {
+      finalWhiteboard = studentWhiteboard;
+    } else {
+      finalWhiteboard = studentWhiteboard;
+    }
     return (
       <div>
-        <div>
-          <DrawableCanvas {...this.state} />
-          <button onClick={this.handleOnClickClear.bind(this)}>
-            Clear all
-          </button>
-          <button onClick={this.handleOnClickChangeColorYellow.bind(this)}>
-            Set color to Yellow
-          </button>
-          <button onClick={this.handleOnClickChangeColorRed.bind(this)}>
-            Set color to Red
-          </button>
-        </div>
+        <div>{finalWhiteboard}</div>
       </div>
     );
   }
