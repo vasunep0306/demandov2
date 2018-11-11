@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import DrawableCanvas from "react-drawable-canvas";
 
 //https://codepen.io/HarryGateaux/pen/BApxl
 class Whiteboard extends Component {
@@ -9,6 +8,7 @@ class Whiteboard extends Component {
     super(props);
     if (this.props.auth.user.userType === "teacher") {
       this.state = {
+        userType: this.props.auth.user.userType,
         brushColor: "#800909",
         lineWidth: 0,
         canvasStyle: {
@@ -18,6 +18,7 @@ class Whiteboard extends Component {
       };
     } else {
       this.state = {
+        userType: this.props.auth.user.userType,
         brushColor: "#800909",
         lineWidth: 4,
         canvasStyle: {
