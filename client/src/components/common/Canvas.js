@@ -13,6 +13,13 @@ class Canvas extends Component {
   userStrokeStyle = "#EE92C2";
   guestStrokeStyle = "#F0C987";
   line = [];
+  prevPos = { offsetX: 0, offsetY: 0 };
+
+  onMouseDown({ nativeEvent }) {
+    const { offsetX, offsetY } = nativeEvent;
+    this.isPainting = true;
+    this.prevPos = { offsetX, offsetY };
+  }
 
   render() {
     return (
