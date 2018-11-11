@@ -32,6 +32,7 @@ import RegisterForClassrooms from "./components/classrooms/RegisterForClassrooms
 import ShowStudentClassrooms from "./components/classrooms/ShowStudentClassrooms";
 import MyClassroom from "./components/classrooms/MyClassroom";
 import ClassList from "./components/classrooms/ClassList";
+import Whiteboard from "./components/classrooms/Whiteboard";
 // Check for token
 if (localStorage.jwtToken) {
   // Set auth token header auth
@@ -107,6 +108,15 @@ class App extends Component {
                 exact
                 path="/:classroomid/:questionid/editQuestion"
                 component={EditQuestion}
+              />
+            </Switch>
+
+            {/* teacher route for accessing whiteboard */}
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/:classroomid/showDynamicWhiteboard"
+                component={Whiteboard}
               />
             </Switch>
             {/* Student route for showing his/her registered courses */}

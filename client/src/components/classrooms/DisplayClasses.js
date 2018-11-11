@@ -54,7 +54,9 @@ class DisplayClasses extends Component {
               <Link to={`/${classroom._id}/students`}> See Classlist </Link>
             </td>
             <td>
-              <Link>Go to whiteboard</Link>
+              <Link to={`/${classroom._id}/showDynamicWhiteboard`}>
+                Go to whiteboard
+              </Link>
             </td>
           </tr>
         ));

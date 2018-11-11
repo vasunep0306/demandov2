@@ -158,3 +158,11 @@ td {
   background-color: "#66666";
   text-align: center;
 }
+
+#paint {
+  border: 1px solid black;
+  background: #e0d8d8;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
