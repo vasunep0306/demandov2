@@ -8,6 +8,12 @@ class Canvas extends Component {
     this.endPaintEvent = this.endPaintEvent.bind(this);
   }
 
+  isPainting = false;
+  // Different stroke styles to be used for user and guest
+  userStrokeStyle = "#EE92C2";
+  guestStrokeStyle = "#F0C987";
+  line = [];
+
   render() {
     return (
       <canvas
