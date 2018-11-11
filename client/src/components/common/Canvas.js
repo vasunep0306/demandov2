@@ -21,6 +21,21 @@ class Canvas extends Component {
     this.prevPos = { offsetX, offsetY };
   }
 
+  onMouseMove({ nativeEvent }) {
+    if (this.isPainting) {
+      const { offsetX, offsetY } = nativeEvent;
+      const offSetData = { offsetX, offsetY };
+      // Set the start and stop position of the paint event.
+      const positionData = {
+        start: { ...this.prevPos },
+        stop: { ...offSetData }
+      };
+      // Add the position to the line array
+      this.line = this.line.concat(positionData);
+      this.paint(this.prevPos, offSetData, this.userStrokeStyle);
+    }
+  }
+
   render() {
     return (
       <canvas
