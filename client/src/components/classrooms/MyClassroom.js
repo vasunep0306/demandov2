@@ -91,8 +91,7 @@ class MyClassroom extends Component {
               <div>
                 {header}
                 <br />
-                <input
-                  type="text"
+                <textarea
                   name="responsebody"
                   value={this.state.responsebody}
                   onChange={this.onChange}
@@ -108,6 +107,7 @@ class MyClassroom extends Component {
                 <input
                   type="radio"
                   name="responsebody"
+                  className="form-control"
                   value={choice}
                   checked={choice === this.state.responsebody}
                   onChange={this.onAnswerChange}
