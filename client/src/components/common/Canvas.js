@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 
 class Canvas extends Component {
+  constructor(props) {
+    super(props);
+    this.onMouseDown = this.onMouseDown.bind(this);
+    this.onMouseMove = this.onMouseMove.bind(this);
+    this.endPaintEvent = this.endPaintEvent.bind(this);
+  }
+
   render() {
     return (
       <canvas
