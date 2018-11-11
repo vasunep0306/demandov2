@@ -1,15 +1,32 @@
-import React, { Component } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
-import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import assign from "object-assign";
-import { withRouter } from "react-router-dom";
 
-//https://codepen.io/HarryGateaux/pen/BApxl
-class Whiteboard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+class Whiteboard extends React.Component {
+  componentDidMount() {
+    const canvas = ReactDOM.findDOMNode(this);
+
+    canvas.style.width = "100%";
+    canvas.style.height = "100%";
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+
+    const context = canvas.getContext("2d");
+
+    this.setState({
+      canvas,
+      context
+    });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.clear) {
+      this.resetCanvas();
+    }
+  }
+  static getDefaultStyle() {
+    return {
       brushColor: "#FFFF00",
       lineWidth: 4,
       cursor: "pointer",
@@ -21,38 +38,24 @@ class Whiteboard extends Component {
   }
 
   handleOnTouchStart(e) {
-    if (this.props.auth.user.userType === "student") {
-      alert("Only professors can edit the whiteboard");
-      this.setState({
-        drawing: false
-      });
-    } else {
-      const rect = this.state.canvas.getBoundingClientRect();
-      this.state.context.beginPath();
-      this.setState({
-        lastX: e.targetTouches[0].pageX - rect.left,
-        lastY: e.targetTouches[0].pageY - rect.top,
-        drawing: true
-      });
-    }
+    const rect = this.state.canvas.getBoundingClientRect();
+    this.state.context.beginPath();
+    this.setState({
+      lastX: e.targetTouches[0].pageX - rect.left,
+      lastY: e.targetTouches[0].pageY - rect.top,
+      drawing: true
+    });
   }
 
   handleOnMouseDown(e) {
-    if (this.props.auth.user.userType === "student") {
-      alert("Only professors can edit the whiteboard");
-      this.setState({
-        drawing: false
-      });
-    } else {
-      const rect = this.state.canvas.getBoundingClientRect();
-      this.state.context.beginPath();
+    const rect = this.state.canvas.getBoundingClientRect();
+    this.state.context.beginPath();
 
-      this.setState({
-        lastX: e.clientX - rect.left,
-        lastY: e.clientY - rect.top,
-        drawing: true
-      });
-    }
+    this.setState({
+      lastX: e.clientX - rect.left,
+      lastY: e.clientY - rect.top,
+      drawing: true
+    });
   }
 
   handleOnTouchMove(e) {
@@ -104,11 +107,25 @@ class Whiteboard extends Component {
     this.state.context.stroke();
   }
 
+  resetCanvas() {
+    const width = this.state.context.canvas.width;
+    const height = this.state.context.canvas.height;
+    this.state.context.clearRect(0, 0, width, height);
+  }
+
+  canvasStyle() {
+    const defaults = Whiteboard.getDefaultStyle();
+    const custom = this.props.canvasStyle;
+
+    return assign({}, defaults, custom);
+  }
+
   handleOnClickClear() {
     this.setState({
       clear: true
     });
   }
+
   handleOnClickChangeColorYellow() {
     this.setState({
       brushColor: "#ffff00",
@@ -124,55 +141,30 @@ class Whiteboard extends Component {
   }
 
   render() {
-    let Canvas;
-    if (this.props.auth.user.userType === "teacher") {
-      Canvas = (
-        <div>
-          <canvas
-            style={this.canvasStyle()}
-            onMouseDown={this.handleOnMouseDown.bind(this)}
-            onTouchStart={this.handleOnTouchStart.bind(this)}
-            onMouseMove={this.handleOnMouseMove.bind(this)}
-            onTouchMove={this.handleOnTouchMove.bind(this)}
-            onMouseUp={this.handleonMouseUp.bind(this)}
-            onTouchEnd={this.handleonMouseUp.bind(this)}
-          />
-          <button onClick={this.handleOnClickClear.bind(this)}>
-            Clear all
-          </button>
-          <button onClick={this.handleOnClickChangeColorYellow.bind(this)}>
-            Set color to Yellow
-          </button>
-          <button onClick={this.handleOnClickChangeColorRed.bind(this)}>
-            Set color to Red
-          </button>
-        </div>
-      );
-    } else {
-      Canvas = (
-        <div>
-          <canvas
-            style={this.canvasStyle()}
-            onMouseDown={this.handleOnMouseDown.bind(this)}
-            onTouchStart={this.handleOnTouchStart.bind(this)}
-            onMouseMove={this.handleOnMouseMove.bind(this)}
-            onTouchMove={this.handleOnTouchMove.bind(this)}
-            onMouseUp={this.handleonMouseUp.bind(this)}
-            onTouchEnd={this.handleonMouseUp.bind(this)}
-          />
-        </div>
-      );
-    }
-    return <div>{Canvas}</div>;
+    return (
+      <div>
+        <canvas
+          style={this.canvasStyle()}
+          onMouseDown={this.handleOnMouseDown.bind(this)}
+          onTouchStart={this.handleOnTouchStart.bind(this)}
+          onMouseMove={this.handleOnMouseMove.bind(this)}
+          onTouchMove={this.handleOnTouchMove.bind(this)}
+          onMouseUp={this.handleonMouseUp.bind(this)}
+          onTouchEnd={this.handleonMouseUp.bind(this)}
+        />
+      </div>
+    );
   }
 }
 
 Whiteboard.propTypes = {
-  auth: PropTypes.object.isRequired
+  brushColor: PropTypes.string,
+  lineWidth: PropTypes.number,
+  cursor: PropTypes.string,
+  canvasStyle: PropTypes.shape({
+    backgroundColor: PropTypes.string
+  }),
+  clear: PropTypes.bool
 };
 
-const mapStateToProps = state => ({
-  auth: state.auth
-});
-
-export default connect(mapStateToProps)(withRouter(Whiteboard));
+export default Whiteboard;
