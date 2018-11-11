@@ -1,14 +1,26 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import DrawableCanvas from "react-drawable-canvas";
 
 //https://codepen.io/HarryGateaux/pen/BApxl
 class Whiteboard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      brushColor: "#800909",
+      lineWidth: 4,
+      canvasStyle: {
+        backgroundColor: "#00FFDC"
+      },
+      clear: false
+    };
+  }
   render() {
     return (
       <div>
-        <div id="sketch">
-          <canvas ref="canvas" id="paint" width={640} height={425} />
+        <div>
+          <DrawableCanvas />
         </div>
       </div>
     );
