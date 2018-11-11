@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import DrawableCanvas from "react-drawable-canvas";
-import assign from "object-assign";
 
 //https://codepen.io/HarryGateaux/pen/BApxl
 class Whiteboard extends Component {
