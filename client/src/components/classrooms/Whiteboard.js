@@ -1,9 +1,7 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
-import assign from "object-assign";
 
-class Whiteboard extends React.Component {
+class Whiteboard extends Component {
   getInitialState() {
     return {
       brushColor: "#800909",
@@ -62,4 +60,11 @@ class Whiteboard extends React.Component {
   }
 }
 
+Whiteboard.propTypes = {
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
 export default connect(mapStateToProps)(Whiteboard);
