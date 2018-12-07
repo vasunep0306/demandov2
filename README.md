@@ -1,5 +1,5 @@
 Merge to master and push to brahe
-#on dynamicWhiteboardComponentpt2
+#on pulse_point
 
 this branch is the main master branch which features updates
 
