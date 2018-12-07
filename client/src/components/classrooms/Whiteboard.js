@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import DrawableCanvas from "react-drawable-canvas";
 
 class Whiteboard extends Component {
   getInitialState() {
@@ -33,19 +35,6 @@ class Whiteboard extends Component {
     });
   }
 
-  handleOnClickClear() {
-    this.setState({
-      clear: true
-    });
-  }
-
-  handleOnClickChangeColorYellow() {
-    this.setState({
-      brushColor: "#ffff00",
-      clear: false
-    });
-  }
-
   handleOnClickChangeColorRed() {
     this.setState({
       brushColor: "#800909",
@@ -54,9 +43,18 @@ class Whiteboard extends Component {
   }
 
   render() {
-    <div>
-      <p>Canvas will go here</p>
-    </div>;
+    return (
+      <div>
+        <DrawableCanvas {...this.state} />
+        <button onClick={this.handleOnClickClear.bind(this)}>Clear all</button>
+        <button onClick={this.handleOnClickChangeColorYellow.bind(this)}>
+          Set color to Yellow
+        </button>
+        <button onClick={this.handleOnClickChangeColorRed.bind(this)}>
+          Set color to Red
+        </button>
+      </div>
+    );
   }
 }
 
