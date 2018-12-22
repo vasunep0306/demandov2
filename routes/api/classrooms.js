@@ -221,7 +221,7 @@ router.get(
 );
 
 // @route   Get api/classrooms/:classroomid/getstudents
-// @desc    get all of the students from a given classroom
+// @desc    get all of the students from a given classroom ( might want to change since we want to know who the potential classmates are)
 // @access  Private
 
 router.get(
