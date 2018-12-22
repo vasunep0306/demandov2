@@ -262,7 +262,8 @@ router.get(
       .populate("questions")
       .then(classroom => {
         if (!classroom || req.user.userType === "student") {
-          errors.noclass = "No classroom available";
+          errors.noclass =
+            "No classroom available or you might not have permission to view this page";
           return res.status(404).json(errors);
         }
         if (classroom.questions.length === 0) {
