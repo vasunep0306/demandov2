@@ -62,7 +62,7 @@ router.get(
     Classroom.findById(req.params.classroomid)
       .then(classroom => {
         if (!classroom) {
-          errors.noclassroom = "sorry, this classroom doesnt exist";
+          errors.noclassroom = "Sorry, this classroom doesn't exist";
           return res.status(404).json(errors);
         }
         return res.json(classroom);
@@ -127,8 +127,13 @@ router.post(
           .status(400)
           .json({ "no classroom": "classroom doesnt exist" });
       }
-      let keys = Object.keys(req.body);
-      classroom.registeration_pin = keys[0];
+      if (req.user.userType === "student") {
+        return res
+          .status(400)
+          .json({ error: "You are not allowed to do this" });
+      }
+      let key = Object.keys(req.body);
+      classroom.registeration_pin = req.body[key[0]];
       classroom.save().then(classroom => res.json(classroom));
     });
   }
@@ -142,6 +147,7 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     // Register student for classroom
+    let errors = {};
     User.findById(req.user._id)
       .then(user => {
         if (!user) {
@@ -156,7 +162,7 @@ router.post(
               return res.status(400).json(errors);
             }
             let key = Object.keys(req.body);
-            let input_registeration_pin = key[0];
+            let input_registeration_pin = req.body[key[0]];
             // the pin they typed in is correct
             if (classroom.registeration_pin === input_registeration_pin) {
               //if the classroom contains the student
@@ -185,7 +191,7 @@ router.post(
           })
           .catch(err => res.status(500).json(err));
       })
-      .catch(err => res.status(500).json(err));
+      .catch(err => res.status(500).json(err.responsebody));
   }
 );
 

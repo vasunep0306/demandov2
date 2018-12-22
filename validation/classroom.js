@@ -18,7 +18,7 @@ module.exports = function validateClassroomInput(data) {
     errors.classtitle = "Classtitle field is required";
   }
   if (Validator.isEmpty(data.registeration_pin)) {
-    errors.classtitle = "Registeration pin is required";
+    errors.registeration_pin = "Registeration pin is required";
   }
 
   return {
