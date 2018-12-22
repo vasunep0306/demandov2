@@ -233,7 +233,7 @@ router.get(
       .populate("students")
       .then(classroom => {
         if (!classroom || req.user.userType === "student") {
-          errors.noclass = "No students to show";
+          errors.noclass = "No students to show or you do not have permission";
           return res.status(404).json(errors);
         }
         if (classroom.students.length === 0) {
