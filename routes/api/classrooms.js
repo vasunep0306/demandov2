@@ -197,7 +197,7 @@ router.post(
 
 /** @route   GET api/classrooms/myclassrooms
  * @desc    Get all the classrooms for the specific user
- * @access  Private: only students or professors taking classes can use it.
+ * @access  Private: only students or professors who are taking classes can use this route.
  */
 router.get(
   "/:userid/myclasses",
