@@ -1,5 +1,5 @@
 Merge to master and push to brahe
-#on pulse_point
+#on smoke_test
 
 this branch is the main master branch which features updates
 
