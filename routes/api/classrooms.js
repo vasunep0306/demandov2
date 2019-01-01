@@ -345,8 +345,8 @@ router.post(
           Question.findById(classroom.currentQuestion)
             .then(oldquestion => {
               if (!oldquestion) {
-                classroom.currentQuestion = questionToSet._id;
                 questionToSet.isCurrentQuestion = true;
+                classroom.currentQuestion = questionToSet._id;
                 questionToSet.save();
                 classroom.save();
               } else {
