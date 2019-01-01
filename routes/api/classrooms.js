@@ -345,15 +345,12 @@ router.post(
           Question.findById(classroom.currentQuestion)
             .then(oldquestion => {
               if (!oldquestion) {
-                console.log("line 335 run");
                 classroom.currentQuestion = questionToSet._id;
                 questionToSet.isCurrentQuestion = true;
                 questionToSet.save();
                 classroom.save();
               } else {
-                console.log("line 341 run");
                 oldquestion.isCurrentQuestion = false;
-                console.log(oldquestion);
                 oldquestion
                   .save()
                   .then(oldquestion => {
