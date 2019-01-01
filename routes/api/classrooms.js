@@ -467,7 +467,6 @@ router.post(
     }
     Question.findById(req.params.questionid)
       .then(question => {
-        const ACCEPTED_VALUE = 50;
         if (!question) {
           return res.json({ noQuestion: "There is no question" });
         }
