@@ -46,7 +46,7 @@ module.exports = function validateNewQuestion(data) {
     if (Validator.isEmpty(data.answerchoices)) {
       errors.answerchoices = "You need to have answer choices";
     } else if (!detect(data.answerchoices)) {
-      errors.answerchoicesnotcsv = "Must be csv";
+      errors.answerchoicesnotcsv = "Invalid CSV format.";
     }
   }
 
