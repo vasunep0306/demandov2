@@ -7,3 +7,4 @@ Things to do:
 1. Delete a classroom.
 2. Restyle the teacher dashboard.
 3. Annomaly detection system... (find malicious users)
+4. Add font awesome (logos)
