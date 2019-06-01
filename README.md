@@ -1,6 +1,3 @@
-Merge to master and push to brahe
-#on master
+#on livecoding1
 
-this branch is the main master branch which features updates
-
-Need to create separate branch on brahe because of how the chrome extension for redux does not work on brahe.
+this branch is a totally new branch based on my departure from Canisius College. I am working on/continually improving this project as a live coding series on Facebook.
