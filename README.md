@@ -8,3 +8,4 @@ Things to do:
 2. Restyle the teacher dashboard.
 3. Annomaly detection system... (find malicious users)
 4. Add font awesome (logos)
+5. Add the error message for invalid csv format.
