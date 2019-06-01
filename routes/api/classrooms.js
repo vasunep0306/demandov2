@@ -1,9 +1,7 @@
 //basic constants and require statements
 const express = require("express");
 const router = express.Router();
-const mongoose = require("mongoose");
 const passport = require("passport");
-const detect = require("detect-csv");
 const validateClassroomInput = require("../../validation/classroom");
 const validateNewQuestion = require("../../validation/questions");
 const validateAnswer = require("../../validation/answer");
