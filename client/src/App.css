@@ -67,9 +67,10 @@ li a:hover {
 .box {
   background: white;
   width: 300px;
+  height: 300px;
   border-radius: 8px;
   margin: 0 auto 0 auto;
-  padding: 0px 0px 70px 22px;
+  padding: 10px 0px 70px 22px;
   border: white 4px solid;
 }
 .password {
