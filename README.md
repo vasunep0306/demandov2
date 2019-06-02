@@ -12,3 +12,4 @@ Things to do (improvements/feature updates):
 6. Get rid of login border.
 7. Get rid of extra white space at the bottom of the login page.
 8. Center the content for where the student can answer the questions.
+9. Add error handler (create a custom crash web page that will ask the user to send the error info and then populate a mongo database.).
