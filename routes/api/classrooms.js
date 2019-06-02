@@ -159,7 +159,7 @@ router.post(
               return res.status(400).json(errors);
             }
             let key = Object.keys(req.body);
-            let input_registeration_pin = req.body[key[0]];
+            let input_registeration_pin = key[0];
             // the pin they typed in is correct
             if (classroom.registeration_pin === input_registeration_pin) {
               //if the classroom contains the student
