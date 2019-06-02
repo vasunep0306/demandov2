@@ -11,4 +11,3 @@ Things to do (improvements/feature updates):
 5. Add the error message for invalid csv format.
 6. Get rid of login border.
 7. Get rid of extra white space at the bottom of the login page.
-8. Bug: class pin is not changing.

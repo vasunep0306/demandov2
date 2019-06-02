@@ -130,7 +130,7 @@ router.post(
           .json({ error: "You are not allowed to do this" });
       }
       let key = Object.keys(req.body);
-      classroom.registeration_pin = req.body[key[0]];
+      classroom.registeration_pin = key[0];
       classroom.save().then(classroom => res.json(classroom));
     });
   }
