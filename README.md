@@ -14,3 +14,4 @@ Things to do (improvements/feature updates):
 8. Center the content for where the student can answer the questions. [style]
 9. Add error handler (create a custom crash web page that will ask the user to send the error info and then populate a mongo database.). [functionality]
 10. Add hardcoded types. [functionality]
+11. Prevent teachers from accessing student routes and vice versa. [functionality]
