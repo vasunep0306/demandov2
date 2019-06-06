@@ -66,99 +66,71 @@ class App extends Component {
               <Route exact path="/" component={Landing} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
-            </Switch>
-
-            {/* Dashboard Route */}
-            <Switch>
+              {/* Dashboard Route */}
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
-            </Switch>
-            {/* teacher route for creating a course */}
-            <Switch>
+              {/* teacher route for creating a course */}
               <PrivateRoute exact path="/createClass" component={CreateClass} />
-            </Switch>
-            {/* teacher route for displaying course questions */}
-            <Switch>
+              {/* teacher route for displaying course questions */}
               <PrivateRoute
                 exact
                 path="/:classroomid/questions"
                 component={DisplayQuestions}
               />
-            </Switch>
-            {/* teacher route for displaying students */}
-            <Switch>
+              {/* teacher route for displaying students */}
               <PrivateRoute
                 exact
                 path="/:classroomid/students"
                 component={ClassList}
               />
-            </Switch>
-            {/* teacher route for displaying courses */}
-            <Switch>
+              {/* teacher route for displaying courses */}
               <PrivateRoute
                 exact
                 path="/displayClasses"
                 component={DisplayClasses}
               />
-            </Switch>
-            {/* Teacher route for creating a question */}
-            <Switch>
+              {/* Teacher route for creating a question */}
               <PrivateRoute
                 exact
                 path="/:classroomid/questions/createQuestion"
                 component={CreateQuestion}
               />
-            </Switch>
-            {/* Teacher route for editing a question */}
-            <Switch>
+              {/* Teacher route for editing a question */}
               <PrivateRoute
                 exact
                 path="/:classroomid/:questionid/editQuestion"
                 component={EditQuestion}
               />
-            </Switch>
-
-            {/* teacher route for accessing whiteboard */}
-            <Switch>
+              {/* teacher route for accessing whiteboard */}
               <PrivateRoute
                 exact
                 path="/:classroomid/showDynamicWhiteboard"
                 component={Whiteboard}
               />
-            </Switch>
-            {/* Student route for showing his/her registered courses */}
-            <Switch>
+              {/* Student route for showing his/her registered courses */}
               <PrivateRoute
                 exact
                 path="/myClasses"
                 component={ShowStudentClassrooms}
               />
-            </Switch>
-
-            {/* Student route for answering a question */}
-            <Switch>
+              {/* Student route for answering a question */}
               <PrivateRoute
                 exact
                 path="/:classroomid/answers"
                 component={MyClassroom}
               />
-            </Switch>
-
-            {/* Teacher route for viewing responses */}
-            <Switch>
+              {/* Teacher route for viewing responses */}
               <PrivateRoute
                 exact
                 path="/:classroomid/questions/:questionid/getresponses"
                 component={GetResponses}
               />
-            </Switch>
-
-            {/* Student route for registering for a course */}
-            <Switch>
+              {/* Student route for registering for a course */}
               <PrivateRoute
                 exact
                 path="/registerForClassroom"
                 component={RegisterForClassrooms}
               />
+              <Route component={NoMatch} />
             </Switch>
             <Footer />
           </div>
