@@ -53,6 +53,9 @@ class CreateQuestion extends Component {
         : "",
       answerchoices = !isEmpty(errors.answerchoices)
         ? errors.answerchoices
+        : "",
+      answerchoicesnotcsv = !isEmpty(errors.answerchoicesnotcsv)
+        ? errors.answerchoicesnotcsv
         : "";
     return (
       <div>
@@ -111,6 +114,7 @@ class CreateQuestion extends Component {
                 onChange={this.onChange}
               />
               <span className="errorMsg">{answerchoices}</span>
+              <span className="errorMsg">{answerchoicesnotcsv}</span>
             </div>
           ) : (
             <p />
