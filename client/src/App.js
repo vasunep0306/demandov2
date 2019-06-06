@@ -5,8 +5,9 @@ import "./App.css";
 // Routers
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-// Private route
+// Private route/Common Routes
 import PrivateRoute from "./components/common/PrivateRoute";
+import NoMatch from "./components/common/NoMatch";
 
 // Redux Modules
 import { Provider } from "react-redux";
@@ -33,6 +34,7 @@ import ShowStudentClassrooms from "./components/classrooms/ShowStudentClassrooms
 import MyClassroom from "./components/classrooms/MyClassroom";
 import ClassList from "./components/classrooms/ClassList";
 import Whiteboard from "./components/classrooms/Whiteboard";
+
 // Check for token
 if (localStorage.jwtToken) {
   // Set auth token header auth
