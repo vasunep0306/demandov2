@@ -64,6 +64,8 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
+            {/* 404 Page Route */}
+            <Switch />
             {/* Dashboard Route */}
             <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
