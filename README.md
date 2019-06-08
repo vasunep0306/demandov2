@@ -11,7 +11,7 @@ Things to do (improvements/feature updates):
 5. Get rid of extra white space at the bottom of the login page. [style]
 6. Center the content for where the student can answer the questions. [style]
 7. Style 404 page. [style]
-8. Style error handler (style the custom crash web page we created that will ask the user to send the error info and then populate a mongo database.). [functionality]
+8. Create error handler form (style the custom crash web page we created that will ask the user to send the error info and then populate a mongo database.). [functionality]
 9. Add constants for hardcoded types. [functionality]
 10. Prevent teachers from accessing student routes and vice versa. [functionality]
 11. Create an admin page. [functionality]
