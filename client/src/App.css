@@ -167,3 +167,20 @@ td {
   margin-right: auto;
   display: block;
 }
+
+.error_page_container {
+  text-align: center;
+}
+.error_title {
+  font-size: 5em;
+}
+
+.error_page {
+  display: inline-block;
+  margin: 100px auto;
+  padding: 30px 50px 30px 50px;
+}
+
+#sendreport {
+  margin: 10px;
+}

@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // Private route/Common Routes
 import PrivateRoute from "./components/common/PrivateRoute";
 import NoMatch from "./components/common/NoMatch";
+import CrashReporter from "./components/common/CrashReporter";
 
 // Redux Modules
 import { Provider } from "react-redux";
@@ -66,6 +67,7 @@ class App extends Component {
               <Route exact path="/" component={Landing} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
+              <Route exact path="/crashed" component={CrashReporter} />
               {/* Dashboard Route */}
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
               {/* teacher route for creating a course */}
