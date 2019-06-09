@@ -17,7 +17,7 @@ import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 
-// Components
+// Main Components
 import Navbar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
 import Footer from "./components/layout/Footer";
@@ -35,6 +35,9 @@ import ShowStudentClassrooms from "./components/classrooms/ShowStudentClassrooms
 import MyClassroom from "./components/classrooms/MyClassroom";
 import ClassList from "./components/classrooms/ClassList";
 import Whiteboard from "./components/classrooms/Whiteboard";
+
+// Test Components
+import TriggerError from "./components/test/TriggerError";
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -72,6 +75,7 @@ class App extends Component {
               <Route exact path="/" component={Landing} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
+              <Route exact path="/testErrors" component={TriggerError} />
               <Route exact path="/crashed" component={CrashReporter} />
               {/* Dashboard Route */}
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
