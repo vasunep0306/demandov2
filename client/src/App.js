@@ -62,9 +62,9 @@ if (localStorage.jwtToken) {
 class App extends Component {
   render() {
     return (
-      <ErrorBoundary>
-        <Provider store={store}>
-          <Router>
+      <Provider store={store}>
+        <Router>
+          <ErrorBoundary>
             <div className="App">
               <Navbar />
               {/* Default Route */}
@@ -146,9 +146,9 @@ class App extends Component {
               </Switch>
               <Footer />
             </div>
-          </Router>
-        </Provider>
-      </ErrorBoundary>
+          </ErrorBoundary>
+        </Router>
+      </Provider>
     );
   }
 }

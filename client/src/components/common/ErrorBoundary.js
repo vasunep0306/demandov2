@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import CrashReporter from "./CrashReporter";
+import { withRouter } from "react-router-dom";
 
-export default class ErrorBoundary extends Component {
+class ErrorBoundary extends Component {
   constructor(props) {
     super(props);
     this.state = { error: null, errorInfo: null };
@@ -15,8 +16,12 @@ export default class ErrorBoundary extends Component {
   }
   render() {
     if (this.state.errorInfo) {
+      console.log("true");
       return <CrashReporter errorObject={this.state} />;
     }
+    console.log("false");
     return this.props.children;
   }
 }
+
+export default withRouter(ErrorBoundary);

@@ -1,20 +1,14 @@
 import React, { Component } from "react";
 
 export default class TriggerError extends Component {
-  triggerError() {
-    throw 500;
-  }
   render() {
+    var status = true;
+    if (status) {
+      throw new Error("400");
+    }
     return (
       <div>
-        <div className="container">
-          <button
-            className="btn btn-warning"
-            onClick={this.triggerError.bind(this)}
-          >
-            Trigger Unhandled Divide By Zero
-          </button>
-        </div>
+        <div className="container">Trigger Unhandled Divide By Zero</div>
       </div>
     );
   }
