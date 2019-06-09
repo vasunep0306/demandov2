@@ -10,9 +10,11 @@ const User = require("../../models/User"); // Load User model
 const Classroom = require("../../models/Classroom"); // Load Classroom model
 
 /** @route   POST api/users/getErrors
- * @desc    Get errors from user and post them to the Mongo Schema
+ * @desc    Get errors from user and post them to the Mongo Schema.
  * @access  Public
  */
+
+router.post("/getErrors", (req, res) => {});
 
 /** @route   GET api/users/test
  * @desc    Tests users route
