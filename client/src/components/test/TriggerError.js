@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export default class TriggerError extends Component {
   triggerError() {
-    alert(5 / 0);
+    throw 500;
   }
   render() {
     return (
