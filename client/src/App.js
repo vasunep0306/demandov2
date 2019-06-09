@@ -60,8 +60,9 @@ if (localStorage.jwtToken) {
 
 class App extends Component {
   componentDidMount() {
-    window.onunhandledrejection = err => {
-      window.location.href = "/crashed";
+    window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
+      alert("Error occured: " + errorMsg + " in " + url); //or any message
+      return false;
     };
   }
   render() {
