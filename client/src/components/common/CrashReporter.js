@@ -11,14 +11,13 @@ class CrashReporter extends Component {
             An undexpected error has occured. Would you like to report this?
           </h3>
           <br />
-          <input
-            id="sendreport"
-            type="submit"
-            value="Send"
-            className="btn btn-success"
-          />
+          <button id="sendreport" className="btn btn-success">
+            Send
+          </button>
 
-          <input type="submit" value="Don't Send" className="btn btn-danger" />
+          <button value="Don't Send" className="btn btn-danger">
+            Don't Send
+          </button>
         </div>
       </div>
     );
