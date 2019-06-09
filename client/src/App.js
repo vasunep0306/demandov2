@@ -56,6 +56,11 @@ if (localStorage.jwtToken) {
 }
 
 class App extends Component {
+  componentDidMount() {
+    window.onunhandledrejection = err => {
+      window.location.href = "/crashed";
+    };
+  }
   render() {
     return (
       <Provider store={store}>
