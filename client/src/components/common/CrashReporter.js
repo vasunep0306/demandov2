@@ -27,7 +27,6 @@ class CrashReporter extends Component {
           </button>
 
           <button
-            value="Don't Send"
             className="btn btn-danger"
             onClick={this.doNotSendReport.bind(this)}
           >

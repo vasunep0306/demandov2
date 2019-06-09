@@ -7,7 +7,7 @@ export default class TriggerError extends Component {
   render() {
     return (
       <div>
-        <div class="container">
+        <div className="container">
           <button>Trigger Unhandled Divide By Zero</button>
         </div>
       </div>
