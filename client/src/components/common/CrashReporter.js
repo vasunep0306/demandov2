@@ -1,8 +1,15 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { sendErrorReport } from "../../actions/crashActions";
+import { withRouter } from "react-router-dom";
 
 class CrashReporter extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   sendReport() {
-    alert("in send report");
+    this.props.sendErrorReport(this.state.errorObject);
   }
   doNotSendReport() {
     alert("in do not send report");
@@ -38,4 +45,9 @@ class CrashReporter extends Component {
   }
 }
 
-export default CrashReporter;
+CrashReporter.propTypes = {
+  errorObject: PropTypes.object.isRequired,
+  sendErrorReport: PropTypes.func.isRequired
+};
+
+export default withRouter(CrashReporter);

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import CrashReporter from "./CrashReporter";
 
 export default class ErrorBoundary extends Component {
   constructor(props) {
@@ -14,7 +15,7 @@ export default class ErrorBoundary extends Component {
   }
   render() {
     if (this.state.errorInfo) {
-      return <div />;
+      return <CrashReporter errorObject={this.state} />;
     }
     return this.props.children;
   }

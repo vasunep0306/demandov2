@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PrivateRoute from "./components/common/PrivateRoute";
 import NoMatch from "./components/common/NoMatch";
 import CrashReporter from "./components/common/CrashReporter";
+import CrashReporter from "./components/common/ErrorBoundary";
 
 // Redux Modules
 import { Provider } from "react-redux";
@@ -59,12 +60,6 @@ if (localStorage.jwtToken) {
 }
 
 class App extends Component {
-  componentDidMount() {
-    window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
-      alert("Error occured: " + errorMsg + " in " + url); //or any message
-      return false;
-    };
-  }
   render() {
     return (
       <Provider store={store}>
