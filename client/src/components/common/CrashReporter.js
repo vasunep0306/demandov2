@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 
 class CrashReporter extends Component {
-  sendReport() {}
-  doNotSendReport() {}
+  sendReport() {
+    alert("in send report");
+  }
+  doNotSendReport() {
+    alert("in do not send report");
+  }
 
   render() {
     return (
@@ -14,11 +18,19 @@ class CrashReporter extends Component {
             An undexpected error has occured. Would you like to report this?
           </h3>
           <br />
-          <button id="sendreport" className="btn btn-success">
+          <button
+            id="sendreport"
+            className="btn btn-success"
+            onClick={this.sendReport.bind(this)}
+          >
             Send
           </button>
 
-          <button value="Don't Send" className="btn btn-danger">
+          <button
+            value="Don't Send"
+            className="btn btn-danger"
+            onClick={this.doNotSendReport.bind(this)}
+          >
             Don't Send
           </button>
         </div>
