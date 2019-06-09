@@ -7,6 +7,7 @@ const passport = require("passport");
 const validateRegisterInput = require("../../validation/register"); // Load Input Validation
 const validateLoginInput = require("../../validation/login");
 const User = require("../../models/User"); // Load User model
+const CrashList = require("../../models/CrashList"); // Load User model
 const Classroom = require("../../models/Classroom"); // Load Classroom model
 
 /** @route   POST api/users/getErrors
