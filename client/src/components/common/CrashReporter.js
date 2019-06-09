@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 
 class CrashReporter extends Component {
+  sendReport() {}
+  doNotSendReport() {}
+
   render() {
     return (
       <div className="error_page_container">
