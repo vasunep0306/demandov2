@@ -9,7 +9,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PrivateRoute from "./components/common/PrivateRoute";
 import NoMatch from "./components/common/NoMatch";
 import CrashReporter from "./components/common/CrashReporter";
-import CrashReporter from "./components/common/ErrorBoundary";
+import ErrorBoundary from "./components/common/ErrorBoundary";
 
 // Redux Modules
 import { Provider } from "react-redux";
@@ -62,87 +62,93 @@ if (localStorage.jwtToken) {
 class App extends Component {
   render() {
     return (
-      <Provider store={store}>
-        <Router>
-          <div className="App">
-            <Navbar />
-            {/* Default Route */}
-            <Switch>
-              <Route exact path="/" component={Landing} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/testErrors" component={TriggerError} />
-              <Route exact path="/crashed" component={CrashReporter} />
-              {/* Dashboard Route */}
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
-              {/* teacher route for creating a course */}
-              <PrivateRoute exact path="/createClass" component={CreateClass} />
-              {/* teacher route for displaying course questions */}
-              <PrivateRoute
-                exact
-                path="/:classroomid/questions"
-                component={DisplayQuestions}
-              />
-              {/* teacher route for displaying students */}
-              <PrivateRoute
-                exact
-                path="/:classroomid/students"
-                component={ClassList}
-              />
-              {/* teacher route for displaying courses */}
-              <PrivateRoute
-                exact
-                path="/displayClasses"
-                component={DisplayClasses}
-              />
-              {/* Teacher route for creating a question */}
-              <PrivateRoute
-                exact
-                path="/:classroomid/questions/createQuestion"
-                component={CreateQuestion}
-              />
-              {/* Teacher route for editing a question */}
-              <PrivateRoute
-                exact
-                path="/:classroomid/:questionid/editQuestion"
-                component={EditQuestion}
-              />
-              {/* teacher route for accessing whiteboard */}
-              <PrivateRoute
-                exact
-                path="/:classroomid/showDynamicWhiteboard"
-                component={Whiteboard}
-              />
-              {/* Student route for showing his/her registered courses */}
-              <PrivateRoute
-                exact
-                path="/myClasses"
-                component={ShowStudentClassrooms}
-              />
-              {/* Student route for answering a question */}
-              <PrivateRoute
-                exact
-                path="/:classroomid/answers"
-                component={MyClassroom}
-              />
-              {/* Teacher route for viewing responses */}
-              <PrivateRoute
-                exact
-                path="/:classroomid/questions/:questionid/getresponses"
-                component={GetResponses}
-              />
-              {/* Student route for registering for a course */}
-              <PrivateRoute
-                exact
-                path="/registerForClassroom"
-                component={RegisterForClassrooms}
-              />
-              <Route component={NoMatch} />
-            </Switch>
-            <Footer />
-          </div>
-        </Router>
-      </Provider>
+      <ErrorBoundary>
+        <Provider store={store}>
+          <Router>
+            <div className="App">
+              <Navbar />
+              {/* Default Route */}
+              <Switch>
+                <Route exact path="/" component={Landing} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/register" component={Register} />
+                <Route exact path="/testErrors" component={TriggerError} />
+                <Route exact path="/crashed" component={CrashReporter} />
+                {/* Dashboard Route */}
+                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                {/* teacher route for creating a course */}
+                <PrivateRoute
+                  exact
+                  path="/createClass"
+                  component={CreateClass}
+                />
+                {/* teacher route for displaying course questions */}
+                <PrivateRoute
+                  exact
+                  path="/:classroomid/questions"
+                  component={DisplayQuestions}
+                />
+                {/* teacher route for displaying students */}
+                <PrivateRoute
+                  exact
+                  path="/:classroomid/students"
+                  component={ClassList}
+                />
+                {/* teacher route for displaying courses */}
+                <PrivateRoute
+                  exact
+                  path="/displayClasses"
+                  component={DisplayClasses}
+                />
+                {/* Teacher route for creating a question */}
+                <PrivateRoute
+                  exact
+                  path="/:classroomid/questions/createQuestion"
+                  component={CreateQuestion}
+                />
+                {/* Teacher route for editing a question */}
+                <PrivateRoute
+                  exact
+                  path="/:classroomid/:questionid/editQuestion"
+                  component={EditQuestion}
+                />
+                {/* teacher route for accessing whiteboard */}
+                <PrivateRoute
+                  exact
+                  path="/:classroomid/showDynamicWhiteboard"
+                  component={Whiteboard}
+                />
+                {/* Student route for showing his/her registered courses */}
+                <PrivateRoute
+                  exact
+                  path="/myClasses"
+                  component={ShowStudentClassrooms}
+                />
+                {/* Student route for answering a question */}
+                <PrivateRoute
+                  exact
+                  path="/:classroomid/answers"
+                  component={MyClassroom}
+                />
+                {/* Teacher route for viewing responses */}
+                <PrivateRoute
+                  exact
+                  path="/:classroomid/questions/:questionid/getresponses"
+                  component={GetResponses}
+                />
+                {/* Student route for registering for a course */}
+                <PrivateRoute
+                  exact
+                  path="/registerForClassroom"
+                  component={RegisterForClassrooms}
+                />
+                <Route component={NoMatch} />
+              </Switch>
+              <Footer />
+            </div>
+          </Router>
+        </Provider>
+      </ErrorBoundary>
     );
   }
 }
