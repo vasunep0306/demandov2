@@ -8,7 +8,12 @@ export default class TriggerError extends Component {
     return (
       <div>
         <div className="container">
-          <button>Trigger Unhandled Divide By Zero</button>
+          <button
+            className="btn btn-warning"
+            onClick={this.triggerError.bind(this)}
+          >
+            Trigger Unhandled Divide By Zero
+          </button>
         </div>
       </div>
     );
