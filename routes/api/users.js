@@ -7,7 +7,7 @@ const passport = require("passport");
 const validateRegisterInput = require("../../validation/register"); // Load Input Validation
 const validateLoginInput = require("../../validation/login");
 const User = require("../../models/User"); // Load User model
-const CrashList = require("../../models/CrashList"); // Load User model
+const CrashList = require("../../models/CrashList"); // Load CrashList model
 const Classroom = require("../../models/Classroom"); // Load Classroom model
 
 /** @route   POST api/users/getErrors
@@ -15,7 +15,9 @@ const Classroom = require("../../models/Classroom"); // Load Classroom model
  * @access  Public
  */
 
-router.post("/getErrors", (req, res) => {});
+router.post("/getErrors", (req, res) => {
+  const error = req.body.errorObj;
+});
 
 /** @route   GET api/users/test
  * @desc    Tests users route
