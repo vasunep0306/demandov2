@@ -9,7 +9,9 @@ class CrashReporter extends Component {
   }
 
   sendReport() {
-    this.props.sendErrorReport(this.state.errorObject);
+    if (localStorage.errorObject) {
+      this.props.sendErrorReport(localStorage);
+    }
   }
   doNotSendReport() {
     alert("in do not send report");
@@ -46,7 +48,6 @@ class CrashReporter extends Component {
 }
 
 CrashReporter.propTypes = {
-  errorObject: PropTypes.object.isRequired,
   sendErrorReport: PropTypes.func.isRequired
 };
 

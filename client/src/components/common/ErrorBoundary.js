@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import CrashReporter from "./CrashReporter";
+import { Redirect } from "react-router";
 import { withRouter } from "react-router-dom";
 
 class ErrorBoundary extends Component {
@@ -16,10 +17,9 @@ class ErrorBoundary extends Component {
   }
   render() {
     if (this.state.errorInfo) {
-      console.log("true");
-      return <CrashReporter errorObject={this.state} />;
+      localStorage.errorObject = this.state;
+      return <Redirect to="/crashed" />;
     }
-    console.log("false");
     return this.props.children;
   }
 }
