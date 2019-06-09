@@ -22,9 +22,13 @@ router.post("/getErrors", (req, res) => {
     message.noerrors = "No errors found.";
     return res.status(404).json(message);
   }
-  new CrashList({ crashObject: errorObject }).save().then(crashreport => {
-    return res.status(200).json({ success: "Successfully set crash report" });
-  });
+  new CrashList({ crashObject: errorObject, isFixed: false })
+    .save()
+    .then(crashreport => {
+      return res
+        .status(200)
+        .json({ success: "Successfully created crash report" });
+    });
 });
 
 /** @route   GET api/users/test
