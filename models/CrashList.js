@@ -6,8 +6,12 @@ const CrashSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  crashMessage: {
-    type: String,
+  crashObject: {
+    type: Object,
+    required: true
+  },
+  isFixed: {
+    type: Boolean,
     required: true
   }
 });

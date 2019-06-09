@@ -16,13 +16,13 @@ const Classroom = require("../../models/Classroom"); // Load Classroom model
  */
 
 router.post("/getErrors", (req, res) => {
-  const errorMsg = req.body.errorMsg;
+  const errorObject = req.body.errorObject;
   const message = {};
-  if (!errorObj) {
+  if (!errorObject) {
     message.noerrors = "No errors found.";
     return res.status(404).json(message);
   }
-  new CrashList({ crashMessage: errorMsg }).save().then(crashreport => {
+  new CrashList({ crashObject: errorObject }).save().then(crashreport => {
     return res.status(200).json({ success: "Successfully set crash report" });
   });
 });
