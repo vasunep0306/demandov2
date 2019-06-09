@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { sendErrorReport } from "../../actions/crashActions";
 import { withRouter } from "react-router-dom";
 
@@ -9,12 +8,15 @@ class CrashReporter extends Component {
   }
 
   sendReport() {
+    console.log(localStorage);
     if (localStorage.errorObject) {
-      this.props.sendErrorReport(localStorage);
+      sendErrorReport(localStorage);
+    } else {
+      alert("There is no error to report");
     }
   }
   doNotSendReport() {
-    alert("in do not send report");
+    window.location.href = "/";
   }
 
   render() {
@@ -46,9 +48,5 @@ class CrashReporter extends Component {
     );
   }
 }
-
-CrashReporter.propTypes = {
-  sendErrorReport: PropTypes.func.isRequired
-};
 
 export default withRouter(CrashReporter);
