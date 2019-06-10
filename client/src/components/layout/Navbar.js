@@ -17,10 +17,14 @@ class Navbar extends Component {
     guestBar = (
       <ul>
         <li>
-          <Link to="/">Demando</Link>
+          <Link to="/">
+            <i class="fas fa-home" />
+          </Link>
         </li>
         <li>
-          <Link to="/login">Log In</Link>
+          <Link to="/login">
+            Log In <i class="fas fa-sign-in-alt" />
+          </Link>
         </li>
         <li>
           <Link to="/register">Sign Up</Link>
