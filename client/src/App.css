@@ -41,6 +41,13 @@ li {
   color: red;
 }
 
+.register-outer-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
 li a {
   display: block;
   color: white;

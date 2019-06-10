@@ -60,106 +60,95 @@ class Register extends Component {
       secretKey = !isEmpty(errors.secretKey) ? errors.secretKey : "";
 
     return (
-      <div className="container">
-        <div className="row centered-form">
-          <div className="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-            <div className="panel panel-default">
-              <div className="panel-heading">
-                <h3 className="panel-title">
-                  Please sign up for Demando <small>It's free!</small>
-                </h3>
-              </div>
-              <div className="panel-body">
-                <form noValidate onSubmit={this.onSubmit}>
-                  <div className="row">
-                    <div className="form-group">
-                      <input
-                        type="text"
-                        name="name"
-                        value={this.state.name}
-                        onChange={this.onChange}
-                        id="fullname"
-                        className="form-control input-sm"
-                        placeholder="Full Name"
-                      />
-                      <span className="errorMsg">{name}</span>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="form-group">
-                      <input
-                        type="email"
-                        name="email"
-                        value={this.state.email}
-                        onChange={this.onChange}
-                        id="email"
-                        className="form-control input-sm"
-                        placeholder="Email Address"
-                      />
-                      <span className="errorMsg">{email}</span>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="form-group">
-                      <input
-                        type="password"
-                        name="password"
-                        value={this.state.password}
-                        onChange={this.onChange}
-                        id="password"
-                        className="form-control input-sm"
-                        placeholder="Password"
-                      />
-                      <span className="errorMsg">{password}</span>
-                    </div>
-
-                    <div className="form-group">
-                      <input
-                        type="password"
-                        name="password2"
-                        id="password2"
-                        value={this.state.password2}
-                        onChange={this.onChange}
-                        className="form-control input-sm"
-                        placeholder="Confirm Password"
-                      />
-                      <span className="errorMsg">{password2}</span>
-                    </div>
-                    <div className="form-group">
-                      <select
-                        name="userType"
-                        value={this.state.userType}
-                        onChange={this.onChange}
-                      >
-                        <option>*Please select user type</option>
-                        <option value="student">Student</option>
-                        <option value="teacher">Teacher</option>
-                      </select>
-                      <span className="errorMsg">{userType}</span>
-                    </div>
-                    <div className="form-group">
-                      <input
-                        type="text"
-                        name="secretKey"
-                        id="secretKey"
-                        value={this.state.secretKey}
-                        onChange={this.onChange}
-                        className="form-control input-sm"
-                        placeholder="Please Enter Secret Key, leave off if student"
-                      />
-                      <span className="errorMsg">{secretKey}</span>
-                    </div>
-                  </div>
-
-                  <input
-                    type="submit"
-                    value="Register"
-                    className="btn btn-info btn-block"
-                  />
-                </form>
-              </div>
+      <div className="register-outer-container">
+        <div className="container">
+          <br />
+          <h1>
+            Please sign up for Demando <small>It's free!</small>
+          </h1>
+          <form noValidate onSubmit={this.onSubmit}>
+            <div className="form-group">
+              <label>Full Name: </label>
+              <input
+                type="text"
+                className="form-control"
+                name="name"
+                value={this.state.name}
+                onChange={this.onChange}
+                id="fullname"
+                placeholder="Full Name"
+              />
+              <span className="errorMsg">{name}</span>
             </div>
-          </div>
+            <div className="form-group">
+              <label>Email Address: </label>
+              <input
+                type="email"
+                className="form-control"
+                name="email"
+                value={this.state.email}
+                onChange={this.onChange}
+                id="email"
+                placeholder="Email Address"
+              />
+              <span className="errorMsg">{email}</span>
+            </div>
+            <div className="form-group">
+              <label>Password: </label>
+              <input
+                type="password"
+                className="form-control"
+                name="password"
+                value={this.state.password}
+                onChange={this.onChange}
+                id="password"
+                placeholder="Password"
+              />
+              <span className="errorMsg">{password}</span>
+            </div>
+            <div className="form-group">
+              <label>Confirm Password: </label>
+              <input
+                type="password"
+                className="form-control"
+                name="password2"
+                value={this.state.password2}
+                onChange={this.onChange}
+                id="password2"
+                placeholder="Password"
+              />
+              <span className="errorMsg">{password2}</span>
+            </div>
+            <div className="form-group">
+              <label>User Type: </label>
+              <select
+                className="selectpicker"
+                className="form-control"
+                name="userType"
+                value={this.state.userType}
+                onChange={this.onChange}
+              >
+                <option>*Please select user type</option>
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+              </select>
+              <span className="errorMsg">{userType}</span>
+            </div>
+            <div className="form-group">
+              <label>Instructor Key: </label>
+              <input
+                type="text"
+                className="form-control"
+                name="secretKey"
+                id="secretKey"
+                value={this.state.secretKey}
+                onChange={this.onChange}
+                placeholder="Please Enter Secret Key, leave off if student"
+              />
+              <span className="errorMsg">{secretKey}</span>
+            </div>
+            <input type="submit" value="Sign Up" className="btn btn-primary" />
+          </form>
         </div>
       </div>
     );
