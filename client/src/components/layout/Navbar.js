@@ -18,7 +18,7 @@ class Navbar extends Component {
       <ul>
         <li>
           <Link to="/">
-            <i class="fas fa-home" />
+            <i class="fas fa-home" /> Demando
           </Link>
         </li>
         <li>
@@ -27,7 +27,9 @@ class Navbar extends Component {
           </Link>
         </li>
         <li>
-          <Link to="/register">Sign Up</Link>
+          <Link to="/register">
+            Sign Up <i class="fas fa-user-plus" />
+          </Link>
         </li>
       </ul>
     );
