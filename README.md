@@ -14,4 +14,4 @@ Things to do (improvements/feature updates):
 8. Add constants for hardcoded types. [functionality]
 9. Prevent teachers from accessing student routes and vice versa. [functionality]
 10. Create an admin page. [functionality]
-11. Restyle register page. [style]
+11. Restyle sign up page. [style]
