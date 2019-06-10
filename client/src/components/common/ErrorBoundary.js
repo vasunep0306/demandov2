@@ -17,7 +17,7 @@ class ErrorBoundary extends Component {
   }
   render() {
     if (this.state.errorInfo) {
-      localStorage.errorObject = this.state;
+      localStorage.setItem("errorObject", this.state);
       return <Redirect to="/crashed" />;
     }
     return this.props.children;

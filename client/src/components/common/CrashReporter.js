@@ -8,9 +8,8 @@ class CrashReporter extends Component {
   }
 
   sendReport() {
-    console.log(localStorage);
     if (localStorage.errorObject) {
-      sendErrorReport(localStorage);
+      sendErrorReport(localStorage.errorObject);
     } else {
       alert("There is no error to report");
     }
