@@ -4,6 +4,49 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 
+/**
+ * Common component widgets that will use font awesome
+ */
+const LandingsComponent = () => (
+  <div>
+    <Link to="/">
+      <span>
+        <i className="fas fa-home" /> Demando
+      </span>
+    </Link>
+  </div>
+);
+
+const LogInComponent = () => (
+  <div>
+    <Link to="/login">
+      <span>
+        <i className="fas fa-sign-in-alt" /> Log In
+      </span>
+    </Link>
+  </div>
+);
+
+const SignUpComponent = () => (
+  <div>
+    <Link to="/register">
+      <span>
+        <i className="fas fa-user-plus" /> Sign Up
+      </span>
+    </Link>
+  </div>
+);
+
+const ShowMyCourses = () => (
+  <div>
+    <Link to="/displayClasses">
+      <span>
+        <i class="fas fa-binoculars" /> View My Courses
+      </span>
+    </Link>
+  </div>
+);
+
 class Navbar extends Component {
   onLogoutClick(e) {
     e.preventDefault();
@@ -17,19 +60,13 @@ class Navbar extends Component {
     guestBar = (
       <ul>
         <li>
-          <Link to="/">
-            <i class="fas fa-home" /> Demando
-          </Link>
+          <LandingsComponent />
         </li>
         <li>
-          <Link to="/login">
-            Log In <i class="fas fa-sign-in-alt" />
-          </Link>
+          <LogInComponent />
         </li>
         <li>
-          <Link to="/register">
-            Sign Up <i class="fas fa-user-plus" />
-          </Link>
+          <SignUpComponent />
         </li>
       </ul>
     );
@@ -38,16 +75,19 @@ class Navbar extends Component {
       authBar = (
         <ul>
           <li>
-            <Link to="/">Demando</Link>
+            <LandingsComponent />
           </li>
           <li>
-            <Link to="/dashboard">My Page </Link>
+            <Link to="/dashboard">Dashboard </Link>
           </li>
           <li>
-            <Link to="/displayClasses">My Classes </Link>
+            <ShowMyCourses />
           </li>
           <li>
             <a href="" onClick={this.onLogoutClick.bind(this)}>
+              <span>
+                <i className="fas fa-sign-out-alt" />
+              </span>{" "}
               Logout
             </a>
           </li>
@@ -57,13 +97,16 @@ class Navbar extends Component {
       authBar = (
         <ul>
           <li>
-            <Link to="/">Demando</Link>
+            <LandingsComponent />
           </li>
           <li>
             <Link to="/dashboard">My Page </Link>
           </li>
           <li>
             <a href="" onClick={this.onLogoutClick.bind(this)}>
+              <span>
+                <i className="fas fa-sign-out-alt" />
+              </span>{" "}
               Logout
             </a>
           </li>
