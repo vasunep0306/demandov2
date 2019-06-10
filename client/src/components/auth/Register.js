@@ -64,7 +64,7 @@ class Register extends Component {
         <div className="container">
           <br />
           <h1>
-            Please sign up for Demando <small>It's free!</small>
+            Sign up for Demando ...(<small>It's 100% free!</small>)
           </h1>
           <form noValidate onSubmit={this.onSubmit}>
             <div className="form-group">
