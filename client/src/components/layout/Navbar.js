@@ -139,7 +139,9 @@ class Navbar extends Component {
             <LandingsComponent />
           </li>
           <li>
-            <Link to="/dashboard">Dashboard </Link>
+            <Link to="/dashboard" className="nav-link">
+              Dashboard{" "}
+            </Link>
           </li>
           <li className="nav-item">
             <ShowMyCoursesStudents />
@@ -148,7 +150,11 @@ class Navbar extends Component {
             <RegisterForCourse />
           </li>
           <li className="nav-item">
-            <a href="" onClick={this.onLogoutClick.bind(this)}>
+            <a
+              href=""
+              onClick={this.onLogoutClick.bind(this)}
+              className="nav-link"
+            >
               <span>
                 <i className="fas fa-sign-out-alt" />
               </span>{" "}
