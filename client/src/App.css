@@ -23,6 +23,22 @@ ul {
   color: white;
 }
 
+.error404 {
+  position: relative;
+  background: url("https://colorlib.com/wp/wp-content/uploads/sites/2/404-error-template-3.png")
+    center no-repeat;
+  background-size: cover;
+  height: 50vh;
+  margin-top: 0px;
+  margin-bottom: -50px;
+  image-rendering: -webkit-optimize-contrast;
+  -webkit-filter: blur(0);
+  -moz-filter: blur(0);
+  -o-filter: blur(0);
+  -ms-filter: blur(0);
+  filter: blur(0);
+}
+
 .lead {
   color: black;
   font-weight: bold;
