@@ -12,3 +12,4 @@ Things to do (improvements/feature updates):
 6. Add constants for hardcoded types. [functionality] #notstarted
 7. Prevent teachers from accessing student routes and vice versa. [functionality] #notstarted
 8. Create an admin page. [functionality] #notstarted
+9. Add restrictions to who can delete questions. [functionality] #notstarted
