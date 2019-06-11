@@ -9,7 +9,7 @@ import { logoutUser } from "../../actions/authActions";
  */
 const LandingsComponent = () => (
   <div>
-    <Link to="/">
+    <Link to="/" className="nav-link">
       <span>
         <i className="fas fa-home" /> Demando
       </span>
@@ -19,7 +19,7 @@ const LandingsComponent = () => (
 
 const LogInComponent = () => (
   <div>
-    <Link to="/login">
+    <Link to="/login" className="nav-link">
       <span>
         <i className="fas fa-sign-in-alt" /> Log In
       </span>
@@ -29,7 +29,7 @@ const LogInComponent = () => (
 
 const SignUpComponent = () => (
   <div>
-    <Link to="/register">
+    <Link to="/register" className="nav-link">
       <span>
         <i className="fas fa-user-plus" /> Sign Up
       </span>
@@ -39,7 +39,7 @@ const SignUpComponent = () => (
 
 const ShowMyCoursesTeachers = () => (
   <div>
-    <Link to="/displayClasses">
+    <Link to="/displayClasses" className="nav-link">
       <span>
         <i class="fas fa-binoculars" /> View My Courses
       </span>
@@ -49,7 +49,7 @@ const ShowMyCoursesTeachers = () => (
 
 const ShowMyCoursesStudents = () => (
   <div>
-    <Link to="/myClasses">
+    <Link to="/myClasses" className="nav-link">
       <span>
         <i class="fas fa-binoculars" /> View My Courses
       </span>
@@ -59,7 +59,7 @@ const ShowMyCoursesStudents = () => (
 
 const RegisterForCourse = () => (
   <div>
-    <Link to="/registerForClassroom">
+    <Link to="/registerForClassroom" className="nav-link">
       <span>
         <i class="fas fa-plus" /> Register For A Course
       </span>
@@ -69,7 +69,7 @@ const RegisterForCourse = () => (
 
 const CreateCourse = () => (
   <div>
-    <Link to="/createClass">
+    <Link to="/createClass" className="nav-link">
       <span>
         <i class="fas fa-plus" /> Create A Class
       </span>
@@ -88,14 +88,14 @@ class Navbar extends Component {
     let authBar, guestBar;
 
     guestBar = (
-      <ul>
-        <li>
+      <ul className="navbar-nav">
+        <li className="nav-item">
           <LandingsComponent />
         </li>
-        <li>
+        <li className="nav-item">
           <LogInComponent />
         </li>
-        <li>
+        <li className="nav-item">
           <SignUpComponent />
         </li>
       </ul>
@@ -103,21 +103,27 @@ class Navbar extends Component {
 
     if (user.userType === "teacher") {
       authBar = (
-        <ul>
-          <li>
+        <ul className="navbar-nav">
+          <li className="nav-item">
             <LandingsComponent />
           </li>
-          <li>
-            <Link to="/dashboard">Dashboard </Link>
+          <li className="nav-item">
+            <Link to="/dashboard" className="nav-link">
+              Dashboard{" "}
+            </Link>
           </li>
-          <li>
+          <li className="nav-item">
             <CreateCourse />
           </li>
-          <li>
+          <li className="nav-item">
             <ShowMyCoursesTeachers />
           </li>
-          <li>
-            <a href="" onClick={this.onLogoutClick.bind(this)}>
+          <li className="nav-item">
+            <a
+              href=""
+              onClick={this.onLogoutClick.bind(this)}
+              className="nav-link"
+            >
               <span>
                 <i className="fas fa-sign-out-alt" />
               </span>{" "}
@@ -128,20 +134,20 @@ class Navbar extends Component {
       );
     } else {
       authBar = (
-        <ul>
-          <li>
+        <ul className="navbar-nav">
+          <li className="nav-item">
             <LandingsComponent />
           </li>
           <li>
             <Link to="/dashboard">Dashboard </Link>
           </li>
-          <li>
+          <li className="nav-item">
             <ShowMyCoursesStudents />
           </li>
           <li>
             <RegisterForCourse />
           </li>
-          <li>
+          <li className="nav-item">
             <a href="" onClick={this.onLogoutClick.bind(this)}>
               <span>
                 <i className="fas fa-sign-out-alt" />
@@ -153,7 +159,30 @@ class Navbar extends Component {
       );
     }
 
-    return <div className="Navbar">{isAuthenticated ? authBar : guestBar}</div>;
+    return (
+      <div className="Navbar">
+        <nav class="navbar navbar-expand-lg">
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon">
+              <i class="fas fa-bars" />
+            </span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div classNames="navbar-nav">
+              {isAuthenticated ? authBar : guestBar}
+            </div>
+          </div>
+        </nav>
+      </div>
+    );
   }
 }
 
