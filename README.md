@@ -9,7 +9,7 @@ Things to do (improvements/feature updates):
 3. Annomaly detection system... (find malicious users) [functionality] #notstarted
 4. Get rid of extra white space at the bottom of the login page. [style] #notstarted
 5. Center the content for where the student can answer the questions. [style] #notstarted
-6. Style 404 page. [style] #notstarted
+6. Style 404 page. [style] #inprogress
 7. Add constants for hardcoded types. [functionality] #notstarted
 8. Prevent teachers from accessing student routes and vice versa. [functionality] #notstarted
 9. Create an admin page. [functionality] #notstarted
