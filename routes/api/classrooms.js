@@ -264,6 +264,15 @@ router.delete(
           student.save();
         });
       }
+      // remove the questions from the classroom
+      for (let question of classroom.questions) {
+        Question.findByIdAndRemove(question).then(() => {
+          res.json({ success: true });
+        });
+      }
+    });
+    Classroom.findByIdAndRemove(req.params.id).then(() => {
+      return res.json({ success: true });
     });
   }
 );
