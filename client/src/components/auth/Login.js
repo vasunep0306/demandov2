@@ -78,7 +78,7 @@ class Login extends Component {
             <span className="errorMsg">{password}</span>
             <br />
             <br />
-            <input type="submit" />
+            <input value="Log In" type="submit" className="btn btn-primary" />
           </form>
         </div>
       </div>
