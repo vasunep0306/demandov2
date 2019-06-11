@@ -248,6 +248,25 @@ router.get(
  * @desc    delete the given classroom
  * @access  Private: Teachers can only use this route to delete a question
  */
+router.delete(
+  "/:classroomid/deleteClassroom",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Classroom.findById(req.params.classroomid).then(classroom => {
+      // remove the classroom from the students document
+      for (let studentid of classroom.students) {
+        User.findById(studentid).then(student => {
+          student.classrooms = student.classrooms.filter(
+            (classtoremove, index, arr) => {
+              return classroom._id !== classtoremove;
+            }
+          );
+          student.save();
+        });
+      }
+    });
+  }
+);
 
 //END SECTION
 
