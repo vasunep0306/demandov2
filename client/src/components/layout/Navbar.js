@@ -37,11 +37,31 @@ const SignUpComponent = () => (
   </div>
 );
 
-const ShowMyCourses = () => (
+const ShowMyCoursesTeachers = () => (
   <div>
     <Link to="/displayClasses">
       <span>
         <i class="fas fa-binoculars" /> View My Courses
+      </span>
+    </Link>
+  </div>
+);
+
+const ShowMyCoursesStudents = () => (
+  <div>
+    <Link to="/myClasses">
+      <span>
+        <i class="fas fa-binoculars" /> View My Courses
+      </span>
+    </Link>
+  </div>
+);
+
+const RegisterForCourse = () => (
+  <div>
+    <Link to="/registerForClassroom">
+      <span>
+        <i class="fas fa-plus" /> Register For A Course
       </span>
     </Link>
   </div>
@@ -81,7 +101,7 @@ class Navbar extends Component {
             <Link to="/dashboard">Dashboard </Link>
           </li>
           <li>
-            <ShowMyCourses />
+            <ShowMyCoursesTeachers />
           </li>
           <li>
             <a href="" onClick={this.onLogoutClick.bind(this)}>
@@ -100,7 +120,13 @@ class Navbar extends Component {
             <LandingsComponent />
           </li>
           <li>
-            <Link to="/dashboard">My Page </Link>
+            <Link to="/dashboard">Dashboard </Link>
+          </li>
+          <li>
+            <ShowMyCoursesStudents />
+          </li>
+          <li>
+            <RegisterForCourse />
           </li>
           <li>
             <a href="" onClick={this.onLogoutClick.bind(this)}>
