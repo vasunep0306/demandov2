@@ -243,6 +243,12 @@ router.get(
       .catch(err => res.status(500).json(err));
   }
 );
+
+/** @route   DELETE api/classrooms/:classroomid/deleteClassroom
+ * @desc    delete the given classroom
+ * @access  Private: Teachers can only use this route to delete a question
+ */
+
 //END SECTION
 
 // SECTION FOR QUESTIONS
