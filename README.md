@@ -4,7 +4,7 @@ This branch is a totally new branch based on my departure from Canisius College.
 
 Things to do (improvements/feature updates):
 
-1. Delete a classroom. [functionality] #notstarted
+1. Delete a classroom. [functionality] #inprogress
 2. Restyle the teacher dashboard. [style] #notstarted
 3. Annomaly detection system... (find malicious users) [functionality] #notstarted
 4. Get rid of extra white space at the bottom of the login page. [style] #notstarted
