@@ -67,6 +67,16 @@ const RegisterForCourse = () => (
   </div>
 );
 
+const CreateCourse = () => (
+  <div>
+    <Link to="/createClass">
+      <span>
+        <i class="fas fa-plus" /> Create A Class
+      </span>
+    </Link>
+  </div>
+);
+
 class Navbar extends Component {
   onLogoutClick(e) {
     e.preventDefault();
@@ -99,6 +109,9 @@ class Navbar extends Component {
           </li>
           <li>
             <Link to="/dashboard">Dashboard </Link>
+          </li>
+          <li>
+            <CreateCourse />
           </li>
           <li>
             <ShowMyCoursesTeachers />
