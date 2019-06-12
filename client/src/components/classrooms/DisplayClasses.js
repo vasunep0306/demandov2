@@ -44,7 +44,7 @@ class DisplayClasses extends Component {
             <td>{classroom.registeration_pin}</td>
             <td>
               <button
-                className="btn btn-danger"
+                className="btn btn-warning"
                 onClick={this.changePin.bind(this, classroom)}
               >
                 Edit Pin
