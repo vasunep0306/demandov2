@@ -254,24 +254,29 @@ router.delete(
   (req, res) => {
     Classroom.findById(req.params.classroomid).then(classroom => {
       // remove the classroom from the students document
-      for (let studentid of classroom.students) {
-        User.findById(studentid).then(student => {
-          student.classrooms = student.classrooms.filter(
-            (classtoremove, index, arr) => {
-              return classroom._id !== classtoremove;
-            }
-          );
-          student.save();
-        });
+      console.log(classroom);
+      if (!classroom.students.length === 0) {
+        for (let studentid of classroom.students) {
+          User.findById(studentid).then(student => {
+            student.classrooms = student.classrooms.filter(
+              (classtoremove, index, arr) => {
+                return classroom._id !== classtoremove;
+              }
+            );
+            student.save();
+          });
+        }
       }
-      // remove the questions from the classroom
-      for (let question of classroom.questions) {
-        Question.findByIdAndRemove(question).then(() => {
-          res.json({ success: true });
-        });
+      if (!classroom.questions.length === 0) {
+        // remove the questions from the classroom
+        for (let question of classroom.questions) {
+          Question.findByIdAndRemove(question).then(() => {
+            res.json({ success: true });
+          });
+        }
       }
     });
-    Classroom.findByIdAndRemove(req.params.id).then(() => {
+    Classroom.findByIdAndDelete(req.params.classroomid).then(() => {
       return res.json({ success: true });
     });
   }
