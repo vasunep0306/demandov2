@@ -50,6 +50,12 @@ export default function(state = initialState, action) {
         students: action.payload,
         loading: false
       };
+    case "DELETE_CLASSROOM":
+      return {
+        ...state,
+        students: action.payload,
+        loading: false
+      };
     default:
       return state;
   }

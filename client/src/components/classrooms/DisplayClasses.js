@@ -74,6 +74,7 @@ class DisplayClasses extends Component {
                 <th scope="col">Change Course Pin</th>
                 <th scope="col">Current Students</th>
                 <th scope="col">Dynamic Whiteboard</th>
+                <th scope="col">Delete Class</th>
               </tr>
             </thead>
             <tbody>{classroomArea}</tbody>

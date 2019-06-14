@@ -143,6 +143,7 @@ export const removeStudent = (classid, studid) => dispatch => {
   });
 };
 
+// change the pin of the classroom
 export const changeClasspin = (newpin, classid) => dispatch => {
   axios.post(`/api/classrooms/${classid}/changepin`, newpin).then(res => {
     dispatch({
@@ -150,6 +151,24 @@ export const changeClasspin = (newpin, classid) => dispatch => {
       payload: res.data
     });
   });
+};
+
+// delete classroom
+export const deleteClassroom = classid => dispatch => {
+  axios
+    .delete(`/api/classrooms/${classid}/deleteClassroom`)
+    .then(res =>
+      dispatch({
+        type: "DELETE_CLASSROOM",
+        payload: res.data
+      })
+    )
+    .catch(err => {
+      dispatch({
+        type: "DELETE_CLASSROOM",
+        payload: err.response.data
+      });
+    });
 };
 // Set loading state
 export const setClassLoading = () => {
