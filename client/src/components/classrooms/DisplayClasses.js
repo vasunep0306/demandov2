@@ -2,8 +2,11 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { showClassrooms, changeClasspin } from "../../actions/classroomActions";
-import CreateQuestion from "../questions/CreateQuestion";
+import {
+  showClassrooms,
+  changeClasspin,
+  deleteClassroom
+} from "../../actions/classroomActions";
 
 class DisplayClasses extends Component {
   componentDidMount() {
@@ -20,6 +23,17 @@ class DisplayClasses extends Component {
       alert(
         `Successfully changed classpin to ${new_pin}. Please let your students know that the pin was changed`
       );
+      window.location.reload(true);
+    }
+  }
+
+  deleteCourse(classroom) {
+    let certainty = window.confirm(
+      "Are you sure you want to remove this course? The process is irreversable and it will remove all of the data associated with the class. "
+    );
+    if (certainty) {
+      this.props.deleteClassroom(classroom._id);
+      alert("Successfully removed classroom");
       window.location.reload(true);
     }
   }
@@ -47,7 +61,7 @@ class DisplayClasses extends Component {
                 className="btn btn-warning"
                 onClick={this.changePin.bind(this, classroom)}
               >
-                Edit Pin
+                Edit
               </button>
             </td>
             <td>
@@ -57,6 +71,14 @@ class DisplayClasses extends Component {
               <Link to={`/${classroom._id}/showDynamicWhiteboard`}>
                 Go to whiteboard
               </Link>
+            </td>
+            <td>
+              <button
+                className="btn btn-danger"
+                onClick={this.deleteCourse.bind(this, classroom)}
+              >
+                Delete
+              </button>
             </td>
           </tr>
         ));
@@ -74,7 +96,7 @@ class DisplayClasses extends Component {
                 <th scope="col">Change Course Pin</th>
                 <th scope="col">Current Students</th>
                 <th scope="col">Dynamic Whiteboard</th>
-                <th scope="col">Delete Class</th>
+                <th scope="col">Delete Classroom</th>
               </tr>
             </thead>
             <tbody>{classroomArea}</tbody>
@@ -94,6 +116,7 @@ DisplayClasses.propTypes = {
   classrooms: PropTypes.object.isRequired,
   showClassrooms: PropTypes.func.isRequired,
   changeClasspin: PropTypes.func.isRequired,
+  deleteClassroom: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
 
@@ -104,5 +127,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { showClassrooms, changeClasspin }
+  { showClassrooms, changeClasspin, deleteClassroom }
 )(withRouter(DisplayClasses));
