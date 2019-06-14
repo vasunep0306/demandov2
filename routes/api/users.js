@@ -167,8 +167,7 @@ router.get(
           Classroom.find({ instructor: user._id }).then(classrooms => {
             if (classrooms.length === 0) {
               return res.json({
-                noclasses:
-                  "you don't have any classrooms at the moment, please consider adding some"
+                noclasses: "No courses found"
               });
             } else {
               res.json(classrooms);
