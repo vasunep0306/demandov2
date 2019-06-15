@@ -1,11 +1,3 @@
-import isEmpty from "../validation/is-empty";
-import {
-  GET_QUESTIONS,
-  LOADING,
-  GET_CURRENT_QUESTION,
-  SET_CURRENT_QUESTION
-} from "../actions/types";
-
 const initialState = {
   questions: null,
   question: null,
@@ -15,18 +7,18 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case LOADING:
+    case "LOADING":
       return {
         ...state,
         loading: true
       };
-    case GET_QUESTIONS:
+    case "GET_QUESTIONS":
       return {
         ...state,
         questions: action.payload,
         loading: false
       };
-    case GET_CURRENT_QUESTION:
+    case "GET_CURRENT_QUESTION":
       return {
         ...state,
         question: action.payload,
@@ -38,7 +30,7 @@ export default function(state = initialState, action) {
         question: action.payload,
         loading: false
       };
-    case SET_CURRENT_QUESTION:
+    case "SET_CURRENT_QUESTION":
       return {
         ...state,
         question: action.payload,
