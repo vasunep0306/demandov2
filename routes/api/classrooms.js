@@ -2,6 +2,8 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
+
+// Validation functions
 const validateClassroomInput = require("../../validation/classroom");
 const validateNewQuestion = require("../../validation/questions");
 const validateAnswer = require("../../validation/answer");
