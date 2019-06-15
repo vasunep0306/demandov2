@@ -728,10 +728,18 @@ router.post(
       return res.status(400).json(errors);
     }
 
+    // create the discussion object
     const DiscussionData = {};
     DiscussionData.classroom = req.params.classroomid;
     DiscussionData.discussionTopic = req.body.discussionTopic;
     DiscussionData.discussionSubject = req.body.discussionSubject;
+    DiscussionData.discussionBody = req.body.discussionBody;
+    DiscussionData.author = req.user._id;
+
+    // create the discussion
+    new Discussion(DiscussionData)
+      .save()
+      .then(discussion => res.json(discussion));
   }
 );
 
