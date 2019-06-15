@@ -23,6 +23,12 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
+  discussionPosts: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "discussions"
+    }
+  ],
   classrooms: [
     {
       type: Schema.Types.ObjectId,

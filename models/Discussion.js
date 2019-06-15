@@ -6,7 +6,14 @@ const DiscussionSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "classrooms"
   },
-  topic: {
+  discussionTopic: {
+    type: String,
+    required: true
+  },
+  discussionSubject: {
+    type: String
+  },
+  discussionBody: {
     type: String,
     required: true
   },
