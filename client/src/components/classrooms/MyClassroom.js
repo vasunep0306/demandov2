@@ -59,37 +59,30 @@ class MyClassroom extends Component {
       const { classroom, loading } = this.props.classrooms;
       const { question } = this.props.questions;
       const questionsLoading = this.props.questions.loading;
-      let classroomArea, finalClassroomArea;
+      let classroomArea, finalClassroomArea, header;
       let errors = this.state.errors;
       if (!isEmpty(errors.alreadyAnswered)) {
         alert(errors.alreadyAnswered);
       }
       if (classroom === null || loading) {
-        classroomArea = <h1>Loading</h1>;
+        header = <h2>Loading</h2>;
+        classroomArea = <p>Wait for it to load</p>;
       } else if (classroom.noclassroom) {
-        classroomArea = <h1>{classroom.noclassroom}</h1>;
+        header = <h2>No classrooms.</h2>;
+        classroomArea = <p>{classroom.noclassroom}</p>;
       } else {
         if (question == null || questionsLoading) {
-          classroomArea = <h1>Question is loading</h1>;
+          header = <h2>Loading</h2>;
+          classroomArea = <p>Question is loading</p>;
         } else if (question.noCurrentQuestion) {
-          classroomArea = (
-            <div>
-              <h1>
-                Welcome to <em>{classroom.classtitle}</em>
-              </h1>
-              <h3>
-                {question.noCurrentQuestion}. Please check back with your
-                professor
-              </h3>
-            </div>
-          );
+          header = <h2>{question.noCurrentQuestion}</h2>;
+          classroomArea = <h3>Please check back with your professor</h3>;
         } else {
           // we want an html form where the student can answer the question.
-          let header = <h1>{question.questionbody}</h1>;
+          header = <h2>{question.questionbody}</h2>;
           if (question.questiontype === "textual response") {
             classroomArea = (
               <div>
-                {header}
                 <br />
                 <textarea
                   name="responsebody"
@@ -103,23 +96,21 @@ class MyClassroom extends Component {
             let choices = question.answerchoices;
             let choiceArray;
             choiceArray = choices.map(choice => (
-              <div>
+              <label htmlFor="responsebody" class="radio-inline">
                 <input
+                  class="radioanswerchoice"
                   type="radio"
                   name="responsebody"
-                  className="form-control"
                   value={choice}
                   checked={choice === this.state.responsebody}
                   onChange={this.onAnswerChange}
                 />
-                {choice}
-                <br />
-              </div>
+                <span className="answerchoice">{choice}</span>
+              </label>
             ));
 
             classroomArea = (
               <div>
-                {header}
                 {choiceArray}
                 <input type="submit" disabled={!this.enabled} />
               </div>
@@ -127,7 +118,8 @@ class MyClassroom extends Component {
           }
         }
         finalClassroomArea = (
-          <div>
+          <div className="container">
+            {header}
             <form onSubmit={this.onSubmit.bind(this)}>{classroomArea}</form>
           </div>
         );

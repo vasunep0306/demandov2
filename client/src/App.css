@@ -208,6 +208,13 @@ td {
   padding: 30px 50px 30px 50px;
 }
 
+.answerchoice {
+  margin-right: 40px;
+}
+.radioanswerchoice {
+  margin-right: 7px;
+}
+
 #sendreport {
   margin: 10px;
 }
