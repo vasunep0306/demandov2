@@ -11,7 +11,8 @@ const DiscussionSchema = new Schema({
     required: true
   },
   discussionSubject: {
-    type: String
+    type: String,
+    required: true
   },
   discussionBody: {
     type: String,
