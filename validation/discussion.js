@@ -17,6 +17,9 @@ module.exports = function validateDiscussionInput(data) {
     : "";
 
   // Validate discussion topic
+  if (Validator.isEmpty(data.discussionTopic)) {
+    errors.discussionTopic = "The discussion topic field should not be empty.";
+  }
   // Validate discussion subject
   // Validate discussion body
 
