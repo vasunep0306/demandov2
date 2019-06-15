@@ -89,7 +89,11 @@ class MyClassroom extends Component {
                   value={this.state.responsebody}
                   onChange={this.onChange}
                 />
-                <input type="submit" disabled={!this.enabled} />
+                <input
+                  type="submit"
+                  disabled={!this.enabled}
+                  className="btn btn-success"
+                />
               </div>
             );
           } else {
@@ -112,7 +116,11 @@ class MyClassroom extends Component {
             classroomArea = (
               <div>
                 {choiceArray}
-                <input type="submit" disabled={!this.enabled} />
+                <input
+                  type="submit"
+                  disabled={!this.enabled}
+                  className="btn btn-success"
+                />
               </div>
             );
           }
