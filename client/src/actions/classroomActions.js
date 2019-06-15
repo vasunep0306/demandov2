@@ -1,12 +1,3 @@
-import {
-  GET_CLASSROOM,
-  GET_CLASSROOMS,
-  GET_STUDENTS,
-  REMOVE_STUDENT,
-  REGISTER_FOR_CLASSROOM,
-  GET_ERRORS,
-  LOADING
-} from "./types";
 import axios from "axios";
 
 export const createClassroom = (classroomData, history) => dispatch => {
@@ -15,7 +6,7 @@ export const createClassroom = (classroomData, history) => dispatch => {
     .then(res => history.push("/displayClasses"))
     .catch(err =>
       dispatch({
-        type: GET_ERRORS,
+        type: "GET_ERRORS",
         payload: err.response.data
       })
     );
@@ -26,13 +17,13 @@ export const showAllClassrooms = () => dispatch => {
     .get(`api/classrooms/`)
     .then(res =>
       dispatch({
-        type: GET_CLASSROOMS,
+        type: "GET_CLASSROOMS",
         payload: res.data
       })
     )
     .catch(err =>
       dispatch({
-        type: GET_CLASSROOMS,
+        type: "GET_CLASSROOMS",
         payload: err.response.data
       })
     );
@@ -43,13 +34,13 @@ export const showClassrooms = id => dispatch => {
     .get(`/api/users/${id}/classrooms`)
     .then(res =>
       dispatch({
-        type: GET_CLASSROOMS,
+        type: "GET_CLASSROOMS",
         payload: res.data
       })
     )
     .catch(err =>
       dispatch({
-        type: GET_CLASSROOMS,
+        type: "GET_CLASSROOMS",
         payload: null
       })
     );
@@ -61,13 +52,13 @@ export const getClass = id => dispatch => {
     .get(`/api/classrooms/${id}/classroom`)
     .then(res =>
       dispatch({
-        type: GET_CLASSROOM,
+        type: "GET_CLASSROOM",
         payload: res.data
       })
     )
     .catch(err =>
       dispatch({
-        type: GET_CLASSROOM,
+        type: "GET_CLASSROOM",
         payload: err.response.data
       })
     );
@@ -82,14 +73,14 @@ export const registerForClassroom = (
     .post(`/api/classrooms/register/${classid}`, passcode)
     .then(res => {
       dispatch({
-        type: REGISTER_FOR_CLASSROOM,
+        type: "REGISTER_FOR_CLASSROOM",
         payload: res.data
       });
       history.push("/myClasses");
     })
     .catch(err => {
       dispatch({
-        type: REGISTER_FOR_CLASSROOM,
+        type: "REGISTER_FOR_CLASSROOM",
         payload: err.response.data
       });
     });
@@ -101,13 +92,13 @@ export const myClassrooms = id => dispatch => {
     .get(`/api/classrooms/${id}/myclasses`)
     .then(res => {
       dispatch({
-        type: GET_CLASSROOMS,
+        type: "GET_CLASSROOMS",
         payload: res.data
       });
     })
     .catch(err => {
       dispatch({
-        type: GET_CLASSROOMS,
+        type: "GET_CLASSROOMS",
         payload: err.response.data
       });
     });
@@ -120,13 +111,13 @@ export const getStudents = id => dispatch => {
     .get(`/api/classrooms/${id}/getstudents`)
     .then(res => {
       dispatch({
-        type: GET_STUDENTS,
+        type: "GET_STUDENTS",
         payload: res.data
       });
     })
     .catch(err => {
       dispatch({
-        type: GET_STUDENTS,
+        type: "GET_STUDENTS",
         payload: err.response.data
       });
     });
@@ -137,7 +128,7 @@ export const removeStudent = (classid, studid) => dispatch => {
   dispatch(setClassLoading());
   axios.post(`/api/classrooms/${classid}/${studid}/removestudent`).then(res => {
     dispatch({
-      type: REMOVE_STUDENT,
+      type: "REMOVE_STUDENT",
       payload: res.data
     });
   });
@@ -173,6 +164,6 @@ export const deleteClassroom = classid => dispatch => {
 // Set loading state
 export const setClassLoading = () => {
   return {
-    type: LOADING
+    type: "LOADING"
   };
 };

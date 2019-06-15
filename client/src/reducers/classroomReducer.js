@@ -1,12 +1,5 @@
 import isEmpty from "../validation/is-empty";
-import {
-  GET_CLASSROOMS,
-  LOADING,
-  GET_CLASSROOM,
-  GET_STUDENTS,
-  REGISTER_FOR_CLASSROOM,
-  REMOVE_STUDENT
-} from "../actions/types";
+
 const initialState = {
   classroom: null,
   classrooms: null,
@@ -15,36 +8,36 @@ const initialState = {
 };
 export default function(state = initialState, action) {
   switch (action.type) {
-    case LOADING:
+    case "LOADING":
       return {
         ...state,
         loading: true
       };
-    case GET_CLASSROOMS:
+    case "GET_CLASSROOMS":
       return {
         ...state,
         classrooms: action.payload,
         loading: false
       };
-    case GET_CLASSROOM:
+    case "GET_CLASSROOM":
       return {
         ...state,
         classroom: action.payload,
         loading: false
       };
-    case REGISTER_FOR_CLASSROOM:
+    case "REGISTER_FOR_CLASSROOM":
       return {
         ...state,
         classroom: action.payload,
         loading: false
       };
-    case GET_STUDENTS:
+    case "GET_STUDENTS":
       return {
         ...state,
         students: action.payload,
         loading: false
       };
-    case REMOVE_STUDENT:
+    case "REMOVE_STUDENT":
       return {
         ...state,
         students: action.payload,
