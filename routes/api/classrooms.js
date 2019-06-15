@@ -7,9 +7,12 @@ const validateNewQuestion = require("../../validation/questions");
 const validateAnswer = require("../../validation/answer");
 const similar = require("../../validation/similar");
 const shuffle = require("../../validation/shuffle");
+
+// Mongo Document Models
 const User = require("../../models/User"); // Load User model
 const Classroom = require("../../models/Classroom"); // Load Classroom model
 const Question = require("../../models/Question"); // Load Question model
+const Discussion = require("../../models/Discussion"); // Load Discussion model
 
 //SECTION FOR THE FIRST TEST ROUTE
 /**
