@@ -752,6 +752,22 @@ router.post(
  * @desc    Get the discussions for the classroom.
  * @access  Private: Only teachers and students can use this route.
  */
+router.get(
+  ":classroomid/getdiscussions",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Classroom.findById(req.params.classroomid).then(classroom => {
+      // Check to see if the classroom exists.
+      if (!classroom) {
+        return res
+          .status(400)
+          .json({ "no classroom": "This classroom doesn't exist." });
+      }
+      // Check to see if there are ANY discussions.
+      // If both of the above conditions are true, then display the discussions.
+    });
+  }
+);
 
 //END SECTION
 module.exports = router;

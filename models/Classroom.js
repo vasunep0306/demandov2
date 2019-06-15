@@ -44,7 +44,13 @@ const ClassroomSchema = new Schema({
   currentQuestion: {
     type: Schema.Types.ObjectId,
     ref: "questions"
-  }
+  },
+  discussions: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "discussions"
+    }
+  ]
 });
 
 module.exports = Classroom = mongoose.model("classrooms", ClassroomSchema);

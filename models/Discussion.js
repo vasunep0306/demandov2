@@ -25,7 +25,23 @@ const DiscussionSchema = new Schema({
   author: {
     type: Schema.Types.ObjectId,
     ref: "users"
-  }
+  },
+  comments: [
+    {
+      user: {
+        name: {
+          type: String
+        },
+        email: {
+          type: String
+        }
+      },
+      comment: {
+        type: String,
+        required: true
+      }
+    }
+  ]
 });
 
 module.exports = Discussion = mongoose.model("discussions", DiscussionSchema);
