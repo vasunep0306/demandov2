@@ -12,6 +12,11 @@ const ClassroomSchema = new Schema({
     required: true
   },
 
+  date: {
+    type: Date,
+    default: Date.now
+  },
+
   classtitle: {
     type: String,
     required: true

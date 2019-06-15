@@ -9,6 +9,10 @@ const QuestionSchema = new Schema({
   classtitle: {
     type: String
   },
+  date: {
+    type: Date,
+    default: Date.now
+  },
   questiontype: {
     type: String,
     required: true
