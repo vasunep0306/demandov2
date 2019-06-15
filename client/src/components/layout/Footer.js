@@ -1,9 +1,42 @@
 import React from "react";
 
+const footerStyle = {
+  backgroundColor: "black",
+  fontSize: "20px",
+  color: "white",
+  borderTop: "1px solid #E7E7E7",
+  textAlign: "center",
+  padding: "20px",
+  position: "fixed",
+  left: "0",
+  bottom: "0",
+  height: "70px",
+  width: "100%"
+};
+const phantomStyle = {
+  display: "block",
+  padding: "20px",
+  height: "60px",
+  width: "100%"
+};
+
+function Footer({ children }) {
+  return (
+    <div>
+      <div style={phantomStyle} />
+      <div style={footerStyle}>{children}</div>
+    </div>
+  );
+}
+
 export default () => {
   return (
-    <footer id="Footer" className="bg-dark text-white mt-5 p-4 text-center">
-      Copyright &copy; {new Date().getFullYear()} Demando
-    </footer>
+    <div>
+      <Footer>
+        <span>Copyright &copy; {new Date().getFullYear()} Demando</span>
+      </Footer>
+    </div>
   );
 };
+
+//Copyright &copy; {new Date().getFullYear()} Demando
