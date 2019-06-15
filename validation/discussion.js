@@ -21,7 +21,14 @@ module.exports = function validateDiscussionInput(data) {
     errors.discussionTopic = "The discussion topic field should not be empty.";
   }
   // Validate discussion subject
+  if (Validator.isEmpty(data.discussionSubject)) {
+    errors.discussionSubject =
+      "The discussion subject field should not be empty.";
+  }
   // Validate discussion body
+  if (Validator.isEmpty(data.discussionBody)) {
+    errors.discussionBody = "The discussion body field should not be empty.";
+  }
 
   return {
     errors,
