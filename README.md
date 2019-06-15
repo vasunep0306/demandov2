@@ -12,3 +12,4 @@ Things to do (improvements/feature updates):
 6. Prevent teachers from accessing student routes and vice versa. [functionality] #notstarted
 7. Create an admin page. [functionality] #notstarted
 8. Add restrictions to who can delete questions. [functionality] #notstarted
+9. If student is already enrolled, tell them they are in an alert box. [functionality] #notstarted
