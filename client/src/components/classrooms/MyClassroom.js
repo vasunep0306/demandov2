@@ -85,10 +85,12 @@ class MyClassroom extends Component {
               <div>
                 <br />
                 <textarea
+                  class="form-control"
                   name="responsebody"
                   value={this.state.responsebody}
                   onChange={this.onChange}
                 />
+                <br />
                 <input
                   type="submit"
                   disabled={!this.enabled}
