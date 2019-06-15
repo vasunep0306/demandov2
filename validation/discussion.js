@@ -16,6 +16,10 @@ module.exports = function validateDiscussionInput(data) {
     ? data.discussionBody
     : "";
 
+  // Validate discussion topic
+  // Validate discussion subject
+  // Validate discussion body
+
   return {
     errors,
     isValid: isEmpty(errors)
