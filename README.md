@@ -9,4 +9,4 @@ Things to do (improvements/feature updates):
 3. Prevent teachers from accessing student routes and vice versa. [functionality] #notstarted
 4. Create an admin page. [functionality] #notstarted
 5. If student is already enrolled, tell them they are in an alert box. [functionality] #notstarted
-6. For each course, add a discussion board where teachers and students can collaborate. There should be no restrictions [functionality] #notstarted
+6. For each course, add a discussion board where teachers and students can collaborate. There should be no restrictions as for user types. [functionality] #notstarted
