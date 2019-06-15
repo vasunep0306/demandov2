@@ -7,6 +7,8 @@ const passport = require("passport");
 const validateClassroomInput = require("../../validation/classroom");
 const validateNewQuestion = require("../../validation/questions");
 const validateAnswer = require("../../validation/answer");
+
+// Helper comparision functions
 const similar = require("../../validation/similar");
 const shuffle = require("../../validation/shuffle");
 
