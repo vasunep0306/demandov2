@@ -727,6 +727,11 @@ router.post(
     if (!isValid) {
       return res.status(400).json(errors);
     }
+
+    const DiscussionData = {};
+    DiscussionData.classroom = req.params.classroomid;
+    DiscussionData.discussionTopic = req.body.discussionTopic;
+    DiscussionData.discussionSubject = req.body.discussionSubject;
   }
 );
 
