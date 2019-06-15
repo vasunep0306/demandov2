@@ -641,6 +641,11 @@ router.delete(
   "/:classroomid/questions/:questionid",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+    if (req.user.userType === "student") {
+      return res
+        .status(403)
+        .json({ forbidden: "students are not allowed to do this" });
+    }
     Classroom.findById(req.params.classroomid)
       .then(classroom => {
         const questionid = req.params.questionid;
