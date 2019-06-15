@@ -713,8 +713,13 @@ router.post(
  */
 
 /** @route   POST api/classrooms/:discussionid/addcomment
- * @desc    Remove a student from a given classroom.
- * @access  Private: Teachers use this route to delete a given student from the classroom
+ * @desc    Add comment to discussion
+ * @access  Private: Only teachers and students can use this route.
+ */
+
+/** @route   GET api/classrooms/:classroomid/getdiscussions
+ * @desc    Get the discussions for the classroom.
+ * @access  Private: Only teachers and students can use this route.
  */
 
 //END SECTION
