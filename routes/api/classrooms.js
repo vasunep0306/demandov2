@@ -719,6 +719,14 @@ router.post(
  * @access  Private: Only teachers and students can use this route.
  */
 
+router.post(
+  "/:classroomid/createDiscussion",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validateDiscussionImput(req.body);
+  }
+);
+
 /** @route   POST api/classrooms/:discussionid/addcomment
  * @desc    Add comment to discussion
  * @access  Private: Only teachers and students can use this route.
