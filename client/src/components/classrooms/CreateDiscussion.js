@@ -32,6 +32,10 @@ class CreateDiscussion extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  onSubmit(e) {
+    e.preventDefault();
+  }
+
   render() {
     let { classroom, loading } = this.props.classrooms;
     // get errors if any
