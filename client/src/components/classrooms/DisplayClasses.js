@@ -95,7 +95,7 @@ class DisplayClasses extends Component {
                 <th scope="col">Course Registeration Password</th>
                 <th scope="col">Change Course Pin</th>
                 <th scope="col">Current Students</th>
-                <th scope="col">Dynamic Whiteboard</th>
+                <th scope="col">Discussion Page</th>
                 <th scope="col">Delete Classroom</th>
               </tr>
             </thead>
