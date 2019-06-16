@@ -739,12 +739,16 @@ router.post(
 
     // create the discussion
     new Discussion(DiscussionData).save().then(discussion => {
-      Classroom.findById(req.params.id).then(classroom => {
+      Classroom.findById(req.params.classroomid).then(classroom => {
         if (!classroom) {
           return res.status(404).json("No classroom");
         }
         classroom.discussions.push(discussion);
         classroom.save().then(classroom => res.json(classroom));
+        User.findById(req.user._id).then(user => {
+          user.discussionPosts.push(discussion);
+          user.save().then(user => res.json(user));
+        });
       });
     });
   }
@@ -788,11 +792,16 @@ router.post(
   "/:discussionid/addComment",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    const { errors, isValid } = validateCommentImput(req.body);
+    const { errors, isValid } = validateCommentInput(req.body);
     if (!isValid) {
       return res.status(400).json(errors);
     }
     Discussion.findById(req.params.discussionid).then(discussion => {
+      if (!discussion) {
+        return res
+          .status(404)
+          .json({ "no discussion": "There is no discussion with that ID" });
+      }
       // create comment object
       User.findById(req.user._id).then(user => {
         const commentObj = {};
@@ -800,7 +809,7 @@ router.post(
         commentObj.comment = req.body.comment;
         discussion.comments.push(commentObj);
         discussion.save().then(discussion => {
-          res.status(200).json({ discussion });
+          return res.status(200).json(discussion);
         });
       });
     });

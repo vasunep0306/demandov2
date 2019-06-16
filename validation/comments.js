@@ -5,10 +5,10 @@ const isEmpty = require("./isEmpty");
 module.exports = function validateCommentInput(data) {
   let errors = {};
   filter = new Filter();
-  data.comment = !isEmpty(data.classcode) ? filter.clean(data.comment) : "";
+  data.comment = !isEmpty(data.comment) ? filter.clean(data.comment) : "";
 
   if (Validator.isEmpty(data.comment)) {
-    errors.classcode = "Comment field should not be empty.";
+    errors.comment = "Comment field should not be empty.";
   }
 
   return {
