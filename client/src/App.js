@@ -35,7 +35,6 @@ import RegisterForClassrooms from "./components/classrooms/RegisterForClassrooms
 import ShowStudentClassrooms from "./components/classrooms/ShowStudentClassrooms";
 import MyClassroom from "./components/classrooms/MyClassroom";
 import ClassList from "./components/classrooms/ClassList";
-import Whiteboard from "./components/classrooms/Whiteboard";
 
 // Test Components
 import TriggerError from "./components/test/TriggerError";
@@ -113,7 +112,7 @@ class App extends Component {
                     path="/:classroomid/:questionid/editQuestion"
                     component={EditQuestion}
                   />
-                  {/* teacher route for accessing whiteboard */}
+                  {/* teacher route for accessing discussion page */}
                   <PrivateRoute
                     exact
                     path="/:classroomid/showDynamicWhiteboard"
