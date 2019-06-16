@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getClass } from "../../actions/classroomActions";
+import isEmpty from "../../validation/is-empty";
 
 class CreateDiscussion extends Component {
   constructor() {
@@ -33,7 +34,17 @@ class CreateDiscussion extends Component {
 
   render() {
     let { classroom, loading } = this.props.classrooms;
+    // get errors if any
     let { errors } = this.state;
+    let discussionTopic = !isEmpty(errors.discussionTopic)
+        ? errors.discussionTopic
+        : "",
+      discussionSubject = !isEmpty(errors.discussionSubject)
+        ? errors.discussionSubject
+        : "",
+      discussionBody = !isEmpty(errors.discussionBody)
+        ? errors.discussionBody
+        : "";
     let classroomForm;
     if (classroom === null || loading) {
       classroomForm = <div>Loading</div>;
@@ -53,6 +64,7 @@ class CreateDiscussion extends Component {
                 value={this.state.discussionTopic}
                 onChange={this.onChange}
               />
+              <span className="errorMsg">{discussionTopic}</span>
             </div>
             <div className="form-group">
               <label htmlFor="pwd">Discussion Subject:</label>
@@ -64,6 +76,7 @@ class CreateDiscussion extends Component {
                 value={this.state.discussionSubject}
                 onChange={this.onChange}
               />
+              <span className="errorMsg">{discussionSubject}</span>
             </div>
             <div className="form-group">
               <label htmlFor="comment">Discussion Body:</label>
@@ -75,6 +88,7 @@ class CreateDiscussion extends Component {
                 value={this.state.discussionBody}
                 onChange={this.onChange}
               />
+              <span className="errorMsg">{discussionBody}</span>
             </div>
             <button type="submit" className="btn btn-primary">
               Post To Discussion Board
