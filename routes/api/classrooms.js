@@ -743,12 +743,8 @@ router.post(
         if (!classroom) {
           return res.status(404).json("No classroom");
         }
-        classroom.push(discussion);
-        classroom
-          .save()
-          .then(classroom =>
-            res.json({ success: "successfully created post" })
-          );
+        classroom.discussions.push(discussion);
+        classroom.save().then(classroom => res.json(classroom));
       });
     });
   }
@@ -802,7 +798,7 @@ router.post(
         const commentObj = {};
         commentObj.user = { name: user.name, email: user.email };
         commentObj.comment = req.body.comment;
-        discussion.push(commentObj);
+        discussion.comments.push(commentObj);
         discussion.save().then(discussion => {
           res.status(200).json({ discussion });
         });
