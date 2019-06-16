@@ -15,30 +15,29 @@ class DiscussionList extends Component {
     let discussionList;
     let headerTitle;
     let { discussions, classroom, loading } = this.props.classrooms;
+    console.log(discussions);
     if (classroom === null || loading) {
-      discussionList = <h1>Loading</h1>;
+      discussionList = <div>Loading</div>;
       headerTitle = "Page is still loading";
     } else if (discussions === null || loading) {
-      discussionList = <h1>Loading</h1>;
+      discussionList = <div>Loading</div>;
       headerTitle = "Page is still loading";
     } else if (discussions.nodiscussions) {
       headerTitle = `Discussions for ${classroom.classtitle}`;
-      discussionList = <h1>{discussions.nodiscussions}</h1>;
+      discussionList = <div>{discussions.nodiscussions}</div>;
     } else {
       headerTitle = `Discussions for ${classroom.classtitle}`;
       discussions = Array.from(this.props.classrooms.discussions);
-      discussionList = discussions.map(discussion => {
-        <div>
-          <tr>
-            <td>{getAuthor(discussion.author)}</td>
-            <td>{discussion.discussionTopic}</td>
-            <td>
-              <a href="#">Go To Discussion</a>
-            </td>
-            <td>{discussion.date}</td>
-          </tr>
-        </div>;
-      });
+      discussionList = discussions.map(discussion => (
+        <tr>
+          <td>{discussion.author.data.name}</td>
+          <td>{discussion.discussionTopic}</td>
+          <td>
+            <a href="#">Go To Discussion</a>
+          </td>
+          <td>{discussion.date}</td>
+        </tr>
+      ));
     }
 
     return (

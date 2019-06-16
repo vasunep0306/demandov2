@@ -735,7 +735,9 @@ router.post(
     DiscussionData.discussionTopic = req.body.discussionTopic;
     DiscussionData.discussionSubject = req.body.discussionSubject;
     DiscussionData.discussionBody = req.body.discussionBody;
-    DiscussionData.author = req.user._id;
+    DiscussionData.author = {
+      data: { name: req.user.name, email: req.user.email }
+    };
 
     // create the discussion
     new Discussion(DiscussionData).save().then(discussion => {

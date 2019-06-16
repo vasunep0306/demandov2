@@ -23,8 +23,10 @@ const DiscussionSchema = new Schema({
     default: Date.now
   },
   author: {
-    type: Schema.Types.ObjectId,
-    ref: "users"
+    data: {
+      name: String,
+      email: String
+    }
   },
   comments: [
     {
