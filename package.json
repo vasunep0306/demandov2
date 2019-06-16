@@ -13,6 +13,7 @@
   "author": "Vasu Neppalli",
   "license": "MIT",
   "dependencies": {
+    "bad-words": "^3.0.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
     "concurrently": "^3.5.1",
