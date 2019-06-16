@@ -4,7 +4,11 @@ import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getClass } from "../../actions/classroomActions";
 
-class CreateDiscussion extends Component {}
+class CreateDiscussion extends Component {
+  componentDidMount() {
+    this.props.getClass(this.props.match.params.classroomid);
+  }
+}
 
 CreateDiscussion.propTypes = {
   classroom: PropTypes.object.isRequired,
