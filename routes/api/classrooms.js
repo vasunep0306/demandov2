@@ -772,6 +772,8 @@ router.get(
           });
         }
         // If both of the above conditions are false, then display the discussions.
+        const discussions = classroom.discussions;
+        return res.status(200).json(discussions);
       });
   }
 );
