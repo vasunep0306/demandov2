@@ -743,11 +743,6 @@ router.post(
   }
 );
 
-/** @route   POST api/classrooms/:discussionid/addcomment
- * @desc    Add comment to discussion
- * @access  Private: Only teachers and students can use this route.
- */
-
 /** @route   GET api/classrooms/:classroomid/getdiscussions
  * @desc    Get the discussions for the classroom.
  * @access  Private: Only teachers and students can use this route.
@@ -777,6 +772,16 @@ router.get(
       });
   }
 );
+
+/** @route   POST api/classrooms/:discussionid/addcomment
+ * @desc    Add comment to discussion
+ * @access  Private: Only teachers and students can use this route.
+ */
+
+/** @route   DELETE api/classrooms/:discussionid/addcomment
+ * @desc    delete the given discussion
+ * @access  Private: Only teachers can use this feature
+ */
 
 //END SECTION
 module.exports = router;
