@@ -17,3 +17,8 @@ const mapStateToProps = state => ({
   errors: state.errors,
   classrooms: state.classrooms
 });
+
+export default connect(
+  mapStateToProps,
+  { getClass }
+)(withRouter(CreateDiscussion));
