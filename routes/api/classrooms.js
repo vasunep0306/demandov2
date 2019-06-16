@@ -756,21 +756,23 @@ router.get(
   ":classroomid/getdiscussions",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Classroom.findById(req.params.classroomid).then(classroom => {
-      // Check to see if the classroom exists.
-      if (!classroom) {
-        return res
-          .status(400)
-          .json({ "no classroom": "This classroom doesn't exist." });
-      }
-      // Check to see if there are ANY discussions.
-      if (classroom.discussions.length === 0) {
-        return res.json({
-          "no discussions": "This course has no discussions yet."
-        });
-      }
-      // If both of the above conditions are false, then display the discussions.
-    });
+    Classroom.findById(req.params.classroomid)
+      .populate("discussions")
+      .then(classroom => {
+        // Check to see if the classroom exists.
+        if (!classroom) {
+          return res
+            .status(400)
+            .json({ "no classroom": "This classroom doesn't exist." });
+        }
+        // Check to see if there are ANY discussions.
+        if (classroom.discussions.length === 0) {
+          return res.json({
+            "no discussions": "This course has no discussions yet."
+          });
+        }
+        // If both of the above conditions are false, then display the discussions.
+      });
   }
 );
 
