@@ -76,8 +76,7 @@ DiscussionList.propTypes = {
   getDiscussions: PropTypes.func.isRequired,
   discussions: PropTypes.array.isRequired,
   getClass: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  removeStudent: PropTypes.func.isRequired
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
