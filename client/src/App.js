@@ -115,7 +115,7 @@ class App extends Component {
                   {/* teacher route for accessing discussion page */}
                   {/* <PrivateRoute
                     exact
-                    path="/:classroomid/showDynamicWhiteboard"
+                    path="/:classroomid/discussionPage"
                     component={Whiteboard}
                   /> */}
                   {/* Student route for showing his/her registered courses */}
