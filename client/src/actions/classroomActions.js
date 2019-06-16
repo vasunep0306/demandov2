@@ -144,6 +144,9 @@ export const changeClasspin = (newpin, classid) => dispatch => {
   });
 };
 
+// discussion action
+export const getAuthor = user_id => dispatch => {};
+
 // delete classroom
 export const deleteClassroom = classid => dispatch => {
   axios

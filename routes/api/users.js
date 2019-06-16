@@ -138,7 +138,9 @@ router.get(
   (req, res) => {
     User.findById(req.params.id).then(user => {
       if (!user) {
-        return res.status(404).json({ noUser: "There is no user" });
+        return res
+          .status(404)
+          .json({ noUser: "There is no user with that id." });
       }
       return res.status(200).json(user);
     });
