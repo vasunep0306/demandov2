@@ -8,7 +8,7 @@ import { getDiscussions, getClass } from "../../actions/classroomActions";
 class DiscussionList extends Component {
   componentDidMount() {
     this.props.getClass(this.props.match.params.classroomid);
-    this.props.getDiscussion(this.props.match.params.classroomid);
+    this.props.getDiscussions(this.props.match.params.classroomid);
   }
 
   render() {

@@ -145,7 +145,23 @@ export const changeClasspin = (newpin, classid) => dispatch => {
 };
 
 // classroom discussion action
-export const getDiscussions = classroom_id => dispatch => {};
+export const getDiscussions = classroom_id => dispatch => {
+  dispatch(setClassLoading());
+  axios
+    .get(`/api/classrooms/${classroom_id}/getdiscussions`)
+    .then(res => {
+      dispatch({
+        type: "GET_DISCUSSIONS",
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: "GET_DISCUSSIONS",
+        payload: err.response.data
+      });
+    });
+};
 
 // delete classroom
 export const deleteClassroom = classid => dispatch => {
