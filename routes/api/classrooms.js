@@ -764,6 +764,11 @@ router.get(
           .json({ "no classroom": "This classroom doesn't exist." });
       }
       // Check to see if there are ANY discussions.
+      if (classroom.discussions.length === 0) {
+        return res.json({
+          "no discussions": "This course has no discussions yet."
+        });
+      }
       // If both of the above conditions are true, then display the discussions.
     });
   }
