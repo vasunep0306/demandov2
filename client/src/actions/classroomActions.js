@@ -145,6 +145,7 @@ export const changeClasspin = (newpin, classid) => dispatch => {
 };
 
 // classroom discussion action
+export const getDiscussions = classroom_id => dispatch => {};
 
 // delete classroom
 export const deleteClassroom = classid => dispatch => {
