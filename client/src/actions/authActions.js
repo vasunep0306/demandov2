@@ -51,7 +51,7 @@ export const setCurrentUser = decoded => {
 };
 
 // user discussion action
-export const getAuthor = user_id => dispatch => {};
+export const getAuthor = user_id => {};
 
 // Log user out
 export const logoutUser = () => dispatch => {
