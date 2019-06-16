@@ -773,10 +773,15 @@ router.get(
   }
 );
 
-/** @route   POST api/classrooms/:discussionid/addcomment
+/** @route   POST api/classrooms/:discussionid/addComment
  * @desc    Add comment to discussion
  * @access  Private: Only teachers and students can use this route.
  */
+router.post(
+  "/:discussionid/addComment",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {}
+);
 
 /** @route   DELETE api/classrooms/:discussionid/addcomment
  * @desc    delete the given discussion
