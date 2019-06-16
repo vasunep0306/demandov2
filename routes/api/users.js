@@ -128,6 +128,23 @@ router.post("/login", (req, res) => {
   });
 });
 
+/** @route   GET api/users/:id
+ * @desc    Get user by id
+ * @access  Private
+ */
+router.get(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    User.findById(req.params.id).then(user => {
+      if (!user) {
+        return res.status(404).json({ noUser: "There is no user" });
+      }
+      return res.status(200).json(user);
+    });
+  }
+);
+
 /** @route   GET api/users/current
  * @desc    Return current user
  * @access  Private
