@@ -163,6 +163,27 @@ export const getDiscussions = classroom_id => dispatch => {
     });
 };
 
+export const createDiscussion = (
+  classroom_id,
+  history,
+  newDiscussion
+) => dispatch => {
+  axios
+    .post(`/api/classrooms/${classroom_id}/createDiscussion`, newDiscussion)
+    .then(res => {
+      alert("successfully created discussion");
+      history.push(`/${classroom_id}/discussionList`);
+    })
+    .catch(err =>
+      dispatch({
+        type: "GET_ERRORS",
+        payload: err.response.data
+      })
+    );
+};
+
+// create a discussion
+
 // delete classroom
 export const deleteClassroom = classid => dispatch => {
   axios
