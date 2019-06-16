@@ -6,7 +6,7 @@ import { getClass } from "../../actions/classroomActions";
 
 class CreateDiscussion extends Component {}
 
-DiscussionList.propTypes = {
+CreateDiscussion.propTypes = {
   classroom: PropTypes.object.isRequired,
   getClass: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
