@@ -8,6 +8,10 @@ class CreateDiscussion extends Component {
   componentDidMount() {
     this.props.getClass(this.props.match.params.classroomid);
   }
+
+  render() {
+    let { classroom, loading } = this.props.classrooms;
+  }
 }
 
 CreateDiscussion.propTypes = {
