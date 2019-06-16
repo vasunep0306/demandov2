@@ -113,11 +113,11 @@ class App extends Component {
                     component={EditQuestion}
                   />
                   {/* teacher route for accessing discussion page */}
-                  <PrivateRoute
+                  {/* <PrivateRoute
                     exact
                     path="/:classroomid/showDynamicWhiteboard"
                     component={Whiteboard}
-                  />
+                  /> */}
                   {/* Student route for showing his/her registered courses */}
                   <PrivateRoute
                     exact
