@@ -738,9 +738,19 @@ router.post(
     DiscussionData.author = req.user._id;
 
     // create the discussion
-    new Discussion(DiscussionData)
-      .save()
-      .then(discussion => res.json(discussion));
+    new Discussion(DiscussionData).save().then(discussion => {
+      Classroom.findById(req.params.id).then(classroom => {
+        if (!classroom) {
+          return res.status(404).json("No classroom");
+        }
+        classroom.push(discussion);
+        classroom
+          .save()
+          .then(classroom =>
+            res.json({ success: "successfully created post" })
+          );
+      });
+    });
   }
 );
 
@@ -749,7 +759,7 @@ router.post(
  * @access  Private: Only teachers and students can use this route.
  */
 router.get(
-  ":classroomid/getdiscussions",
+  "/:classroomid/getdiscussions",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Classroom.findById(req.params.classroomid)
@@ -781,10 +791,27 @@ router.get(
 router.post(
   "/:discussionid/addComment",
   passport.authenticate("jwt", { session: false }),
-  (req, res) => {}
+  (req, res) => {
+    const { errors, isValid } = validateCommentImput(req.body);
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
+    Discussion.findById(req.params.discussionid).then(discussion => {
+      // create comment object
+      User.findById(req.user._id).then(user => {
+        const commentObj = {};
+        commentObj.user = { name: user.name, email: user.email };
+        commentObj.comment = req.body.comment;
+        discussion.push(commentObj);
+        discussion.save().then(discussion => {
+          res.status(200).json({ discussion });
+        });
+      });
+    });
+  }
 );
 
-/** @route   DELETE api/classrooms/:discussionid/addcomment
+/** @route   DELETE api/classrooms/:discussionid/deletepost
  * @desc    delete the given discussion
  * @access  Private: Only teachers can use this feature
  */
