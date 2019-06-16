@@ -112,10 +112,16 @@ class App extends Component {
                     path="/:classroomid/:questionid/editQuestion"
                     component={EditQuestion}
                   />
-                  {/* teacher route for accessing discussion page */}
+                  {/* route for accessing discussion page */}
                   <PrivateRoute
                     exact
                     path="/:classroomid/discussionList"
+                    component={DiscussionList}
+                  />
+                  {/* route for creating a discussion */}
+                  <PrivateRoute
+                    exact
+                    path="/:classroomid/createDiscussion"
                     component={DiscussionList}
                   />
                   {/* Student route for showing his/her registered courses */}

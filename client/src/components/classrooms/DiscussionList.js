@@ -61,7 +61,10 @@ class DiscussionList extends Component {
           </thead>
           <tbody>{discussionList}</tbody>
         </table>
-        <Link to={`/createDiscussion`} className="btn btn-info">
+        <Link
+          to={`/${this.props.match.params.classroomid}/createDiscussion`}
+          className="btn btn-info"
+        >
           Create a new discussion
         </Link>
       </div>
