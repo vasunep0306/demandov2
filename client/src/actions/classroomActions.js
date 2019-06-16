@@ -144,8 +144,7 @@ export const changeClasspin = (newpin, classid) => dispatch => {
   });
 };
 
-// discussion action
-export const getAuthor = user_id => dispatch => {};
+// classroom discussion action
 
 // delete classroom
 export const deleteClassroom = classid => dispatch => {
