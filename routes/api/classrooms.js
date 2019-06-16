@@ -769,7 +769,7 @@ router.get(
           "no discussions": "This course has no discussions yet."
         });
       }
-      // If both of the above conditions are true, then display the discussions.
+      // If both of the above conditions are false, then display the discussions.
     });
   }
 );
