@@ -741,7 +741,9 @@ router.post(
     new Discussion(DiscussionData).save().then(discussion => {
       Classroom.findById(req.params.classroomid).then(classroom => {
         if (!classroom) {
-          return res.status(404).json("No classroom");
+          return res
+            .status(404)
+            .json({ noclassroom: "This classroom doesn't exist." });
         }
         classroom.discussions.push(discussion);
         classroom.save().then(classroom => res.json(classroom));
@@ -769,12 +771,12 @@ router.get(
         if (!classroom) {
           return res
             .status(400)
-            .json({ "no classroom": "This classroom doesn't exist." });
+            .json({ noclassroom: "This classroom doesn't exist." });
         }
         // Check to see if there are ANY discussions.
         if (classroom.discussions.length === 0) {
           return res.json({
-            "no discussions": "This course has no discussions yet."
+            nodiscussions: "This course has no discussions yet."
           });
         }
         // If both of the above conditions are false, then display the discussions.
@@ -800,7 +802,7 @@ router.post(
       if (!discussion) {
         return res
           .status(404)
-          .json({ "no discussion": "There is no discussion with that ID" });
+          .json({ nodiscussion: "There is no discussion with that ID" });
       }
       // create comment object
       User.findById(req.user._id).then(user => {

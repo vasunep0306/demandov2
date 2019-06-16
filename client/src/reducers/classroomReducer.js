@@ -2,6 +2,7 @@ const initialState = {
   classroom: null,
   classrooms: null,
   students: null,
+  discussions: null,
   loading: false
 };
 export default function(state = initialState, action) {
