@@ -11,3 +11,4 @@ Things to do (improvements/feature updates):
 5. If student is already enrolled, tell them they are in an alert box. [functionality] #notstarted
 6. For each course, add a discussion board where teachers and students can collaborate. There should be no restrictions as for user types. [functionality] #inprogress
 7. Add messaging feature. [functionality] #notstarted
+8. Add route to get discussions for the given user. [functionality] #notstarted
