@@ -110,7 +110,6 @@ class CreateDiscussion extends Component {
 }
 
 CreateDiscussion.propTypes = {
-  classroom: PropTypes.object.isRequired,
   createDiscussion: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
