@@ -32,7 +32,10 @@ class DiscussionList extends Component {
             <td>{discussion.author.data.name}</td>
             <td>{discussion.discussionTopic}</td>
             <td>
-              <a href="#">Go To Discussion</a>
+              <Link to={`/${discussion._id}/discussionPage`}>
+                Go To Discussion
+              </Link>
+              {/* <a href="#">Go To Discussion</a> */}
             </td>
             <td>{discussion.date}</td>
           </tr>
