@@ -820,6 +820,11 @@ router.post(
   }
 );
 
+/** @route   GET api/classrooms/:discussionid/getOneDiscussion
+ * @desc    Get the discussion based on the ID
+ * @access  Private: Teachers and students can use this feature
+ */
+
 /** @route   DELETE api/classrooms/:discussionid/deletepost
  * @desc    delete the given discussion
  * @access  Private: Only teachers can use this feature
