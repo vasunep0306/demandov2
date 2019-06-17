@@ -4,6 +4,7 @@ const initialState = {
   students: null,
   discussion: null,
   discussions: null,
+  comments: null,
   loading: false
 };
 export default function(state = initialState, action) {
@@ -53,6 +54,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         discussion: action.payload,
+        loading: false
+      };
+    case "GET_COMMENTS":
+      return {
+        ...state,
+        comments: action.payload,
         loading: false
       };
     case "GET_DISCUSSIONS":
