@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { createDiscussion } from "../../actions/classroomActions";
 import isEmpty from "../../validation/is-empty";
@@ -47,7 +47,6 @@ class CreateDiscussion extends Component {
   render() {
     // get errors if any
     let { errors } = this.state;
-    console.log(this.state);
     let discussionTopic = !isEmpty(errors.discussionTopic)
         ? errors.discussionTopic
         : "",
