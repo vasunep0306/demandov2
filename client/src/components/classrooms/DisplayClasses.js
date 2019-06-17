@@ -69,7 +69,7 @@ class DisplayClasses extends Component {
             </td>
             <td>
               <Link to={`/${classroom._id}/discussionList`}>
-                To Discussion Page
+                To Discussion Board
               </Link>
             </td>
             <td>
