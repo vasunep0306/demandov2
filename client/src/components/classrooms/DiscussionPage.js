@@ -12,7 +12,7 @@ class DiscussionPage extends Component {
   constructor() {
     super();
     this.state = {
-      comment: ""
+      comment_text: ""
     };
 
     this.onChange = this.onChange.bind(this);
@@ -28,7 +28,12 @@ class DiscussionPage extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  onSubmit(e) {}
+  onSubmit(e) {
+    e.preventDefault();
+    let discussion_id = this.props.match.params.discussionid;
+    let comment_body = this.state.comment_text;
+    this.props.addComment(discussion_id, comment_body);
+  }
 
   render() {
     const { comments, loading, discussion } = this.props.classrooms;
@@ -38,9 +43,89 @@ class DiscussionPage extends Component {
     } else if (comments === null || loading) {
       commentArea = <h1>Loading</h1>;
     } else if (comments.nocomments) {
-      commentArea = <div className="container" />;
+      commentArea = (
+        <div className="container">
+          <div className="container">
+            <h1>{discussion.discussionTopic}</h1>
+            <h3>{discussion.discussionSubject}</h3>
+            <p>
+              Posted by: <em>{discussion.author.data.name}</em>
+            </p>
+            <p>{discussion.discussionBody}</p>
+          </div>
+          <br />
+          <hr />
+          <div className="container">
+            <h4>{comments.nocomments}</h4>
+          </div>
+          <br />
+          <hr />
+          <div className="container">
+            <form>
+              <div className="form-group">
+                <label htmlFor="comment">Add To Discussion:</label>
+                <textarea
+                  className="form-control"
+                  rows="5"
+                  id="comment"
+                  name="text"
+                />
+              </div>
+              <button type="submit" className="btn btn-success">
+                Post
+              </button>
+            </form>
+          </div>
+        </div>
+      );
+    } else {
+      let each_comment = comments.map(comment => (
+        <div className="card">
+          <div className="card-body">
+            <p>
+              <strong>{comment.user.name} </strong>
+              {comment.comment}
+            </p>
+          </div>
+        </div>
+      ));
+      commentArea = (
+        <div className="container">
+          <div className="container">
+            <h1>{discussion.discussionTopic}</h1>
+            <h3>{discussion.discussionSubject}</h3>
+            <p>
+              Posted by: <em>{discussion.author.data.name}</em>
+            </p>
+            <p>{discussion.discussionBody}</p>
+          </div>
+          <br />
+          <hr />
+          <div className="container">{each_comment}</div>
+          <br />
+          <hr />
+          <div className="container">
+            <form onSubmit={this.onSubmit}>
+              <div className="form-group">
+                <label htmlFor="comment">Add To Discussion:</label>
+                <textarea
+                  className="form-control"
+                  rows="5"
+                  id="comment"
+                  name="text"
+                  value={this.state.comment_text}
+                  onChange={this.onChange}
+                />
+              </div>
+              <button type="submit" className="btn btn-success">
+                Post
+              </button>
+            </form>
+          </div>
+        </div>
+      );
     }
-    return <div className="container">{commentArea}</div>;
+    return <div>{commentArea}</div>;
   }
 }
 
