@@ -202,6 +202,18 @@ export const createDiscussion = (
     );
 };
 
+// add a comment to a discussion
+export const addComment = (discussion_id, comment_body) => dispatch => {
+  axios
+    .post(`/api/classrooms/${discussion_id}/addComment`, comment_body)
+    .then(res => {
+      window.location.reload();
+    })
+    .catch(err => {
+      alert(err.response.data);
+    });
+};
+
 // delete classroom
 export const deleteClassroom = classid => dispatch => {
   axios

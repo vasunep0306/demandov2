@@ -820,6 +820,24 @@ router.post(
   }
 );
 
+/** @route   GET api/classrooms/:discussionid/getComments
+ * @desc    Get the comments based on the discussions
+ * @access  Private: Teachers and students can use this feature
+ */
+router.get(
+  "/:discussionid/getComments",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Discussion.findById(req.params.discussionid).then(discussion => {
+      if (!discussion) {
+        return res
+          .status(404)
+          .json({ nodiscussion: "there is no discussion with that id" });
+      }
+    });
+  }
+);
+
 /** @route   GET api/classrooms/:discussionid/getOneDiscussion
  * @desc    Get the discussion based on the ID
  * @access  Private: Teachers and students can use this feature
