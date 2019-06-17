@@ -144,7 +144,8 @@ export const changeClasspin = (newpin, classid) => dispatch => {
   });
 };
 
-// classroom discussion action
+// classroom discussion actions
+// get a list of discussions
 export const getDiscussions = classroom_id => dispatch => {
   dispatch(setClassLoading());
   axios
@@ -163,6 +164,7 @@ export const getDiscussions = classroom_id => dispatch => {
     });
 };
 
+// create a discussion
 export const createDiscussion = (
   classroom_id,
   history,
@@ -181,8 +183,6 @@ export const createDiscussion = (
       })
     );
 };
-
-// create a discussion
 
 // delete classroom
 export const deleteClassroom = classid => dispatch => {

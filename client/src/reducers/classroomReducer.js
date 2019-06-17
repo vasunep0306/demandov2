@@ -2,6 +2,7 @@ const initialState = {
   classroom: null,
   classrooms: null,
   students: null,
+  discussion: null,
   discussions: null,
   loading: false
 };
