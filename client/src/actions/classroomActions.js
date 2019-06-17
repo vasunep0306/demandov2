@@ -144,7 +144,25 @@ export const changeClasspin = (newpin, classid) => dispatch => {
   });
 };
 
-// classroom discussion actions
+// get single discussion
+export const getDiscussion = discussion_id => dispatch => {
+  dispatch(setClassLoading());
+  axios
+    .get(`/api/classrooms/${discussion_id}/getOneDiscussion`)
+    .then(res => {
+      dispatch({
+        type: "GET_DISCUSSION",
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: "GET_DISCUSSION",
+        payload: err.response.data
+      });
+    });
+};
+
 // get a list of discussions
 export const getDiscussions = classroom_id => dispatch => {
   dispatch(setClassLoading());
