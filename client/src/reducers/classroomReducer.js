@@ -49,6 +49,12 @@ export default function(state = initialState, action) {
         students: action.payload,
         loading: false
       };
+    case "GET_DISCUSSION":
+      return {
+        ...state,
+        discussion: action.payload,
+        loading: false
+      };
     case "GET_DISCUSSIONS":
       return {
         ...state,
