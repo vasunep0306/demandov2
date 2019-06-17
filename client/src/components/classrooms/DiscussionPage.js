@@ -5,6 +5,11 @@ import { connect } from "react-redux";
 import { getComments, addComment } from "../../actions/classroomActions";
 
 class DiscussionPage extends Component {
+  constructor() {
+    super();
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
   render() {
     return (
       <div>
