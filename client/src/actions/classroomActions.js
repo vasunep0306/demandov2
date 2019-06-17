@@ -201,9 +201,27 @@ export const createDiscussion = (
       })
     );
 };
+// get the list of comments
+export const getComments = discussion_id => dispatch => {
+  dispatch(setClassLoading());
+  axios
+    .get(`/api/classrooms/${discussion_id}/getComments`)
+    .then(res => {
+      dispatch({
+        type: "GET_COMMENTS",
+        payload: res.data
+      });
+    })
+    .catch(err =>
+      dispatch({
+        type: "GET_COMMENTS",
+        payload: err.response.data
+      })
+    );
+};
 
 // add a comment to a discussion
-export const addComment = (discussion_id, comment_body) => dispatch => {
+export const addComment = (discussion_id, comment_body) => {
   axios
     .post(`/api/classrooms/${discussion_id}/addComment`, comment_body)
     .then(res => {
