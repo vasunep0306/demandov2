@@ -834,6 +834,11 @@ router.get(
           .status(404)
           .json({ nodiscussion: "there is no discussion with that id" });
       }
+      if (discussion.comments.length === 0) {
+        return res.json({
+          nocomments: "There are no comments yet. Be the first one to comment."
+        });
+      }
     });
   }
 );
