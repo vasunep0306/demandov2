@@ -834,6 +834,7 @@ router.get(
           .status(404)
           .json({ nodiscussion: "This discussion doesn't exist" });
       }
+      return res.status(200).json(discussion);
     });
   }
 );
