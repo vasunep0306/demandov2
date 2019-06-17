@@ -20,6 +20,7 @@ class DiscussionPage extends Component {
   }
 
   componentDidMount() {
+    this.props.getDiscussion(this.props.match.params.discussionid);
     this.props.getComments(this.props.match.params.discussionid);
   }
 
@@ -31,16 +32,21 @@ class DiscussionPage extends Component {
 
   render() {
     const { comments, loading, discussion } = this.props.classrooms;
-    return (
-      <div>
-        <p>Page will go here</p>
-      </div>
-    );
+    let commentArea;
+    if (discussion === null || loading) {
+      commentArea = <h1>Loading</h1>;
+    } else if (comments === null || loading) {
+      commentArea = <h1>Loading</h1>;
+    } else if (comments.nocomments) {
+      commentArea = <div className="container" />;
+    }
+    return <div className="container">{commentArea}</div>;
   }
 }
 
 DiscussionPage.propTypes = {
-  classrooms: PropTypes.object.isRequired,
+  discussion: PropTypes.object.isRequired,
+  comments: PropTypes.array.isRequired,
   auth: PropTypes.object.isRequired,
   getComments: PropTypes.func.isRequired,
   addComment: PropTypes.func.isRequired,
@@ -48,7 +54,8 @@ DiscussionPage.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  classrooms: state.classrooms
 });
 
 export default connect(

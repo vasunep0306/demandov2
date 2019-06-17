@@ -853,6 +853,7 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Discussion.findById(req.params.discussionid).then(discussion => {
+      console.log("in)");
       if (!discussion) {
         return res
           .status(404)
