@@ -824,6 +824,19 @@ router.post(
  * @desc    Get the discussion based on the ID
  * @access  Private: Teachers and students can use this feature
  */
+router.get(
+  "/:discussionid/getOneDiscussion",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Discussion.findById(req.params.discussionid).then(discussion => {
+      if (!discussion) {
+        return res
+          .status(404)
+          .json({ nodiscussion: "This discussion doesn't exist" });
+      }
+    });
+  }
+);
 
 /** @route   DELETE api/classrooms/:discussionid/deletepost
  * @desc    delete the given discussion
