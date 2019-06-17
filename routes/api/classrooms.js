@@ -839,6 +839,7 @@ router.get(
           nocomments: "There are no comments yet. Be the first one to comment."
         });
       }
+      return res.status(200).json(discussion.comments);
     });
   }
 );
