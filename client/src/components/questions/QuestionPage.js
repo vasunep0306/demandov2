@@ -50,6 +50,23 @@ class QuestionPage extends Component {
   }
 
   render() {
+    const { question, loading } = this.props.questions;
+    let questionField;
+    if (loading || question === null) {
+      questionsField = <h1> Loading </h1>;
+    } else if (!loading && question === null) {
+      questionsField = <h1> Please add questions </h1>;
+    } else {
+      questionField = (
+        <div className="container">
+          <br />
+          <div class="jumbotron">
+            <h1>(Question Body)</h1>
+            <h3>(Correct Answer)</h3>
+          </div>
+        </div>
+      );
+    }
     return <div />;
   }
 }
