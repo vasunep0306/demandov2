@@ -51,6 +51,7 @@ class DiscussionList extends Component {
 
     return (
       <div className="container">
+        <br />
         <h2>{headerTitle}</h2>
         <table className="table">
           <thead>
