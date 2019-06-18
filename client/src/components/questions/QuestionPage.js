@@ -16,6 +16,15 @@ class QuestionPage extends Component {
   }
 }
 
+DisplayQuestions.propTypes = {
+  getQuestions: PropTypes.func.isRequired,
+  getQuestion: PropTypes.func.isRequired,
+  unsetQuestion: PropTypes.func.isRequired,
+  deleteQuestion: PropTypes.func.isRequired,
+  clearResponses: PropTypes.func.isRequired,
+  question: PropTypes.array.isRequired
+};
+
 const mapStateToProps = state => ({
   auth: state.auth,
   questions: state.questions
