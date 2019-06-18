@@ -11,13 +11,16 @@ import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 class QuestionPage extends Component {
+  componentDidMount() {
+    this.props.getQuestion(this.props.match.params.questionid);
+  }
+
   render() {
     return <div />;
   }
 }
 
 DisplayQuestions.propTypes = {
-  getQuestions: PropTypes.func.isRequired,
   getQuestion: PropTypes.func.isRequired,
   unsetQuestion: PropTypes.func.isRequired,
   deleteQuestion: PropTypes.func.isRequired,
