@@ -40,6 +40,15 @@ class QuestionPage extends Component {
     }
   }
 
+  clearAllResponses(question) {
+    let finalconfirmation = window.confirm(
+      "Are you sure you want to clear all responses? This action is irreversable"
+    );
+    if (finalconfirmation) {
+      this.props.clearResponses(question._id);
+    }
+  }
+
   render() {
     return <div />;
   }
