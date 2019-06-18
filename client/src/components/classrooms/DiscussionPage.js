@@ -57,12 +57,10 @@ class DiscussionPage extends Component {
             </p>
             <p>{discussion.discussionBody}</p>
           </div>
-          <br />
           <hr />
           <div className="container">
             <h4>{comments.nocomments}</h4>
           </div>
-          <br />
           <hr />
           <div className="container">
             <form onSubmit={this.onSubmit}>
@@ -97,6 +95,7 @@ class DiscussionPage extends Component {
       ));
       commentArea = (
         <div className="container">
+          <br />
           <div className="container">
             <h1>{discussion.discussionTopic}</h1>
             <h3>{discussion.discussionSubject}</h3>
@@ -105,10 +104,8 @@ class DiscussionPage extends Component {
             </p>
             <p>{discussion.discussionBody}</p>
           </div>
-          <br />
           <hr />
           <div className="container">{each_comment}</div>
-          <br />
           <hr />
           <div className="container">
             <form onSubmit={this.onSubmit}>
@@ -128,6 +125,7 @@ class DiscussionPage extends Component {
               </button>
             </form>
           </div>
+          <br />
         </div>
       );
     }

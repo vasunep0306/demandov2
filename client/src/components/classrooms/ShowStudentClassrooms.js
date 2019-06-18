@@ -26,20 +26,28 @@ class ShowStudentClassrooms extends Component {
             <td>{classroom.classtitle}</td>
             <td>{classroom.classcode}</td>
             <td>
-              <Link to={`/${classroom._id}/answers`}>Go To Classroom</Link>
+              <Link to={`/${classroom._id}/answers`}>
+                View Current Question
+              </Link>
+            </td>
+            <td>
+              <Link to={`/${classroom._id}/discussionList`}>
+                View Course Discussions
+              </Link>
             </td>
           </tr>
         ));
       }
       return (
-        <div>
+        <div className="container">
           <h1>Here are your classes: {this.props.auth.user.name}</h1>
           <table className="table">
             <thead>
               <tr>
                 <th scope="col">Course Name</th>
                 <th scope="col">Class Code</th>
-                <th scope="col">Course Dashboard</th>
+                <th scope="col">Current Question</th>
+                <th scope="col">Course Discussions</th>
               </tr>
             </thead>
             <tbody>{classroomArea}</tbody>
