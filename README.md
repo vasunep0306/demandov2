@@ -8,7 +8,7 @@ Things to do (improvements/feature updates):
 2. Annomaly detection system... (find malicious users) [functionality] #notstarted
 3. Prevent teachers from accessing student routes and vice versa. [functionality] #notstarted
 4. Create an admin page. [functionality] #notstarted
-5. If student is already enrolled, tell them they are in an alert box. [functionality] #notstarted
+5. If student is already enrolled, tell them they are in an alert box. [functionality] #inprogress
 6. Add messaging feature. [functionality] #notstarted
 7. Add route to get discussions for the given user. [functionality] #notstarted
 8. Integrate email functionality [functionality] #notstarted
