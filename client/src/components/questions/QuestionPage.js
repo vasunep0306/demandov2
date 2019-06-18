@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {
-  getQuestion,
+  getQuestionById,
   setQuestion,
   unsetQuestion,
   deleteQuestion,
@@ -12,7 +12,7 @@ import { connect } from "react-redux";
 
 class QuestionPage extends Component {
   componentDidMount() {
-    this.props.getQuestion(this.props.match.params.questionid);
+    this.props.getQuestionById(this.props.match.params.questionid);
   }
 
   setQuestion(question) {
@@ -51,28 +51,117 @@ class QuestionPage extends Component {
 
   render() {
     const { question, loading } = this.props.questions;
+    console.log(this.props);
     let questionField;
     if (loading || question === null) {
-      questionsField = <h1> Loading </h1>;
+      questionField = <h1> Loading </h1>;
     } else if (!loading && question === null) {
-      questionsField = <h1> Please add questions </h1>;
+      questionField = <h1> Please add questions </h1>;
     } else {
-      questionField = (
-        <div className="container">
-          <br />
-          <div class="jumbotron">
-            <h1>(Question Body)</h1>
-            <h3>(Correct Answer)</h3>
-          </div>
+      let linksField = (
+        <div>
+          <span className="buttonfield">
+            <button
+              className="btn btn-success"
+              onClick={this.setQuestion.bind(this, question)}
+            >
+              Publish Question
+            </button>
+          </span>
+          <span className="buttonfield">
+            <button
+              className="btn btn-secondary"
+              onClick={this.hideQuestion.bind(this, question)}
+            >
+              Hide Question
+            </button>
+          </span>
+          <span className="buttonfield">
+            <Link
+              to={`/${this.props.match.params.classroomid}/${
+                question._id
+              }/editQuestion`}
+              className="btn btn-light"
+            >
+              Edit Question
+            </Link>
+          </span>
+          <span className="buttonfield">
+            <Link
+              to={`/${this.props.match.params.classroomid}/questions/${
+                question._id
+              }/getresponses`}
+              className="btn btn-info"
+            >
+              See Responses
+            </Link>
+          </span>
+          <span className="buttonfield">
+            <button
+              className="btn btn-warning"
+              onClick={this.clearAllResponses.bind(this, question)}
+            >
+              Clear Responses
+            </button>
+          </span>
+          <span className="buttonfield">
+            <button
+              className="btn btn-danger"
+              onClick={this.deleteQuestion.bind(this, question)}
+            >
+              Delete Question
+            </button>
+          </span>
         </div>
       );
+      if (question.questiontype === "multiple choice") {
+        let answerField = question.answerchoices.map(answer => (
+          <div>
+            <li>{answer}</li>
+            <br />
+          </div>
+        ));
+        questionField = (
+          <div className="container">
+            <br />
+            <div className="jumbotron">
+              <h1>{question.questionbody}</h1>
+              <h3>{question.correctanswer}</h3>
+              <ol>{answerField}</ol>
+              {linksField}
+              <br />
+              <br />
+              <Link to={`/${this.props.match.params.classroomid}/questions`}>
+                Back To Questions List
+              </Link>
+            </div>
+          </div>
+        );
+      } else {
+        questionField = (
+          <div className="container">
+            <br />
+            <div className="jumbotron">
+              <h1>{question.questionbody}</h1>
+              <h3>{question.correctanswer}</h3>
+              {linksField}
+              <br />
+              <br />
+              <Link to={`/${this.props.match.params.classroomid}/questions`}>
+                Back To Questions List
+              </Link>
+            </div>
+          </div>
+        );
+      }
     }
-    return <div />;
+    return <div>{questionField}</div>;
   }
 }
 
-DisplayQuestions.propTypes = {
-  getQuestion: PropTypes.func.isRequired,
+QuestionPage.propTypes = {
+  getQuestionById: PropTypes.func.isRequired,
+  getClass: PropTypes.func.isRequired,
   unsetQuestion: PropTypes.func.isRequired,
   deleteQuestion: PropTypes.func.isRequired,
   clearResponses: PropTypes.func.isRequired,
@@ -87,7 +176,7 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-    getQuestion,
+    getQuestionById,
     setQuestion,
     unsetQuestion,
     deleteQuestion,

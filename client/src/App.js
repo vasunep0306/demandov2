@@ -28,6 +28,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 import CreateClass from "./components/classrooms/CreateClass";
 import DisplayClasses from "./components/classrooms/DisplayClasses";
 import QuestionList from "./components/questions/QuestionList";
+import QuestionPage from "./components/questions/QuestionPage";
 import CreateQuestion from "./components/questions/CreateQuestion";
 import EditQuestion from "./components/questions/EditQuestion";
 import GetResponses from "./components/questions/GetResponses";
@@ -89,6 +90,12 @@ class App extends Component {
                     exact
                     path="/:classroomid/questions"
                     component={QuestionList}
+                  />
+                  {/* teacher route for displaying course questions */}
+                  <PrivateRoute
+                    exact
+                    path="/:classroomid/:questionid/manageQuestion"
+                    component={QuestionPage}
                   />
                   {/* teacher route for displaying students */}
                   <PrivateRoute

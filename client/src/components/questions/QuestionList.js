@@ -32,7 +32,9 @@ class QuestionList extends Component {
           <td>{question.correctanswer}</td>
           <td>{question.isCurrentQuestion ? "True" : "False"}</td>
           <td>
-            <Link to={`/${question._id}/manageQuestion`}>Manage Question</Link>
+            <Link to={`/${classroom._id}/${question._id}/manageQuestion`}>
+              Manage Question
+            </Link>
           </td>
         </tr>
       ));
