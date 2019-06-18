@@ -79,6 +79,7 @@ export const registerForClassroom = (
       history.push("/myClasses");
     })
     .catch(err => {
+      alert("Unable to register. You are already enrolled");
       dispatch({
         type: "REGISTER_FOR_CLASSROOM",
         payload: err.response.data
