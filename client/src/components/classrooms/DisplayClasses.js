@@ -84,7 +84,8 @@ class DisplayClasses extends Component {
         ));
       }
       return (
-        <div>
+        <div className="container">
+          <br />
           <h1>Here are your courses</h1>
           <table className="table">
             <thead>
