@@ -62,6 +62,12 @@ export default function(state = initialState, action) {
         comments: action.payload,
         loading: false
       };
+    case "ADD_NEW_COMMENT":
+      return {
+        ...state,
+        comments: action.payload,
+        loading: false
+      };
     case "GET_DISCUSSIONS":
       return {
         ...state,

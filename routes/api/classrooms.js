@@ -813,7 +813,7 @@ router.post(
         commentObj.comment = req.body.comment;
         discussion.comments.push(commentObj);
         discussion.save().then(discussion => {
-          return res.status(200).json(discussion);
+          return res.status(200).json(discussion.comments);
         });
       });
     });
@@ -853,7 +853,6 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Discussion.findById(req.params.discussionid).then(discussion => {
-      console.log("in)");
       if (!discussion) {
         return res
           .status(404)

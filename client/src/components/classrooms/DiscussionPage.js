@@ -31,8 +31,12 @@ class DiscussionPage extends Component {
   onSubmit(e) {
     e.preventDefault();
     let discussion_id = this.props.match.params.discussionid;
-    let comment_body = this.state.comment_text;
-    this.props.addComment(discussion_id, comment_body);
+    let new_comment = { comment: this.state.comment_text };
+
+    this.props.addComment(discussion_id, new_comment, this.props.history);
+    this.setState({
+      comment_text: ""
+    });
   }
 
   render() {
@@ -61,14 +65,16 @@ class DiscussionPage extends Component {
           <br />
           <hr />
           <div className="container">
-            <form>
+            <form onSubmit={this.onSubmit}>
               <div className="form-group">
                 <label htmlFor="comment">Add To Discussion:</label>
                 <textarea
                   className="form-control"
                   rows="5"
                   id="comment"
-                  name="text"
+                  name="comment_text"
+                  value={this.state.comment_text}
+                  onChange={this.onChange}
                 />
               </div>
               <button type="submit" className="btn btn-success">
@@ -83,7 +89,7 @@ class DiscussionPage extends Component {
         <div className="card">
           <div className="card-body">
             <p>
-              <strong>{comment.user.name} </strong>
+              <strong>{comment.user.name}: </strong>
               {comment.comment}
             </p>
           </div>
@@ -112,7 +118,7 @@ class DiscussionPage extends Component {
                   className="form-control"
                   rows="5"
                   id="comment"
-                  name="text"
+                  name="comment_text"
                   value={this.state.comment_text}
                   onChange={this.onChange}
                 />

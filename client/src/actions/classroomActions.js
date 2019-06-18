@@ -221,15 +221,22 @@ export const getComments = discussion_id => dispatch => {
 };
 
 // add a comment to a discussion
-export const addComment = (discussion_id, comment_body) => {
+export const addComment = (discussion_id, comment, history) => dispatch => {
   axios
-    .post(`/api/classrooms/${discussion_id}/addComment`, comment_body)
+    .post(`/api/classrooms/${discussion_id}/addComment`, comment)
     .then(res => {
-      window.location.reload();
+      dispatch({
+        type: "ADD_NEW_COMMENT",
+        payload: res.data
+      });
+      history.push(`/${discussion_id}/discussionPage`);
     })
-    .catch(err => {
-      alert(err.response.data);
-    });
+    .catch(err =>
+      dispatch({
+        type: "ADD_NEW_COMMENT",
+        payload: err.response.data
+      })
+    );
 };
 
 // delete classroom
