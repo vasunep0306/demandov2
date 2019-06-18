@@ -15,3 +15,19 @@ class QuestionPage extends Component {
     return <div />;
   }
 }
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  questions: state.questions
+});
+
+export default connect(
+  mapStateToProps,
+  {
+    getQuestion,
+    setQuestion,
+    unsetQuestion,
+    deleteQuestion,
+    clearResponses
+  }
+)(withRouter(QuestionPage));
