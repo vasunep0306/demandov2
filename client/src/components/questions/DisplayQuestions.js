@@ -15,17 +15,21 @@ class DisplayQuestions extends Component {
   constructor(props) {
     super(props);
   }
+  // stays in this file
   componentDidMount() {
     this.props.getQuestions(this.props.match.params.classroomid);
   }
+  // go to details page
   setQuestion(question) {
     this.props.setQuestion(this.props.match.params.classroomid, question._id);
     alert("successfully set question");
   }
+  // go to details page
   hideQuestion(question) {
     this.props.unsetQuestion(this.props.match.params.classroomid, question._id);
     alert("successfully hid question from students");
   }
+  // go to details page
   deleteQuestion(question) {
     let classroomid = this.props.match.params.classroomid;
     let questionid = question._id;
@@ -41,6 +45,7 @@ class DisplayQuestions extends Component {
     }
   }
 
+  // go to details page
   clearAllResponses(question) {
     let finalconfirmation = window.confirm(
       "Are you sure you want to clear all responses? This action is irreversable"
@@ -52,6 +57,7 @@ class DisplayQuestions extends Component {
 
   render() {
     const { questions, loading } = this.props.questions;
+
     const cardStyle = {
       width: "18rem"
     };
