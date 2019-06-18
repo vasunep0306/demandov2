@@ -49,6 +49,7 @@ class DiscussionPage extends Component {
     } else if (comments.nocomments) {
       commentArea = (
         <div className="container">
+          <br />
           <div className="container">
             <h1>{discussion.discussionTopic}</h1>
             <h3>{discussion.discussionSubject}</h3>

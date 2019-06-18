@@ -37,7 +37,7 @@ class DiscussionList extends Component {
               </Link>
               {/* <a href="#">Go To Discussion</a> */}
             </td>
-            <td>{discussion.date}</td>
+            <td>{discussion.date.slice(0, 10)}</td>
           </tr>
         ));
       }

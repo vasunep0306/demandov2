@@ -59,6 +59,7 @@ class CreateDiscussion extends Component {
     let discussionForm;
     discussionForm = (
       <div className="container">
+        <br />
         <h2>Create A New Discussion</h2>
         <p>Please use the form below to create a new discussion:</p>
         <form onSubmit={this.onSubmit}>
