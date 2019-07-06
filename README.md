@@ -13,4 +13,3 @@ Things to do (improvements/feature updates):
 7. Add route to get discussions for the given user. [functionality] #notstarted
 8. Integrate email functionality [functionality] #notstarted
 9. When deleting a class, get rid of discussions [functionality] #notstarted
-10. Restyle create question page [style] #inprogress

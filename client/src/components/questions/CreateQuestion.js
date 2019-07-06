@@ -58,73 +58,77 @@ class CreateQuestion extends Component {
         ? errors.answerchoicesnotcsv
         : "";
     return (
-      <div>
-        <Link to={`/${this.props.match.params.classroomid}/questions`}>
-          Go Back To List
-        </Link>
-        <form onSubmit={this.onSubmit}>
-          <div className="form-group">
-            <label for="questiontype">Question Type: </label>
-            <select
-              name="questiontype"
-              className="form-control"
-              value={this.state.questiontype}
-              onChange={this.onChange}
-            >
-              <option>*Please select question type</option>
-              <option value="multiple choice"> Multiple Choice </option>
-              <option value="textual response"> Textual Response </option>
-            </select>
-            <span className="errorMsg">{questiontype}</span>
+      <div className="container">
+        <br />
+        <div className="card">
+          <h5 className="card-header">New Question</h5>
+          <div className="card-body">
+            <h5 className="card-title">Please Create A Question</h5>
+            <form onSubmit={this.onSubmit}>
+              <div className="form-group">
+                <label htmlFor="questiontype">Question Type: </label>
+                <select
+                  name="questiontype"
+                  className="form-control"
+                  value={this.state.questiontype}
+                  onChange={this.onChange}
+                >
+                  <option>*Please select question type</option>
+                  <option value="multiple choice"> Multiple Choice </option>
+                  <option value="textual response"> Textual Response </option>
+                </select>
+                <span className="errorMsg">{questiontype}</span>
+              </div>
+              <div className="form-group">
+                <label htmlFor="questionbody">Question Body: </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="questionbody"
+                  value={this.state.questionbody}
+                  onChange={this.onChange}
+                />
+                <span className="errorMsg">{questionbody}</span>
+              </div>
+              <div className="form-group">
+                <label htmlFor="correctanswer">Expected Answer: </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="correctanswer"
+                  value={this.state.correctanswer}
+                  onChange={this.onChange}
+                />
+                <span className="errorMsg">{correctanswer}</span>
+              </div>
+              {this.state.questiontype === "multiple choice" ? (
+                <div className="form-group">
+                  <label htmlFor="answerchoices">
+                    Remaining choices(comma separated list of strings):
+                  </label>
+                  <input
+                    type="text"
+                    name="answerchoices"
+                    className="form-control"
+                    value={this.state.answerchoices}
+                    onChange={this.onChange}
+                  />
+                  <span className="errorMsg">{answerchoices}</span>
+                  <span className="errorMsg">{answerchoicesnotcsv}</span>
+                </div>
+              ) : (
+                <p />
+              )}
+              <div class="form-group">
+                <input className="btn btn-success" value="Create Question" />
+              </div>
+            </form>
+            <Link to={`/${this.props.match.params.classroomid}/questions`}>
+              Go Back To List
+            </Link>
           </div>
-
-          <div className="form-group">
-            <label for="questionbody">Question Body: </label>
-            <input
-              type="text"
-              className="classinputx form-control"
-              name="questionbody"
-              value={this.state.questionbody}
-              onChange={this.onChange}
-            />
-            <span className="errorMsg">{questionbody}</span>
-          </div>
-
-          <div className="form-group">
-            <label for="correctanswer">Expected Answer: </label>
-            <input
-              type="text"
-              className="classinputy form-control"
-              name="correctanswer"
-              value={this.state.correctanswer}
-              onChange={this.onChange}
-            />
-            <span className="errorMsg">{correctanswer}</span>
-          </div>
-          {this.state.questiontype === "multiple choice" ? (
-            <div className="form-group">
-              <label for="answerchoices">
-                Remaining choices(comma separated list of strings):
-              </label>
-              <input
-                type="text"
-                name="answerchoices"
-                className="classinputx form-control"
-                value={this.state.answerchoices}
-                onChange={this.onChange}
-              />
-              <span className="errorMsg">{answerchoices}</span>
-              <span className="errorMsg">{answerchoicesnotcsv}</span>
-            </div>
-          ) : (
-            <p />
-          )}
-          <input
-            className="btn btn-success"
-            type="submit"
-            value="Create Question"
-          />
-        </form>
+        </div>
+        <br />
       </div>
     );
   }
