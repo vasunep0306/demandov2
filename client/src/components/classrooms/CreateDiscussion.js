@@ -105,6 +105,7 @@ class CreateDiscussion extends Component {
             className="btn btn-primary"
           />
         </form>
+        <br />
         <Link to={`/${this.props.match.params.classroomid}/discussionList`}>
           Back to discussion list
         </Link>

@@ -31,9 +31,15 @@ class DiscussionPage extends Component {
   onSubmit(e) {
     e.preventDefault();
     let discussion_id = this.props.match.params.discussionid;
+    let classroom_id = this.props.match.params.classroomid;
     let new_comment = { comment: this.state.comment_text };
 
-    this.props.addComment(discussion_id, new_comment, this.props.history);
+    this.props.addComment(
+      classroom_id,
+      discussion_id,
+      new_comment,
+      this.props.history
+    );
     this.setState({
       comment_text: ""
     });
