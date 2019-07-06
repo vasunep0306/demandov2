@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { createDiscussion } from "../../actions/classroomActions";
 import isEmpty from "../../validation/is-empty";
@@ -105,6 +105,9 @@ class CreateDiscussion extends Component {
             className="btn btn-primary"
           />
         </form>
+        <Link to={`/${this.props.match.params.classroomid}/discussionList`}>
+          Back to discussion list
+        </Link>
       </div>
     );
 
