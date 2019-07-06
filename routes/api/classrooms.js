@@ -261,8 +261,22 @@ router.delete(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Classroom.findById(req.params.classroomid).then(classroom => {
+      for (let discussion of classroom.discussions) {
+        // get rid of discussion in user's collection
+        User.findOne({ email: discussion.author.email }).then(user => {
+          user.discussionPosts = user.discussionPosts.filter(
+            (discussiontoremove, index, arr) => {
+              return discussion !== discussiontoremove;
+            }
+          );
+          user.save();
+        });
+        // remove that discussion
+        Discussion.findByIdAndRemove(discussion).then(() => {
+          res.json({ success: true });
+        });
+      }
       // remove the classroom from the students document
-      console.log(classroom);
       if (!classroom.students.length === 0) {
         for (let studentid of classroom.students) {
           User.findById(studentid).then(student => {
