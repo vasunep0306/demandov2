@@ -61,7 +61,7 @@ class CreateQuestion extends Component {
       <div className="container">
         <br />
         <div className="card">
-          <h5 className="card-header">New Question</h5>
+          <h5 className="card-header bg-dark text-white">New Question</h5>
           <div className="card-body">
             <h5 className="card-title">Please Create A Question</h5>
             <form onSubmit={this.onSubmit}>
@@ -119,12 +119,19 @@ class CreateQuestion extends Component {
               ) : (
                 <p />
               )}
-              <div class="form-group">
-                <input className="btn btn-success" value="Create Question" />
+              <div className="form-group">
+                <input
+                  type="submit"
+                  className="btn btn-success"
+                  value="Create Question"
+                />
               </div>
             </form>
             <Link to={`/${this.props.match.params.classroomid}/questions`}>
-              Go Back To List
+              <span>
+                <i className="fas fa-backward" />
+              </span>{" "}
+              Go Back To List Of Questions
             </Link>
           </div>
         </div>
