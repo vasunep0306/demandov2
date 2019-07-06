@@ -99,9 +99,11 @@ class CreateDiscussion extends Component {
             />
             <span className="errorMsg">{discussionBody}</span>
           </div>
-          <button type="submit" className="btn btn-primary">
-            Post To Discussion Board
-          </button>
+          <input
+            value="Post To Discussion Board"
+            type="submit"
+            className="btn btn-primary"
+          />
         </form>
       </div>
     );
