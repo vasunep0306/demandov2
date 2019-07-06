@@ -63,7 +63,9 @@ class CreateQuestion extends Component {
         <div className="card">
           <h5 className="card-header bg-dark text-white">New Question</h5>
           <div className="card-body">
-            <h5 className="card-title">Please Create A Question</h5>
+            <h5 className="card-title">
+              Use this form to create a new question
+            </h5>
             <form onSubmit={this.onSubmit}>
               <div className="form-group">
                 <label htmlFor="questiontype">Question Type: </label>
