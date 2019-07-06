@@ -52,35 +52,49 @@ class Login extends Component {
     let email = !isEmpty(errors.email) ? errors.email : "",
       password = !isEmpty(errors.password) ? errors.password : "";
     return (
-      <div className="login">
-        <div className="box">
-          <form onSubmit={this.onSubmit}>
-            <h1>Log In</h1>
-            <label htmlFor="email">Email: </label>
-            <input
-              className="email"
-              type="email"
-              name="email"
-              value={this.state.email}
-              onChange={this.onChange}
-            />
-            <br />
-            <span className="errorMsg">{email}</span>
-            <br />
-            <label for="password">Password: </label>
-            <input
-              className="password"
-              type="password"
-              name="password"
-              value={this.state.password}
-              onChange={this.onChange}
-            />
-            <span className="errorMsg">{password}</span>
-            <br />
-            <br />
-            <input value="Log In" type="submit" className="btn btn-primary" />
-          </form>
+      <div className="container">
+        <br />
+        <div className="card">
+          <h5 className="card-header text-white bg-dark mb-3">Log In</h5>
+          <div className="card-body">
+            <form onSubmit={this.onSubmit}>
+              <div className="form-group">
+                <label htmlFor="email">Email:</label>
+                <input
+                  type="email"
+                  className="form-control"
+                  id="email"
+                  placeholder="Enter email"
+                  name="email"
+                  value={this.state.email}
+                  onChange={this.onChange}
+                />
+                <span className="errorMsg">{email}</span>
+              </div>
+              <div className="form-group">
+                <label htmlFor="pwd">Password:</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="password"
+                  placeholder="Enter password"
+                  name="password"
+                  value={this.state.password}
+                  onChange={this.onChange}
+                />
+                <span className="errorMsg">{password}</span>
+              </div>
+              <div className="form-group">
+                <input
+                  value="Log In"
+                  type="submit"
+                  className="btn btn-primary"
+                />
+              </div>
+            </form>
+          </div>
         </div>
+        <br />
       </div>
     );
   }
