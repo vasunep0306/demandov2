@@ -32,7 +32,11 @@ class DiscussionList extends Component {
             <td>{discussion.author.data.name}</td>
             <td>{discussion.discussionTopic}</td>
             <td>
-              <Link to={`/${discussion._id}/discussionPage`}>
+              <Link
+                to={`/${this.props.match.params.classroomid}/${
+                  discussion._id
+                }/discussionPage`}
+              >
                 Go To Discussion
               </Link>
               {/* <a href="#">Go To Discussion</a> */}

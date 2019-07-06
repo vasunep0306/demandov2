@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   getComments,
@@ -125,6 +125,10 @@ class DiscussionPage extends Component {
                 Post
               </button>
             </form>
+            <br />
+            <Link to={`/${this.props.match.params.classroomid}/discussionList`}>
+              View Discussions
+            </Link>
           </div>
           <br />
         </div>

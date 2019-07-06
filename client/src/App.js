@@ -137,7 +137,7 @@ class App extends Component {
                   {/* Route for contributing to a discussion */}
                   <PrivateRoute
                     exact
-                    path="/:discussionid/discussionPage"
+                    path="/:classroomid/:discussionid/discussionPage"
                     component={DiscussionPage}
                   />
                   {/* Student route for showing his/her registered courses */}
