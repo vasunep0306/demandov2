@@ -10,7 +10,7 @@ Things to do (improvements/feature updates):
 4. Create an admin page. [functionality] #notstarted
 5. If student is already enrolled, tell them they are in an alert box. [functionality] #inprogress
 6. Add messaging feature. [functionality] #notstarted
-7. Add route to get discussions for the given user. [functionality] #notstarted
+7. Add route to get discussions for the given user. [functionality] #inprogress
 8. Integrate email functionality [functionality] #notstarted
 9. Make signup form a card [style]#notstarted
 10. See why students cannot submit anymore [functionality]#notstarted
