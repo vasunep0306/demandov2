@@ -15,3 +15,4 @@ Things to do (improvements/feature updates):
 9. Make signup form a card [style]#notstarted
 10. See why students cannot submit anymore [functionality]#notstarted
 11. Redesign form that user can use to create a class [style] #notstarted
+12. Redesign form that user can use to create a post [style] #notstarted

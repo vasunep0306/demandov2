@@ -47,6 +47,16 @@ const ShowMyCoursesTeachers = () => (
   </div>
 );
 
+const ShowDiscussionsTeacher = () => (
+  <div>
+    <Link to="#" className="nav-link">
+      <span>
+        <i class="fas fa-comment-dots" /> My Discussions
+      </span>
+    </Link>
+  </div>
+);
+
 const ShowMyCoursesStudents = () => (
   <div>
     <Link to="/myClasses" className="nav-link">
@@ -117,6 +127,9 @@ class Navbar extends Component {
           </li>
           <li className="nav-item">
             <ShowMyCoursesTeachers />
+          </li>
+          <li className="nav-item">
+            <ShowDiscussionsTeacher />
           </li>
           <li className="nav-item">
             <a
