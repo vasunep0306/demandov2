@@ -47,7 +47,7 @@ const ShowMyCoursesTeachers = () => (
   </div>
 );
 
-const ShowDiscussionsTeacher = () => (
+const ShowDiscussions = () => (
   <div>
     <Link to="#" className="nav-link">
       <span>
@@ -129,7 +129,7 @@ class Navbar extends Component {
             <ShowMyCoursesTeachers />
           </li>
           <li className="nav-item">
-            <ShowDiscussionsTeacher />
+            <ShowDiscussions />
           </li>
           <li className="nav-item">
             <a
