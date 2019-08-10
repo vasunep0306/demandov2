@@ -14,3 +14,4 @@ Things to do (improvements/feature updates):
 8. Integrate email functionality [functionality] #notstarted
 9. Make signup form a card [style]#notstarted
 10. See why students cannot submit anymore [functionality]#notstarted
+11. Redesign form that user can use to create a class #notstarted
