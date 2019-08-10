@@ -47,7 +47,7 @@ const ShowMyCoursesTeachers = () => (
   </div>
 );
 
-const ShowDiscussions = () => (
+const ShowDiscussions = props => (
   <div>
     <Link to="#" className="nav-link">
       <span>
@@ -129,7 +129,7 @@ class Navbar extends Component {
             <ShowMyCoursesTeachers />
           </li>
           <li className="nav-item">
-            <ShowDiscussions />
+            <ShowDiscussions userid={this.props.auth.user.id} />
           </li>
           <li className="nav-item">
             <a
