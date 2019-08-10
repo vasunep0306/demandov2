@@ -198,4 +198,9 @@ router.get(
   }
 );
 
+/** @route   GET api/users/:userid/mydiscussions
+ * @desc    Return a list of the user's discussion posts
+ * @access  Private Any Logged In User.
+ */
+
 module.exports = router;
