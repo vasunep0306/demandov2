@@ -212,7 +212,7 @@ router.get(
       .then(user => {
         // they do not have any posts
         if (user.discussionPosts.length === 0) {
-          return res.json({
+          return res.status(500).json({
             no_posts: "There are no discussion posts for this user"
           });
           // they have at least one post

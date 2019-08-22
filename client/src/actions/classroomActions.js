@@ -183,6 +183,26 @@ export const getDiscussions = classroom_id => dispatch => {
     });
 };
 
+
+// get a list of discussions based on the given user
+export const getDiscussions = user_id => dispatch => {
+  dispatch(setClassLoading());
+  axios
+    .get(`/api/users/${user_id}/mydiscussions`)
+    .then(res => {
+      dispatch({
+        type: "GET_DISCUSSIONS",
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: "GET_DISCUSSIONS",
+        payload: err.response.data
+      });
+    });
+};
+
 // create a discussion
 export const createDiscussion = (
   classroom_id,

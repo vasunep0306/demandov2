@@ -39,6 +39,7 @@ import ClassList from "./components/classrooms/ClassList";
 import DiscussionList from "./components/classrooms/DiscussionList";
 import CreateDiscussion from "./components/classrooms/CreateDiscussion";
 import DiscussionPage from "./components/classrooms/DiscussionPage";
+import MyDiscussions from "./components/classrooms/MyDiscussions";
 // Test Components
 import TriggerError from "./components/test/TriggerError";
 
@@ -140,6 +141,8 @@ class App extends Component {
                     path="/:classroomid/:discussionid/discussionPage"
                     component={DiscussionPage}
                   />
+
+                  {/* Route for accessing user's disccussion */}
                   {/* Student route for showing his/her registered courses */}
                   <PrivateRoute
                     exact
