@@ -5,10 +5,14 @@ import { connect } from "react-redux";
 import { getUserDiscussions } from "../../actions/classroomActions";
 
 class MyDiscussions extends Component {
+  componentDidMount() {
+    this.props.getUserDiscussions(this.props.auth.user.id);
+  }
+
   render() {
     return (
       <div>
-        <p>placeholder</p>
+        <p>Placeholder</p>
       </div>
     );
   }

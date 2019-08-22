@@ -49,7 +49,7 @@ const ShowMyCoursesTeachers = () => (
 
 const ShowDiscussions = props => (
   <div>
-    <Link to="#" className="nav-link">
+    <Link to="/myDiscussions" className="nav-link">
       <span>
         <i class="fas fa-comment-dots" /> My Discussions
       </span>

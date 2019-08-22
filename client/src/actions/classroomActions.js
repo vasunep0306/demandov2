@@ -183,9 +183,8 @@ export const getDiscussions = classroom_id => dispatch => {
     });
 };
 
-
 // get a list of discussions based on the given user
-export const getDiscussions = user_id => dispatch => {
+export const getUserDiscussions = user_id => dispatch => {
   dispatch(setClassLoading());
   axios
     .get(`/api/users/${user_id}/mydiscussions`)
