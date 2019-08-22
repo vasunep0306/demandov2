@@ -203,4 +203,24 @@ router.get(
  * @access  Private Any Logged In User.
  */
 
+router.get(
+  "/:userid/mydiscussions",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    User.findById(req.params.userid)
+      .populate("discussions")
+      .then(user => {
+        // they do not have any posts
+        if (user.discussionPosts.length === 0) {
+          return res.json({
+            no_posts: "There are no discussion posts for this user"
+          });
+          // they have at least one post
+        } else {
+          return res.json(user.discussionPosts);
+        }
+      });
+  }
+);
+
 module.exports = router;
