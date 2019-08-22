@@ -143,6 +143,11 @@ class App extends Component {
                   />
 
                   {/* Route for accessing user's disccussion */}
+                  <PrivateRoute
+                    exact
+                    path="/myDiscussions"
+                    component={DiscussionPage}
+                  />
                   {/* Student route for showing his/her registered courses */}
                   <PrivateRoute
                     exact
