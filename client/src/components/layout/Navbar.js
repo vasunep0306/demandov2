@@ -183,7 +183,7 @@ class Navbar extends Component {
 
     return (
       <div className="Navbar">
-        <nav class="navbar navbar-expand-lg">
+        <nav class="navbar navbar-expand-lg bg-dark">
           <button
             className="navbar-toggler"
             type="button"

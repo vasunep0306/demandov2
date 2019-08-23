@@ -1,7 +1,6 @@
 import React from "react";
 
 const footerStyle = {
-  backgroundColor: "black",
   fontSize: "20px",
   color: "white",
   borderTop: "1px solid #E7E7E7",
@@ -24,7 +23,9 @@ function Footer({ children }) {
   return (
     <div>
       <div style={phantomStyle} />
-      <div style={footerStyle}>{children}</div>
+      <div className="bg-dark" style={footerStyle}>
+        {children}
+      </div>
     </div>
   );
 }
