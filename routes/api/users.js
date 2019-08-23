@@ -208,7 +208,7 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     User.findById(req.params.userid)
-      .populate("discussions")
+      .populate("discussionPosts")
       .then(user => {
         // they do not have any posts
         if (user.discussionPosts.length === 0) {

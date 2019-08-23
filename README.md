@@ -18,3 +18,4 @@ Things to do (improvements/feature updates):
 12. Redesign form that user can use to create a post [style] #notstarted
 13. Refactor [style] #onhold
 14. Create a discussions folder in components [style] #notstarted
+15. Generate random color for comments. [style] #notstarted

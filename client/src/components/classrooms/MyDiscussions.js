@@ -10,9 +10,55 @@ class MyDiscussions extends Component {
   }
 
   render() {
+    let discussionList;
+    let { discussions, loading } = this.props.classrooms;
+    try {
+      if (discussions === null || loading) {
+        discussionList = <div>Loading</div>;
+      } else if (discussions.no_posts) {
+        discussionList = <div>{discussions.no_posts}</div>;
+      } else {
+        discussions = Array.from(this.props.classrooms.discussions);
+        console.log(discussions);
+        discussionList = discussions.map(discussion => (
+          <tr>
+            <td>{discussion.author.data.name}</td>
+            <td>{discussion.discussionTopic}</td>
+            <td>
+              <Link
+                to={`/${discussion.classroom}/${discussion._id}/discussionPage`}
+              >
+                Go To Discussion
+              </Link>
+              {/* <a href="#">Go To Discussion</a> */}
+            </td>
+            <td>{discussion.date.slice(0, 10)}</td>
+          </tr>
+        ));
+      }
+    } catch (err) {
+      discussionList = (
+        <tr>
+          <td>{err.message}</td>
+        </tr>
+      );
+    }
     return (
-      <div>
-        <p>Placeholder</p>
+      <div className="container">
+        <br />
+        <h2>My Discussions</h2>
+        <p>Here are all your discussions</p>
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th>Author Name</th>
+              <th>Discussion Topic</th>
+              <th>Link</th>
+              <th>Date Posted</th>
+            </tr>
+          </thead>
+          <tbody>{discussionList}</tbody>
+        </table>
       </div>
     );
   }
