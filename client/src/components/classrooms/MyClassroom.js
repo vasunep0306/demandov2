@@ -116,7 +116,7 @@ class MyClassroom extends Component {
             ));
 
             classroomArea = (
-              <div>
+              <div className="container">
                 {choiceArray}
                 <input
                   type="submit"
@@ -129,12 +129,13 @@ class MyClassroom extends Component {
         }
         finalClassroomArea = (
           <div className="container">
+            <br />
             {header}
             <form onSubmit={this.onSubmit.bind(this)}>{classroomArea}</form>
           </div>
         );
       }
-      return <div>{finalClassroomArea}</div>;
+      return <div className="container">{finalClassroomArea}</div>;
     } catch (err) {
       this.props.history.push("/myClasses");
     }

@@ -40,7 +40,8 @@ class ShowStudentClassrooms extends Component {
       }
       return (
         <div className="container">
-          <h1>Here are your classes: {this.props.auth.user.name}</h1>
+          <br />
+          <h2>Here are your classes: {this.props.auth.user.name}</h2>
           <table className="table">
             <thead>
               <tr>

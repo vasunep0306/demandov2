@@ -50,8 +50,9 @@ class RegisterForClassrooms extends Component {
       }
 
       return (
-        <div>
-          <h1>Here are all of the courses</h1>
+        <div className="container">
+          <br />
+          <h2>Here are all of the courses</h2>
           <table className="table">
             <thead>
               <tr>
