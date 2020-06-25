@@ -18,3 +18,4 @@ Things to do (improvements/feature updates):
 12. Refactor [style] #onhold
 13. Create a discussions folder in components [style] #notstarted
 14. Generate random color for comments. [style] #notstarted
+15. close navbar [style] #notstarted
