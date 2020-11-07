@@ -25,6 +25,7 @@
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "react-drawable-canvas": "^1.1.1",
+    "dotenv": "^8.2.0",
     "validator": "^9.4.1"
   }
 }

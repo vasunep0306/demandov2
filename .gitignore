@@ -5,3 +5,4 @@ mongoshell.js
 dump/admin
 dump/chemistry
 dump/test
+.env
