@@ -80,6 +80,10 @@ li a:hover {
   background-color: #111;
 }
 
+.navigation_item {
+  color: white;
+}
+
 .email {
   background: #ecf0f1;
   border: #ccc 1px solid;

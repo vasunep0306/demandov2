@@ -19,8 +19,8 @@ import {
  * Common component widgets that will use font awesome
  */
 const LandingsComponent = () => (
-  <div>
-    <Link to="/" className="nav-link">
+  <div className="navigation_item">
+    <Link to="/" className="nav-link navigation_item">
       <span>
         <FontAwesomeIcon icon={faHome} /> Demando
       </span>
@@ -30,7 +30,7 @@ const LandingsComponent = () => (
 
 const LogInComponent = () => (
   <div>
-    <Link to="/login" className="nav-link">
+    <Link to="/login" className="nav-link navigation_item">
       <span>
         <FontAwesomeIcon icon={faSignInAlt} /> Log In
       </span>
@@ -40,7 +40,7 @@ const LogInComponent = () => (
 
 const SignUpComponent = () => (
   <div>
-    <Link to="/register" className="nav-link">
+    <Link to="/register" className="nav-link navigation_item">
       <span>
         <FontAwesomeIcon icon={faUserPlus} /> Sign Up
       </span>
@@ -50,7 +50,7 @@ const SignUpComponent = () => (
 
 const ShowMyCoursesTeachers = () => (
   <div>
-    <Link to="/displayClasses" className="nav-link">
+    <Link to="/displayClasses" className="nav-link navigation_item">
       <span>
         <FontAwesomeIcon icon={faBinoculars} /> View My Courses
       </span>
@@ -60,7 +60,7 @@ const ShowMyCoursesTeachers = () => (
 
 const ShowDiscussions = () => (
   <div>
-    <Link to="/myDiscussions" className="nav-link">
+    <Link to="/myDiscussions" className="nav-link navigation_item">
       <span>
         <FontAwesomeIcon icon={faCommentDots} /> My Discussions
       </span>
@@ -70,7 +70,7 @@ const ShowDiscussions = () => (
 
 const ShowMyCoursesStudents = () => (
   <div>
-    <Link to="/myClasses" className="nav-link">
+    <Link to="/myClasses" className="nav-link navigation_item">
       <span>
         <FontAwesomeIcon icon={faBinoculars} /> View My Courses
       </span>
@@ -80,7 +80,7 @@ const ShowMyCoursesStudents = () => (
 
 const RegisterForCourse = () => (
   <div>
-    <Link to="/registerForClassroom" className="nav-link">
+    <Link to="/registerForClassroom" className="nav-link navigation_item">
       <span>
         <FontAwesomeIcon icon={faPlus} /> Register For A Course
       </span>
@@ -90,7 +90,7 @@ const RegisterForCourse = () => (
 
 const CreateCourse = () => (
   <div>
-    <Link to="/createClass" className="nav-link">
+    <Link to="/createClass" className="nav-link navigation_item">
       <span>
         <FontAwesomeIcon icon={faPlus} /> Create A Class
       </span>
@@ -141,7 +141,7 @@ class Navbar extends Component {
             <LandingsComponent />
           </Nav.Item>
           <Nav.Item>
-            <Link to="/dashboard" className="nav-link">
+            <Link to="/dashboard" className="nav-link navigation_item">
               Dashboard{" "}
             </Link>
           </Nav.Item>
@@ -158,7 +158,7 @@ class Navbar extends Component {
             <a
               href=""
               onClick={this.onLogoutClick.bind(this)}
-              className="nav-link"
+              className="nav-link navigation_item"
             >
               <span>
                 <i className="fas fa-sign-out-alt" />
@@ -167,37 +167,6 @@ class Navbar extends Component {
             </a>
           </Nav.Item>
         </Nav>
-        // <ul className="navbar-nav">
-        //   <li className="nav-item">
-        //     <LandingsComponent />
-        //   </li>
-        //   <li className="nav-item">
-        //     <Link to="/dashboard" className="nav-link">
-        //       Dashboard{" "}
-        //     </Link>
-        //   </li>
-        //   <li className="nav-item">
-        //     <CreateCourse />
-        //   </li>
-        //   <li className="nav-item">
-        //     <ShowMyCoursesTeachers />
-        //   </li>
-        //   <li className="nav-item">
-        //     <ShowDiscussions />
-        //   </li>
-        //   <li className="nav-item">
-        //     <a
-        //       href=""
-        //       onClick={this.onLogoutClick.bind(this)}
-        //       className="nav-link"
-        //     >
-        //       <span>
-        //         <i className="fas fa-sign-out-alt" />
-        //       </span>{" "}
-        //       Logout
-        //     </a>
-        //   </li>
-        // </ul>
       );
     } else {
       authBar = (
