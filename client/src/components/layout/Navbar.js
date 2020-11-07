@@ -13,6 +13,7 @@ import {
   faBinoculars,
   faCommentDots,
   faPlus,
+  faSignOutAlt
 } from "@fortawesome/free-solid-svg-icons";
 
 /**
@@ -109,32 +110,20 @@ class Navbar extends Component {
     let authBar, guestBar;
 
     guestBar = (
-      <ul className="navbar-nav">
-        <li className="nav-item">
+      <Nav className="mr-auto">
+        <Nav.Item>
           <LandingsComponent />
-        </li>
-        <li className="nav-item">
+        </Nav.Item>
+        <Nav.Item>
           <LogInComponent />
-        </li>
-        <li className="nav-item">
+        </Nav.Item>
+        <Nav.Item>
           <SignUpComponent />
-        </li>
-      </ul>
+        </Nav.Item>
+      </Nav>
     );
 
     if (user.userType === "teacher") {
-      {
-        /* <Nav className="mr-auto">
-            <Nav.Item>
-              <LandingsComponent />
-            </Nav.Item>
-            <Nav.Item>
-            <Link to="/dashboard" className="nav-link">
-                Dashboard{" "}
-              </Link>
-            </Nav.Item>
-          </Nav> */
-      }
       authBar = (
         <Nav className="mr-auto">
           <Nav.Item>
@@ -161,7 +150,7 @@ class Navbar extends Component {
               className="nav-link navigation_item"
             >
               <span>
-                <i className="fas fa-sign-out-alt" />
+                <FontAwesomeIcon icon={faSignOutAlt} />
               </span>{" "}
               Logout
             </a>
@@ -170,37 +159,37 @@ class Navbar extends Component {
       );
     } else {
       authBar = (
-        <ul className="navbar-nav">
-          <li className="nav-item">
+        <Nav className="mr-auto">
+          <Nav.Item>
             <LandingsComponent />
-          </li>
-          <li>
+          </Nav.Item>
+          <Nav.Item>
             <Link to="/dashboard" className="nav-link">
               Dashboard{" "}
             </Link>
-          </li>
-          <li className="nav-item">
+          </Nav.Item>
+          <Nav.Item>
             <ShowMyCoursesStudents />
-          </li>
-          <li>
+          </Nav.Item>
+          <Nav.Item>
             <RegisterForCourse />
-          </li>
-          <li className="nav-item">
+          </Nav.Item>
+          <Nav.Item>
             <ShowDiscussions />
-          </li>
-          <li className="nav-item">
+          </Nav.Item>
+          <Nav.Item>
             <a
               href=""
               onClick={this.onLogoutClick.bind(this)}
-              className="nav-link"
+              className="nav-link navigation_item"
             >
               <span>
-                <i className="fas fa-sign-out-alt" />
+              <FontAwesomeIcon icon={faSignOutAlt} />
               </span>{" "}
               Logout
             </a>
-          </li>
-        </ul>
+          </Nav.Item>
+        </Nav>
       );
     }
 
