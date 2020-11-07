@@ -2,7 +2,7 @@
 
 This branch is a totally new branch based on my departure from Canisius College. I am working on/continually improving this project as a live coding series on Facebook.
 
-Things to do (improvements/feature updates):
+Things to do (improvements/feature updates (on hold)):
 
 1. Restyle the teacher dashboard. [style] #notstarted
 2. Annomaly detection system... (find malicious users) [functionality] #notstarted
@@ -19,3 +19,8 @@ Things to do (improvements/feature updates):
 13. Create a discussions folder in components [style] #notstarted
 14. Generate random color for comments. [style] #notstarted
 15. close navbar [style] #notstarted
+
+
+# New Tasks
+
+1. Make everything react bootstrap  [style] #inprogress
