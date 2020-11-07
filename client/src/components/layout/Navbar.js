@@ -3,6 +3,17 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Navbar as NavigationBar, Nav, NavDropdown } from "react-bootstrap";
+
+import {
+  faHome,
+  faSignInAlt,
+  faUserPlus,
+  faBinoculars,
+  faCommentDots,
+  faPlus,
+} from "@fortawesome/free-solid-svg-icons";
 
 /**
  * Common component widgets that will use font awesome
@@ -11,7 +22,7 @@ const LandingsComponent = () => (
   <div>
     <Link to="/" className="nav-link">
       <span>
-        <i className="fas fa-home" /> Demando
+        <FontAwesomeIcon icon={faHome} /> Demando
       </span>
     </Link>
   </div>
@@ -21,7 +32,7 @@ const LogInComponent = () => (
   <div>
     <Link to="/login" className="nav-link">
       <span>
-        <i className="fas fa-sign-in-alt" /> Log In
+        <FontAwesomeIcon icon={faSignInAlt} /> Log In
       </span>
     </Link>
   </div>
@@ -31,7 +42,7 @@ const SignUpComponent = () => (
   <div>
     <Link to="/register" className="nav-link">
       <span>
-        <i className="fas fa-user-plus" /> Sign Up
+        <FontAwesomeIcon icon={faUserPlus} /> Sign Up
       </span>
     </Link>
   </div>
@@ -41,7 +52,7 @@ const ShowMyCoursesTeachers = () => (
   <div>
     <Link to="/displayClasses" className="nav-link">
       <span>
-        <i class="fas fa-binoculars" /> View My Courses
+        <FontAwesomeIcon icon={faBinoculars} /> View My Courses
       </span>
     </Link>
   </div>
@@ -51,7 +62,7 @@ const ShowDiscussions = () => (
   <div>
     <Link to="/myDiscussions" className="nav-link">
       <span>
-        <i class="fas fa-comment-dots" /> My Discussions
+        <FontAwesomeIcon icon={faCommentDots} /> My Discussions
       </span>
     </Link>
   </div>
@@ -61,7 +72,7 @@ const ShowMyCoursesStudents = () => (
   <div>
     <Link to="/myClasses" className="nav-link">
       <span>
-        <i class="fas fa-binoculars" /> View My Courses
+        <FontAwesomeIcon icon={faBinoculars} /> View My Courses
       </span>
     </Link>
   </div>
@@ -71,7 +82,7 @@ const RegisterForCourse = () => (
   <div>
     <Link to="/registerForClassroom" className="nav-link">
       <span>
-        <i class="fas fa-plus" /> Register For A Course
+        <FontAwesomeIcon icon={faPlus} /> Register For A Course
       </span>
     </Link>
   </div>
@@ -81,7 +92,7 @@ const CreateCourse = () => (
   <div>
     <Link to="/createClass" className="nav-link">
       <span>
-        <i class="fas fa-plus" /> Create A Class
+        <FontAwesomeIcon icon={faPlus} /> Create A Class
       </span>
     </Link>
   </div>
@@ -112,26 +123,38 @@ class Navbar extends Component {
     );
 
     if (user.userType === "teacher") {
+      {
+        /* <Nav className="mr-auto">
+            <Nav.Item>
+              <LandingsComponent />
+            </Nav.Item>
+            <Nav.Item>
+            <Link to="/dashboard" className="nav-link">
+                Dashboard{" "}
+              </Link>
+            </Nav.Item>
+          </Nav> */
+      }
       authBar = (
-        <ul className="navbar-nav">
-          <li className="nav-item">
+        <Nav className="mr-auto">
+          <Nav.Item>
             <LandingsComponent />
-          </li>
-          <li className="nav-item">
+          </Nav.Item>
+          <Nav.Item>
             <Link to="/dashboard" className="nav-link">
               Dashboard{" "}
             </Link>
-          </li>
-          <li className="nav-item">
+          </Nav.Item>
+          <Nav.Item>
             <CreateCourse />
-          </li>
-          <li className="nav-item">
+          </Nav.Item>
+          <Nav.Item>
             <ShowMyCoursesTeachers />
-          </li>
-          <li className="nav-item">
+          </Nav.Item>
+          <Nav.Item>
             <ShowDiscussions />
-          </li>
-          <li className="nav-item">
+          </Nav.Item>
+          <Nav.Item>
             <a
               href=""
               onClick={this.onLogoutClick.bind(this)}
@@ -142,8 +165,39 @@ class Navbar extends Component {
               </span>{" "}
               Logout
             </a>
-          </li>
-        </ul>
+          </Nav.Item>
+        </Nav>
+        // <ul className="navbar-nav">
+        //   <li className="nav-item">
+        //     <LandingsComponent />
+        //   </li>
+        //   <li className="nav-item">
+        //     <Link to="/dashboard" className="nav-link">
+        //       Dashboard{" "}
+        //     </Link>
+        //   </li>
+        //   <li className="nav-item">
+        //     <CreateCourse />
+        //   </li>
+        //   <li className="nav-item">
+        //     <ShowMyCoursesTeachers />
+        //   </li>
+        //   <li className="nav-item">
+        //     <ShowDiscussions />
+        //   </li>
+        //   <li className="nav-item">
+        //     <a
+        //       href=""
+        //       onClick={this.onLogoutClick.bind(this)}
+        //       className="nav-link"
+        //     >
+        //       <span>
+        //         <i className="fas fa-sign-out-alt" />
+        //       </span>{" "}
+        //       Logout
+        //     </a>
+        //   </li>
+        // </ul>
       );
     } else {
       authBar = (
@@ -210,14 +264,11 @@ class Navbar extends Component {
 
 Navbar.propTypes = {
   logoutUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-  auth: state.auth
+const mapStateToProps = (state) => ({
+  auth: state.auth,
 });
 
-export default connect(
-  mapStateToProps,
-  { logoutUser }
-)(Navbar);
+export default connect(mapStateToProps, { logoutUser })(Navbar);
