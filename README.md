@@ -23,4 +23,4 @@ Things to do (improvements/feature updates (on hold)):
 
 # New Tasks
 
-1. Make everything react bootstrap  [style] #inprogress
+
