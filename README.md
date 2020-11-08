@@ -23,4 +23,4 @@ Things to do (improvements/feature updates (on hold)):
 
 # New Tasks
 
-
+1. Create Note Taker [functionality] #notstarted
