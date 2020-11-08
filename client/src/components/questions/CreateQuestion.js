@@ -61,7 +61,7 @@ class CreateQuestion extends Component {
       <div className="container">
         <br />
         <div className="card">
-          <h5 className="card-header bg-dark text-white">New Question</h5>
+          <h5 className="card-header cardHeader">New Question</h5>
           <div className="card-body">
             <h5 className="card-title">
               Use this form to create a new question
@@ -124,7 +124,7 @@ class CreateQuestion extends Component {
               <div className="form-group">
                 <input
                   type="submit"
-                  className="btn btn-success"
+                  className="btn my_btn"
                   value="Create Question"
                 />
               </div>

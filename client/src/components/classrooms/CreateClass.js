@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import isEmpty from "../../validation/is-empty";
+import { Container, Card } from "react-bootstrap";
 
 class CreateClass extends Component {
   constructor() {
@@ -45,17 +46,23 @@ class CreateClass extends Component {
         : "";
 
     return (
-      <div>
+      <Container>
         <br />
-        <h1 className="createclassinfotext">Use this form to create a class</h1>
-        <div className="createclassformdiv">
-          <form className="createclassform" onSubmit={this.onSubmit}>
+        <Card>
+          <Card.Header as="h5" className="cardHeader">
+              Create New Classroom
+          </Card.Header>
+          <Card.Body>
+            <Card.Title>
+              Use this form to create a class
+            </Card.Title>
+            <form onSubmit={this.onSubmit}>
             <div className="form-group">
               <label htmlFor="classcode">Class code: </label>
               <input
                 type="text"
                 name="classcode"
-                className="form-control classcode"
+                className="form-control"
                 placeholder="classcode"
                 value={this.state.classcode}
                 onChange={this.onChange}
@@ -68,7 +75,7 @@ class CreateClass extends Component {
               <input
                 type="text"
                 name="classtitle"
-                className="form-control classtitle"
+                className="form-control"
                 placeholder="classtitle"
                 value={this.state.classtitle}
                 onChange={this.onChange}
@@ -80,17 +87,19 @@ class CreateClass extends Component {
               <input
                 type="text"
                 name="registeration_pin"
-                className="form-control registeration_pin"
+                className="form-control"
                 placeholder="Registeration Pin"
                 value={this.state.registeration_pin}
                 onChange={this.onChange}
               />
               <span className="errorMsg">{registeration_pin}</span>
             </div>
-            <input type="submit" className="btn btn-primary" />
+            <input type="submit" className="btn my_btn" />
           </form>
-        </div>
-      </div>
+          </Card.Body>
+        </Card>
+        <br />
+      </Container>
     );
   }
 }
