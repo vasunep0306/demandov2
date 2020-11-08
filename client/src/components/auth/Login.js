@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import isEmpty from "../../validation/is-empty";
+import { Container, Card } from "react-bootstrap";
 
 class Login extends Component {
   constructor() {
@@ -10,7 +11,7 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      errors: {}
+      errors: {},
     };
 
     this.onChange = this.onChange.bind(this);
@@ -38,7 +39,7 @@ class Login extends Component {
 
     const userData = {
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
     };
 
     this.props.loginUser(userData);
@@ -52,12 +53,17 @@ class Login extends Component {
     let email = !isEmpty(errors.email) ? errors.email : "",
       password = !isEmpty(errors.password) ? errors.password : "";
     return (
-      <div className="container">
+      <Container>
         <br />
-        <div className="card">
-          <h5 className="card-header text-white bg-dark mb-3">Log In</h5>
-          <div className="card-body">
-            <form onSubmit={this.onSubmit}>
+        <Card>
+          <Card.Header
+            as="h5"
+            className="cardHeader"
+          >
+            Log In
+          </Card.Header>
+          <Card.Body>
+          <form onSubmit={this.onSubmit}>
               <div className="form-group">
                 <label htmlFor="email">Email:</label>
                 <input
@@ -88,10 +94,10 @@ class Login extends Component {
                 <input value="Log In" type="submit" className="btn btn-dark" />
               </div>
             </form>
-          </div>
-        </div>
+          </Card.Body>
+        </Card>
         <br />
-      </div>
+      </Container>
     );
   }
 }
@@ -99,15 +105,12 @@ class Login extends Component {
 Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth,
-  errors: state.errors
+  errors: state.errors,
 });
 
-export default connect(
-  mapStateToProps,
-  { loginUser }
-)(Login);
+export default connect(mapStateToProps, { loginUser })(Login);

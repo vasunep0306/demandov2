@@ -127,33 +127,33 @@ class Navbar extends Component {
     if (user.userType === "teacher") {
       authBar = (
         <Nav className="mr-auto">
-          <Nav.Item>
+          <Nav.Item className="nav_element">
             <LandingsComponent />
           </Nav.Item>
-          <Nav.Item>
+          <Nav.Item className="nav_element">
             <Link to="/dashboard" className="nav-link navigation_item">
-              Dashboard{" "}
+              <span className="my_icon">Dashboard</span>
             </Link>
           </Nav.Item>
-          <Nav.Item>
+          <Nav.Item className="nav_element">
             <CreateCourse />
           </Nav.Item>
-          <Nav.Item>
+          <Nav.Item className="nav_element">
             <ShowMyCoursesTeachers />
           </Nav.Item>
-          <Nav.Item>
+          <Nav.Item className="nav_element">
             <ShowDiscussions />
           </Nav.Item>
-          <Nav.Item>
+          <Nav.Item className="nav_element">
             <a
               href=""
               onClick={this.onLogoutClick.bind(this)}
               className="nav-link navigation_item"
             >
-              <span>
+              <span className="my_icon">
                 <FontAwesomeIcon icon={faSignOutAlt} />
-              </span>{" "}
-              Logout
+                Logout
+              </span>
             </a>
           </Nav.Item>
         </Nav>
@@ -161,33 +161,33 @@ class Navbar extends Component {
     } else {
       authBar = (
         <Nav className="mr-auto">
-          <Nav.Item>
+          <Nav.Item className="nav_element">
             <LandingsComponent />
           </Nav.Item>
-          <Nav.Item>
+          <Nav.Item className="nav_element">
             <Link to="/dashboard" className="nav-link">
-              Dashboard{" "}
+              <span className="my_icon">Dashboard</span>
             </Link>
           </Nav.Item>
-          <Nav.Item>
+          <Nav.Item className="nav_element">
             <ShowMyCoursesStudents />
           </Nav.Item>
-          <Nav.Item>
+          <Nav.Item className="nav_element">
             <RegisterForCourse />
           </Nav.Item>
-          <Nav.Item>
+          <Nav.Item className="nav_element">
             <ShowDiscussions />
           </Nav.Item>
-          <Nav.Item>
+          <Nav.Item className="nav_element">
             <a
               href=""
               onClick={this.onLogoutClick.bind(this)}
               className="nav-link navigation_item"
             >
-              <span>
+              <span className="my_icon">
                 <FontAwesomeIcon icon={faSignOutAlt} />
-              </span>{" "}
-              Logout
+                Logout
+              </span>
             </a>
           </Nav.Item>
         </Nav>

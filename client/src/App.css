@@ -19,6 +19,11 @@ ul {
   background-color: #343a40;
 }
 
+.cardHeader {
+  background-color: #343a40;
+  color: white;
+}
+
 .navbar-toggler-icon {
   color: rgb(27, 23, 23);
 }
