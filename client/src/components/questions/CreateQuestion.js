@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { addQuestion } from "../../actions/questionActions";
 import { withRouter, Link } from "react-router-dom";
 import isEmpty from "../../validation/is-empty";
+import { Container, Card } from "react-bootstrap";
 
 class CreateQuestion extends Component {
   constructor() {

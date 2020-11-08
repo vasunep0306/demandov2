@@ -29,6 +29,21 @@ ul {
   color: white;
 }
 
+.dashboardCard {
+  border-width: 0;
+  border-color: #7d2aad;
+  margin-top: 5%;
+}
+
+.dashboardHeader {
+  text-align: center;
+  margin-top: 3%;
+}
+
+.dashBoardInfo {
+  text-align: center;
+}
+
 .footer_color {
   background-color: #7d2aad;
   color: white;
