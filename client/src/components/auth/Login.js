@@ -91,7 +91,7 @@ class Login extends Component {
                 <span className="errorMsg">{password}</span>
               </div>
               <div className="form-group">
-                <input value="Log In" type="submit" className="btn btn-dark" />
+                <input value="Log In" type="submit" className="btn my_btn" />
               </div>
             </form>
           </Card.Body>

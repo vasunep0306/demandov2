@@ -81,12 +81,12 @@ const ShowMyCoursesStudents = () => (
 
 const RegisterForCourse = () => (
   <div>
-    <span className="my_icon">
-      <Link to="/registerForClassroom" className="nav-link navigation_item">
-        <FontAwesomeIcon icon={faPlus} />
+    <Link to="/registerForClassroom" className="nav-link navigation_item">
+      <span className="my_icon">
+        <FontAwesomeIcon icon={faPlus} />{" "}
         Register For A Course
-      </Link>
-    </span>
+      </span>
+    </Link>
   </div>
 );
 

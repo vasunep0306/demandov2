@@ -16,11 +16,21 @@ ul {
 }
 
 .Navbar {
-  background-color: #343a40;
+  background-color: #7d2aad;
 }
 
 .cardHeader {
-  background-color: #343a40;
+  background-color: #7d2aad;
+  color: white;
+}
+
+.my_btn {
+  background-color: #7d2aad;
+  color: white;
+}
+
+.footer_color {
+  background-color: #7d2aad;
   color: white;
 }
 
@@ -47,7 +57,7 @@ ul {
 .lead {
   color: black;
   font-weight: bold;
-  font-size: 18pt;
+  font-size: 14pt;
 }
 
 .landing-inner {
@@ -59,7 +69,7 @@ li {
 }
 
 .title {
-  color: blue;
+  color:  #7d2aad;
   font-size: 120px;
 }
 .errorMsg {
@@ -78,7 +88,7 @@ li {
 }
 
 .nav_element:hover {
-  background-color: #111;
+  background-color: #998ca1;
 }
 
 .navigation_item {

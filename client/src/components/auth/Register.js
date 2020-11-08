@@ -151,7 +151,7 @@ class Register extends Component {
                 <span className="errorMsg">{secretKey}</span>
               </div>
               <div className="form-group">
-                <input type="submit" value="Sign Up" className="btn btn-dark" />
+                <input type="submit" value="Sign Up" className="btn my_btn" />
               </div>
             </form>
           </div>

@@ -23,7 +23,7 @@ function Footer({ children }) {
   return (
     <div>
       <div style={phantomStyle} />
-      <div className="bg-dark" style={footerStyle}>
+      <div className="footer_color" style={footerStyle}>
         {children}
       </div>
     </div>
