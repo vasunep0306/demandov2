@@ -68,15 +68,11 @@ li {
   height: 100vh;
 }
 
-li a {
-  display: block;
+.my_icon {
   color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
 }
 
-li a:hover {
+.nav_element:hover {
   background-color: #111;
 }
 

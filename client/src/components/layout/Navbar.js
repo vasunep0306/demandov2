@@ -22,7 +22,7 @@ import {
 const LandingsComponent = () => (
   <div className="navigation_item">
     <Link to="/" className="nav-link navigation_item">
-      <span>
+      <span className="my_icon">
         <FontAwesomeIcon icon={faHome} /> Demando
       </span>
     </Link>
@@ -32,7 +32,7 @@ const LandingsComponent = () => (
 const LogInComponent = () => (
   <div>
     <Link to="/login" className="nav-link navigation_item">
-      <span>
+      <span className="my_icon">
         <FontAwesomeIcon icon={faSignInAlt} /> Log In
       </span>
     </Link>
@@ -42,7 +42,7 @@ const LogInComponent = () => (
 const SignUpComponent = () => (
   <div>
     <Link to="/register" className="nav-link navigation_item">
-      <span>
+      <span className="my_icon">
         <FontAwesomeIcon icon={faUserPlus} /> Sign Up
       </span>
     </Link>
@@ -52,7 +52,7 @@ const SignUpComponent = () => (
 const ShowMyCoursesTeachers = () => (
   <div>
     <Link to="/displayClasses" className="nav-link navigation_item">
-      <span>
+      <span className="my_icon">
         <FontAwesomeIcon icon={faBinoculars} /> View My Courses
       </span>
     </Link>
@@ -62,7 +62,7 @@ const ShowMyCoursesTeachers = () => (
 const ShowDiscussions = () => (
   <div>
     <Link to="/myDiscussions" className="nav-link navigation_item">
-      <span>
+      <span className="my_icon">
         <FontAwesomeIcon icon={faCommentDots} /> My Discussions
       </span>
     </Link>
@@ -72,7 +72,7 @@ const ShowDiscussions = () => (
 const ShowMyCoursesStudents = () => (
   <div>
     <Link to="/myClasses" className="nav-link navigation_item">
-      <span>
+      <span className="my_icon">
         <FontAwesomeIcon icon={faBinoculars} /> View My Courses
       </span>
     </Link>
@@ -81,18 +81,19 @@ const ShowMyCoursesStudents = () => (
 
 const RegisterForCourse = () => (
   <div>
-    <Link to="/registerForClassroom" className="nav-link navigation_item">
-      <span>
-        <FontAwesomeIcon icon={faPlus} /> Register For A Course
-      </span>
-    </Link>
+    <span className="my_icon">
+      <Link to="/registerForClassroom" className="nav-link navigation_item">
+        <FontAwesomeIcon icon={faPlus} />
+        Register For A Course
+      </Link>
+    </span>
   </div>
 );
 
 const CreateCourse = () => (
   <div>
     <Link to="/createClass" className="nav-link navigation_item">
-      <span>
+      <span className="my_icon">
         <FontAwesomeIcon icon={faPlus} /> Create A Class
       </span>
     </Link>
@@ -111,13 +112,13 @@ class Navbar extends Component {
 
     guestBar = (
       <Nav className="mr-auto">
-        <Nav.Item>
+        <Nav.Item className="nav_element">
           <LandingsComponent />
         </Nav.Item>
-        <Nav.Item>
+        <Nav.Item className="nav_element">
           <LogInComponent />
         </Nav.Item>
-        <Nav.Item>
+        <Nav.Item className="nav_element">
           <SignUpComponent />
         </Nav.Item>
       </Nav>
@@ -200,7 +201,10 @@ class Navbar extends Component {
         variant="dark"
         collapseOnSelect
       >
-        <NavigationBar.Toggle aria-controls="responsive-navbar-nav" className=".navbar-toggler-icon" />
+        <NavigationBar.Toggle
+          aria-controls="responsive-navbar-nav"
+          className=".navbar-toggler-icon"
+        />
         <NavigationBar.Collapse>
           {isAuthenticated ? authBar : guestBar}
         </NavigationBar.Collapse>
