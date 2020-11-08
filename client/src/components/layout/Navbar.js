@@ -13,7 +13,7 @@ import {
   faBinoculars,
   faCommentDots,
   faPlus,
-  faSignOutAlt
+  faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
 /**
@@ -184,7 +184,7 @@ class Navbar extends Component {
               className="nav-link navigation_item"
             >
               <span>
-              <FontAwesomeIcon icon={faSignOutAlt} />
+                <FontAwesomeIcon icon={faSignOutAlt} />
               </span>{" "}
               Logout
             </a>
@@ -194,28 +194,17 @@ class Navbar extends Component {
     }
 
     return (
-      <div className="Navbar">
-        <nav class="navbar navbar-expand-lg bg-dark">
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon">
-              <i class="fas fa-bars" />
-            </span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div classNames="navbar-nav">
-              {isAuthenticated ? authBar : guestBar}
-            </div>
-          </div>
-        </nav>
-      </div>
+      <NavigationBar
+        className="Navbar"
+        expand="lg"
+        variant="dark"
+        collapseOnSelect
+      >
+        <NavigationBar.Toggle aria-controls="responsive-navbar-nav" className=".navbar-toggler-icon" />
+        <NavigationBar.Collapse>
+          {isAuthenticated ? authBar : guestBar}
+        </NavigationBar.Collapse>
+      </NavigationBar>
     );
   }
 }

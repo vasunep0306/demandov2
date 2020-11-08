@@ -16,11 +16,11 @@ ul {
 }
 
 .Navbar {
-  background-color: #111;
+  background-color: #343a40;
 }
 
 .navbar-toggler-icon {
-  color: white;
+  color: rgb(27, 23, 23);
 }
 
 .error404 {
